@@ -1,2 +1,11 @@
 title: Saptak Banerjee
-theme: minima
+description: Software · Quant · Notes
+url: "https://nilarkian.github.io"
+baseurl: "/Saptak"
+
+markdown: kramdown
+permalink: pretty
+
+exclude:
+  - README.md
+  - LICENSE

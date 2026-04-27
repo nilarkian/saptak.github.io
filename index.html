@@ -1,270 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<title>Saptak Banerjee</title>
-
-<style>
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f7f7f7;
-color:#111;
-}
-
-/* HERO */
-
-.cover{
-width:100%;
-height:58vh;
-background-image:url('cover.png');
-background-size:contain;
-background-position:center top;
-background-repeat:no-repeat;
-background-color:#f7f7f7;
-}
-
-/* MAIN */
-
-.content{
-max-width:950px;
-margin:50px auto 90px;
-padding:0 24px;
-text-align:center;
-}
-
-h1{
-font-size:58px;
-font-weight:600;
-letter-spacing:-1px;
-margin-bottom:14px;
-}
-
-.tagline{
-font-size:28px;
-margin-bottom:48px;
-}
-
-/* NAV */
-
-.nav{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-margin-bottom:90px;
-}
-
-.nav a{
-text-decoration:none;
-color:#111;
-border:2px solid #111;
-padding:14px 30px;
-border-radius:999px;
-font-size:18px;
-font-weight:600;
-transition:.25s ease;
-}
-
-.nav a:hover{
-background:#111;
-color:white;
-transform:translateY(-4px);
-box-shadow:0 10px 18px rgba(0,0,0,.12);
-}
-
-/* CONNECT */
-
-.connect{
-border-top:1px solid #ddd;
-padding-top:60px;
-}
-
-.connect h2{
-font-size:34px;
-margin-bottom:35px;
-}
-
-.contact-text{
-display:flex;
-justify-content:center;
-gap:34px;
-flex-wrap:wrap;
-font-size:21px;
-margin-bottom:38px;
-}
-
-.contact-text span{
-cursor:pointer;
-transition:.2s;
-border-bottom:1px dotted #aaa;
-padding-bottom:2px;
-}
-
-.contact-text span:hover{
-opacity:.6;
-}
-
-.social-icons{
-display:flex;
-justify-content:center;
-gap:42px;
-font-size:38px;
-margin-bottom:25px;
-}
-
-.social-icons a{
-color:#111;
-text-decoration:none;
-transition:.25s;
-cursor: pointer;
-}
-
-.social-icons a:hover{
-transform:translateY(-4px) scale(1.12);
-opacity:.75;
-}
-
-#copied{
-height:25px;
-opacity:.6;
-font-size:15px;
-}
-
-.footer{
-margin-top:70px;
-font-size:15px;
-opacity:.5;
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-.cover{
-height:42vh;
-}
-
-h1{
-font-size:42px;
-}
-
-.tagline{
-font-size:22px;
-}
-
-.nav a{
-padding:12px 22px;
-font-size:16px;
-}
-
-.contact-text{
-font-size:18px;
-}
-
-.social-icons{
-font-size:34px;
-}
-
-}
-
-</style>
-</head>
-
-<body>
-
+---
+layout: default
+---
 <div class="cover"></div>
 
 <div class="content">
 
-<h1>Saptak Banerjee</h1>
+  <h1>Saptak Banerjee</h1>
 
-<div class="tagline">
-Software | Quant | Notes
-</div>
+  <div class="tagline">Software · Quant · Notes</div>
 
+  <nav class="nav">
+    <a href="{{ '/projects.html' | relative_url }}">Projects</a>
+    <a href="{{ '/notes.html'    | relative_url }}">Notes</a>
+    <a href="{{ '/inspo.html'    | relative_url }}">Inspo</a>
+    <a href="{{ '/resume_v2.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+    <a href="{{ '/about/'        | relative_url }}">About</a>
+  </nav>
 
-<nav class="nav">
-<a href="projects.html">Projects</a>
-<a href="notes.html">Notes</a>
-<a href="inspo.html">Inspo</a>
+  <section class="connect">
 
-<a href="resume_v2.pdf"
-target="_blank"
-rel="noopener noreferrer">
-Resume ↗
-</a>
+    <h2>Connect</h2>
 
-<a href="about/">
-About
-</a>
-</nav>
+    <div class="contact-text">
+      <span onclick="copyText('saptakbanerjeenil@gmail.com')">📧 saptakbanerjeenil@gmail.com</span>
+      <span onclick="copyText('8240323376')">📱 8240323376</span>
+    </div>
 
+    <div class="social-icons">
+      <a href="https://github.com/nilarkian" target="_blank" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/saptak-banerjee-01372911b" target="_blank" title="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a href="https://www.instagram.com/led.head" target="_blank" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
 
+    <p id="copied"></p>
 
-<section class="connect">
-
-<h2>Connect</h2>
-
-<div class="contact-text">
-
-<span onclick="copyText('saptakbanerjeenil@gmail.com')">
-📧 saptakbanerjeenil@gmail.com
-</span>
-
-<span onclick="copyText('8240323376')">
-📱 8240323376
-</span>
+  </section>
 
 </div>
-
-<div class="social-icons">
-
-<a href="https://github.com/nilarkian"
-target="_blank"
-title="GitHub">
-<i class="fa-brands fa-github"></i>
-</a>
-
-<a href="https://www.linkedin.com/in/saptak-banerjee-01372911b"
-target="_blank"
-title="LinkedIn">
-<i class="fa-brands fa-linkedin"></i>
-</a>
-
-<a href="https://www.instagram.com/led.head"
-target="_blank"
-title="Instagram">
-<i class="fa-brands fa-instagram"></i>
-</a>
-
-</div>
-
-<p id="copied"></p>
-
-</section>
-
-
-<div class="footer">
-Built, coded and written by Saptak
-</div>
-
-</div>
-
-
-<script>
-function copyText(text){
-navigator.clipboard.writeText(text);
-document.getElementById("copied").innerText="Copied ✅";
-setTimeout(function(){
-document.getElementById("copied").innerText="";
-},1500);
-}
-</script>
-
-</body>
-</html>
