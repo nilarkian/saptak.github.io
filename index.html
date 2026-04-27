@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Saptak</title>
+<title>Saptak Banerjee</title>
 
 <style>
+
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 background:#f7f7f7;
 color:#111;
 }
 
-/* HERO BANNER */
+/* HERO */
 .cover{
 width:100%;
 height:58vh;
@@ -26,30 +27,32 @@ background-color:#f7f7f7;
 
 /* MAIN */
 .content{
-max-width:900px;
-margin:50px auto 80px auto;
+max-width:950px;
+margin:50px auto 90px;
 padding:0 24px;
 text-align:center;
 }
 
 h1{
 font-size:58px;
-font-weight:600;
 margin-bottom:14px;
 letter-spacing:-1px;
+font-weight:600;
 }
 
 .tagline{
 font-size:28px;
-margin-bottom:42px;
+margin-bottom:45px;
 }
 
-/* NAV BUTTONS */
+/* NAV */
+
 .nav{
 display:flex;
 justify-content:center;
 gap:22px;
 flex-wrap:wrap;
+margin-bottom:85px;
 }
 
 .nav a{
@@ -60,18 +63,67 @@ padding:14px 30px;
 border-radius:999px;
 font-size:19px;
 font-weight:600;
-transition:all .25s ease;
+transition:.25s ease;
 }
 
 .nav a:hover{
 background:#111;
 color:white;
 transform:translateY(-4px);
-box-shadow:0 10px 20px rgba(0,0,0,.12);
+box-shadow:0 10px 18px rgba(0,0,0,.12);
 }
 
-/* mobile */
-@media (max-width:768px){
+/* CONNECT */
+
+.connect{
+border-top:1px solid #ddd;
+padding-top:55px;
+}
+
+.connect h2{
+font-size:34px;
+margin-bottom:28px;
+}
+
+.socials{
+display:flex;
+justify-content:center;
+gap:18px;
+flex-wrap:wrap;
+margin-bottom:30px;
+}
+
+.socials a{
+text-decoration:none;
+color:#111;
+border:2px solid #111;
+padding:12px 24px;
+border-radius:999px;
+font-weight:600;
+transition:.25s;
+}
+
+.socials a:hover{
+background:#111;
+color:white;
+transform:translateY(-3px);
+}
+
+.phone{
+font-size:20px;
+opacity:.7;
+margin-top:10px;
+}
+
+.footer{
+margin-top:70px;
+font-size:15px;
+opacity:.55;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
 
 .cover{
 height:42vh;
@@ -91,6 +143,7 @@ font-size:17px;
 }
 
 }
+
 </style>
 </head>
 
@@ -100,20 +153,59 @@ font-size:17px;
 
 <div class="content">
 
+<h1>Saptak Banerjee</h1>
+
 <div class="tagline">
 Software | Quant | Notes
 </div>
-
 
 <nav class="nav">
 <a href="projects.html">Projects</a>
 <a href="notes.html">Notes</a>
 <a href="inspo.html">Inspo</a>
-<a href="resume.pdf" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+<a href="resume.pdf" target="_blank" rel="noopener noreferrer">
+Resume ↗
+</a>
 <a href="about/">About</a>
 </nav>
 
-</nav>
+
+<section class="connect">
+
+<h2>Connect</h2>
+
+<div class="socials">
+
+<a href="mailto:saptakbanerjeenil@gmail.com">
+Email
+</a>
+
+<a href="https://github.com/nilarkian"
+target="_blank">
+GitHub ↗
+</a>
+
+<a href="https://www.linkedin.com/in/saptak-banerjee-01372911b"
+target="_blank">
+LinkedIn ↗
+</a>
+
+<a href="https://instagram.com/led.head"
+target="_blank">
+Instagram ↗
+</a>
+
+</div>
+
+<div class="phone">
+8240323376
+</div>
+
+</section>
+
+<div class="footer">
+Built and written by Saptak
+</div>
 
 </div>
 
