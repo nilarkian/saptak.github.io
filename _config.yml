@@ -11,6 +11,5 @@ baseurl: "/Saptak"
 markdown: kramdown
 permalink: pretty
 
-exclude:
-  - README.md
-  - LICENSE
+include:
+  - notes

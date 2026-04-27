@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ page.title }} — Saptak</title>
+<style>
+
+.note-body a {
+  color: #c8440a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.note-body a:hover {
+  opacity: .55;
+}
+
+/* ── RESET & BASE ── */
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family:Georgia,serif;
+  background:#f7f7f7;
+  color:#111;
+  display:flex;
+  min-height:100vh;
+}
+
+a{text-decoration:none;color:#111;}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  position:fixed;
+  top:0;left:0;
+  width:240px;
+  height:100vh;
+  background:#efefef;
+  border-right:1px solid #ddd;
+  padding:40px 20px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+
+.sidebar .back{
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  font-weight:600;
+  border:2px solid #111;
+  padding:8px 16px;
+  border-radius:999px;
+  display:inline-block;
+  transition:.2s;
+  width:fit-content;
+}
+
+.sidebar .back:hover{
+  background:#111;
+  color:#f7f7f7;
+}
+
+.toc-label{
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.4;
+}
+
+.toc{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  list-style:none;
+}
+
+.toc li a{
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  line-height:1.5;
+  display:block;
+  padding:5px 10px;
+  border-radius:6px;
+  color:#444;
+  transition:.15s;
+  border-left:2px solid transparent;
+}
+
+.toc li a:hover{
+  background:rgba(0,0,0,.06);
+  color:#111;
+}
+
+.toc li a.active{
+  border-left:2px solid #111;
+  color:#111;
+  font-weight:600;
+  background:rgba(0,0,0,.05);
+}
+
+.toc li.h3 a{
+  padding-left:20px;
+  font-size:12px;
+}
+
+/* ── MAIN ── */
+.main{
+  margin-left:240px;
+  flex:1;
+  padding:60px 64px 120px;
+  max-width:860px;
+}
+
+/* ── BREADCRUMB ── */
+.breadcrumb{
+  font-family:Arial,sans-serif;
+  font-size:12px;
+  opacity:.4;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+.breadcrumb span{margin:0 6px;}
+
+/* ── TOPIC TAG ── */
+.topic-tag{
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  background:#111;
+  color:#f7f7f7;
+  display:inline-block;
+  padding:4px 12px;
+  border-radius:999px;
+  margin-bottom:20px;
+}
+
+/* ── TITLE ── */
+.note-title{
+  font-family:Arial,sans-serif;
+  font-size:36px;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:-1px;
+  margin-bottom:16px;
+}
+
+.meta{
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  opacity:.4;
+  margin-bottom:52px;
+  display:flex;
+  gap:20px;
+}
+
+/* ── MARKDOWN BODY ── */
+.note-body{
+  font-size:18px;
+  line-height:1.9;
+}
+
+.note-body p{
+  margin-bottom:26px;
+}
+
+.note-body h2{
+  font-family:Arial,sans-serif;
+  font-size:22px;
+  font-weight:700;
+  margin:56px 0 14px;
+  letter-spacing:-.3px;
+  scroll-margin-top:32px;
+}
+
+.note-body h3{
+  font-family:Arial,sans-serif;
+  font-size:17px;
+  font-weight:700;
+  margin:36px 0 10px;
+  scroll-margin-top:32px;
+}
+
+.note-body blockquote{
+  margin:36px 0;
+  padding:20px 28px;
+  border-left:4px solid #111;
+  background:rgba(0,0,0,.04);
+  border-radius:0 10px 10px 0;
+  font-style:italic;
+  font-size:19px;
+}
+
+.note-body hr{
+  border:none;
+  border-top:1px solid #ccc;
+  margin:52px 0;
+}
+
+.note-body ul,.note-body ol{
+  padding-left:24px;
+  margin-bottom:26px;
+}
+
+.note-body li{
+  margin-bottom:8px;
+}
+
+.note-body code{
+  font-family:monospace;
+  font-size:15px;
+  background:rgba(0,0,0,.07);
+  padding:2px 6px;
+  border-radius:4px;
+}
+
+.note-body pre{
+  background:#1a1a1a;
+  color:#f0f0f0;
+  padding:24px;
+  border-radius:12px;
+  overflow-x:auto;
+  margin-bottom:28px;
+  font-size:14px;
+  line-height:1.7;
+}
+
+/* ── FOOTER ── */
+.note-footer{
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  opacity:.35;
+  margin-top:80px;
+  border-top:1px solid #ccc;
+  padding-top:28px;
+}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{margin-left:0;padding:40px 24px 80px;}
+  .note-title{font-size:28px;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <a class="back" href="{{ site.baseurl }}/notes.html">← Notes</a>
+
+  <div>
+    <div class="toc-label">On this page</div>
+  </div>
+
+  <ul class="toc" id="toc"></ul>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="breadcrumb">
+    <a href="{{ site.baseurl }}/notes.html">Notes</a>
+    <span>›</span>
+    {{ page.topic }}
+  </div>
+
+  <div class="topic-tag">{{ page.topic }}</div>
+
+  <h1 class="note-title">{{ page.title }}</h1>
+
+  <div class="meta">
+    {% if page.date %}<span>📅 {{ page.date | date: "%B %Y" }}</span>{% endif %}
+    {% if page.read_time %}<span>⏱ {{ page.read_time }} min read</span>{% endif %}
+  </div>
+
+  <div class="note-body" id="note-body">
+    {{ content }}
+  </div>
+
+  <div class="note-footer">
+    Written by Saptak ·
+    <a href="{{ site.baseurl }}/">nilarkian.github.io/Saptak</a>
+  </div>
+
+</main>
+
+<script>
+// Auto-build TOC from headings in the note body
+const body   = document.getElementById('note-body');
+const toc    = document.getElementById('toc');
+const heads  = body.querySelectorAll('h2, h3');
+
+heads.forEach((h, i) => {
+  // Give each heading an id if it doesn't have one
+  if (!h.id) {
+    h.id = 'section-' + i;
+  }
+
+  const li  = document.createElement('li');
+  li.className = h.tagName.toLowerCase(); // 'h2' or 'h3'
+
+  const a   = document.createElement('a');
+  a.href    = '#' + h.id;
+  a.textContent = h.textContent;
+
+  li.appendChild(a);
+  toc.appendChild(li);
+});
+
+// Highlight active section on scroll
+const links = toc.querySelectorAll('a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const active = toc.querySelector(`a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '0px 0px -70% 0px' });
+
+heads.forEach(h => observer.observe(h));
+</script>
+
+</body>
+</html>
