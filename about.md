@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
-## about
-
 I build things, then write about them.
 
 Quantitative researcher and developer based in Kolkata. I spend most of my 
