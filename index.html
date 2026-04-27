@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <title>Saptak Banerjee</title>
 
 <style>
@@ -99,6 +101,8 @@ margin-bottom:38px;
 .contact-text span{
 cursor:pointer;
 transition:.2s;
+border-bottom:1px dotted #aaa;
+padding-bottom:2px;
 }
 
 .contact-text span:hover{
@@ -108,18 +112,21 @@ opacity:.6;
 .social-icons{
 display:flex;
 justify-content:center;
-gap:34px;
-font-size:42px;
+gap:42px;
+font-size:38px;
 margin-bottom:25px;
 }
 
 .social-icons a{
+color:#111;
 text-decoration:none;
-transition:.2s;
+transition:.25s;
+cursor: pointer;
 }
 
 .social-icons a:hover{
-transform:translateY(-4px) scale(1.08);
+transform:translateY(-4px) scale(1.12);
+opacity:.75;
 }
 
 #copied{
@@ -215,25 +222,24 @@ About
 
 </div>
 
-
 <div class="social-icons">
 
 <a href="https://github.com/nilarkian"
 target="_blank"
 title="GitHub">
-🐙
+<i class="fa-brands fa-github"></i>
 </a>
 
 <a href="https://www.linkedin.com/in/saptak-banerjee-01372911b"
 target="_blank"
 title="LinkedIn">
-💼
+<i class="fa-brands fa-linkedin"></i>
 </a>
 
-<a href="https://instagram.com/led.head"
+<a href="https://www.instagram.com/led.head"
 target="_blank"
 title="Instagram">
-📷
+<i class="fa-brands fa-instagram"></i>
 </a>
 
 </div>
@@ -244,7 +250,7 @@ title="Instagram">
 
 
 <div class="footer">
-Built and written by Saptak
+Built, coded and written by Saptak
 </div>
 
 </div>
@@ -253,7 +259,7 @@ Built and written by Saptak
 <script>
 function copyText(text){
 navigator.clipboard.writeText(text);
-document.getElementById("copied").innerText="Copied to clipboard";
+document.getElementById("copied").innerText="Copied ✅";
 setTimeout(function(){
 document.getElementById("copied").innerText="";
 },1500);
