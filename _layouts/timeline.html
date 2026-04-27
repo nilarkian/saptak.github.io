@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ page.title }} — Saptak</title>
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f7f7f7;
+  color:#111;
+  display:flex;
+  min-height:100vh;
+}
+
+a{text-decoration:none;color:#111;}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  position:fixed;
+  top:0;left:0;
+  width:240px;
+  height:100vh;
+  background:#efefef;
+  border-right:1px solid #ddd;
+  padding:40px 20px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+
+.sidebar .back{
+  font-size:13px;
+  font-weight:600;
+  border:2px solid #111;
+  padding:8px 16px;
+  border-radius:999px;
+  display:inline-block;
+  transition:.2s;
+  width:fit-content;
+}
+
+.sidebar .back:hover{
+  background:#111;
+  color:#f7f7f7;
+}
+
+.toc-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.4;
+}
+
+.toc{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  list-style:none;
+}
+
+.toc li a{
+  font-size:13px;
+  line-height:1.5;
+  display:block;
+  padding:5px 10px;
+  border-radius:6px;
+  color:#444;
+  transition:.15s;
+  border-left:2px solid transparent;
+}
+
+.toc li a:hover{
+  background:rgba(0,0,0,.06);
+  color:#111;
+}
+
+.toc li a.active{
+  border-left:2px solid #111;
+  color:#111;
+  font-weight:600;
+  background:rgba(0,0,0,.05);
+}
+
+/* ── MAIN ── */
+.main{
+  margin-left:240px;
+  flex:1;
+  padding:60px 64px 120px;
+  max-width:860px;
+}
+
+.breadcrumb{
+  font-size:12px;
+  opacity:.4;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+.breadcrumb span{margin:0 6px;}
+
+.page-tag{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  background:#111;
+  color:#f7f7f7;
+  display:inline-block;
+  padding:4px 12px;
+  border-radius:999px;
+  margin-bottom:20px;
+}
+
+.page-title{
+  font-size:36px;
+  font-weight:700;
+  letter-spacing:-1px;
+  margin-bottom:12px;
+}
+
+.meta{
+  font-size:13px;
+  opacity:.4;
+  margin-bottom:52px;
+}
+
+/* ── TIMELINE ── */
+.timeline-body h2{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.4;
+  margin:52px 0 24px;
+  scroll-margin-top:32px;
+}
+
+/* each entry = h3 + content until next h3 */
+.timeline-body h3{
+  font-size:17px;
+  font-weight:700;
+  margin-bottom:6px;
+  scroll-margin-top:32px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.timeline-body h3::before{
+  content:'';
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#111;
+  flex-shrink:0;
+}
+
+/* the vertical line running through entries */
+.timeline-body{
+  border-left:2px solid #ddd;
+  padding-left:28px;
+  margin-left:4px;
+}
+
+.timeline-body p{
+  font-size:16px;
+  line-height:1.8;
+  margin-bottom:24px;
+  opacity:.85;
+}
+
+.timeline-body a{
+  color:#c8440a;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.timeline-body a:hover{opacity:.6;}
+
+.timeline-body hr{
+  border:none;
+  border-top:1px solid #ddd;
+  margin:40px 0;
+}
+
+.timeline-body ul{
+  padding-left:20px;
+  margin-bottom:20px;
+}
+
+.timeline-body li{
+  font-size:16px;
+  line-height:1.8;
+  margin-bottom:6px;
+}
+
+.timeline-body blockquote{
+  margin:20px 0;
+  padding:16px 22px;
+  border-left:4px solid #111;
+  background:rgba(0,0,0,.04);
+  border-radius:0 10px 10px 0;
+  font-style:italic;
+  font-size:16px;
+}
+
+/* ── FOOTER ── */
+.page-footer{
+  font-size:13px;
+  opacity:.35;
+  margin-top:80px;
+  border-top:1px solid #ccc;
+  padding-top:28px;
+}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{margin-left:0;padding:40px 24px 80px;}
+  .page-title{font-size:28px;}
+}
+
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="back" href="{{ site.baseurl }}/watchlist.html">← Watchlist</a>
+  <div>
+    <div class="toc-label">On this page</div>
+  </div>
+  <ul class="toc" id="toc"></ul>
+</aside>
+
+<main class="main">
+
+  <div class="breadcrumb">
+    <a href="{{ site.baseurl }}/watchlist.html">Watchlist</a>
+    <span>›</span>
+    {{ page.title }}
+  </div>
+
+  <div class="page-tag">📡 Tracker</div>
+
+  <h1 class="page-title">{{ page.title }}</h1>
+
+  <div class="meta">Last updated: {{ page.last_updated }}</div>
+
+  <div class="timeline-body" id="timeline-body">
+    {{ content }}
+  </div>
+
+  <div class="page-footer">
+    Tracked by Saptak ·
+    <a href="{{ site.baseurl }}/">nilarkian.github.io/Saptak</a>
+  </div>
+
+</main>
+
+<script>
+const body  = document.getElementById('timeline-body');
+const toc   = document.getElementById('toc');
+const heads = body.querySelectorAll('h2, h3');
+
+heads.forEach((h, i) => {
+  if (!h.id) h.id = 'entry-' + i;
+
+  const li = document.createElement('li');
+  const a  = document.createElement('a');
+  a.href        = '#' + h.id;
+  a.textContent = h.textContent.replace(/^●\s*/, '');
+  li.appendChild(a);
+  toc.appendChild(li);
+});
+
+const links = toc.querySelectorAll('a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = toc.querySelector(`a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '0px 0px -70% 0px' });
+
+heads.forEach(h => observer.observe(h));
+</script>
+
+</body>
+</html>
