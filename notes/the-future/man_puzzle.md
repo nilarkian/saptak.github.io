@@ -1,10 +1,9 @@
 ---
 layout: note
-title: "iCET — U.S.–India Initiative on Critical and Emerging Technology"
+title: "Manufacturers Puzzle: The Need to Constantly Predict Market Demand & The Temu Story"
 topic: "The Future 💰"
 date: 2025-01-01
 ---
-# Manufacturers Puzzle: The Need to Constantly Predict Market Demand & The Temu Story
 
 Why does a toaster cost five dollars?
 
