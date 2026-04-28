@@ -7,7 +7,7 @@ permalink: /notes/puzzle.html
 
 Why does a air fryer cost 3000/-?
 
-If you think the answer is "cheap labor" or "bad materials," you’re still playing the old game. You’re looking at the shadow on the wall instead of the hand moving the puppet. The five-dollar toaster isn't a product; it’s a data point in a war against the most expensive ghost in history: **The Prediction Tax.**
+If you think the answer is "cheap labor" or "bad materials," you’re still playing the old game. You’re looking at the shadow on the wall instead of the hand moving the puppet. The cheap fryer isn't a product; it’s a data point in a war against the most expensive ghost in history: **The Prediction Tax.**
 
 Most businesses are actually gambling dens disguised as logistics companies. They guess what you want, build a million of them, and pray they don't end up in a landfill. 
 

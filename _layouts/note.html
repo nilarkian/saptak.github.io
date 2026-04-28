@@ -297,7 +297,7 @@ a{text-decoration:none;color:#111;}
 // Auto-build TOC from headings in the note body
 const body   = document.getElementById('note-body');
 const toc    = document.getElementById('toc');
-const heads  = body.querySelectorAll('h2, h3');
+const heads  = body.querySelectorAll('h1, h2, h3');
 
 heads.forEach((h, i) => {
   // Give each heading an id if it doesn't have one
