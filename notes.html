@@ -1,57 +1,109 @@
+---
+permalink: /notes.html
+---
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Notes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Notes — Saptak</title>
 <style>
-body{font-family:Arial;margin:60px auto;max-width:900px;padding:0 30px;background:#f7f7f7;color:#111;}
-a{text-decoration:none;color:#111;}
-.back{border:2px solid #111;padding:10px 20px;border-radius:999px;font-weight:600;}
 
-.topic{
-  margin-top:50px;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #111;
 }
 
-.topic-label{
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  opacity:.45;
-  margin-bottom:10px;
+a { text-decoration: none; color: #111; }
+
+.inner {
+  max-width: 900px;
+  margin: 60px auto 90px;
+  padding: 0 30px;
 }
 
-.topic-link{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:26px;
-  font-weight:700;
-  border:2px solid #111;
-  border-radius:14px;
-  padding:20px 24px;
-  transition:.2s;
+.back {
+  display: inline-block;
+  font-size: 14px; font-weight: 600;
+  border: 2px solid #111; padding: 10px 22px;
+  border-radius: 999px; transition: .2s; margin-bottom: 52px;
+}
+.back:hover { background: #111; color: #f7f7f7; }
+
+.page-title {
+  font-size: 52px; font-weight: 700;
+  letter-spacing: -2px; line-height: 1.05; margin-bottom: 52px;
 }
 
-.topic-link:hover{
-  background:#111;
-  color:white;
-  transform:translateY(-3px);
+/* ── TOPIC BLOCK ── */
+.topic { margin-bottom: 52px; }
+
+.topic-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  opacity: .35; margin-bottom: 12px;
+}
+
+.topic-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px; font-weight: 700;
+  border: 2px solid #111;
+  border-radius: 14px;
+  padding: 20px 24px;
+  transition: .2s;
+  margin-bottom: 12px;
+}
+
+.topic-link:hover {
+  background: #111; color: white;
+  transform: translateY(-3px);
+}
+
+
+.footer { margin-top: 70px; font-size: 14px; opacity: .4; text-align: center; }
+
+@media (max-width: 640px) {
+  .page-title { font-size: 36px; }
+  .topic-link { font-size: 18px; }
 }
 
 </style>
 </head>
 <body>
 
-<a class="back" href="index.html">← Home</a>
+<div class="inner">
 
-<h1>Notes</h1>
+  <a class="back" href="{{ site.baseurl }}/">← Home</a>
 
-<div class="topic">
-  <div class="topic-label">Topic</div>
-  <a class="topic-link" href="notes/the-future.html">
-    <span>The Future 💰</span>
-    <span>→</span>
-  </a>
+  <h1 class="page-title">Notes</h1>
+
+  {% assign all_notes = site.pages | where_exp: "p", "p.path contains 'notes/'" | where_exp: "p", "p.layout == 'note'" | where_exp: "p", "p.topic != nil" %}
+  {% assign topics = all_notes | map: "topic" | uniq | sort %}
+
+  {% for topic in topics %}
+    {% if topic %}
+    {% assign topic_notes = all_notes | where: "topic", topic %}
+    {% assign topic_slug = topic | slugify %}
+
+    <div class="topic">
+      <div class="topic-label">Topic</div>
+      <a class="topic-link" href="{{ site.baseurl }}/notes/{{ topic_slug }}.html">
+        <span>{{ topic }}</span>
+        <span>→</span>
+      </a>
+
+
+    </div>
+    {% endif %}
+  {% endfor %}
+
+  <div class="footer">Built, coded and written by Saptak</div>
+
 </div>
 
 </body>

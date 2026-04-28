@@ -1,64 +1,134 @@
+---
+topic_filter: "The Future 💰"
+permalink: /notes/the-future.html
+---
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>The Future 💰 — Notes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ page.topic_filter }} — Notes — Saptak</title>
 <style>
-body{font-family:Arial;margin:60px auto;max-width:900px;padding:0 30px;background:#f7f7f7;color:#111;}
-a{text-decoration:none;color:#111;}
-.back{border:2px solid #111;padding:10px 20px;border-radius:999px;font-weight:600;}
 
-.breadcrumb{
-  font-size:13px;
-  opacity:.45;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  margin:30px 0 10px;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #111;
 }
 
-.breadcrumb span{margin:0 6px;}
+a { text-decoration: none; color: #111; }
 
-.note{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 0;
-  border-bottom:1px solid #ddd;
-  transition:.2s;
+.inner {
+  max-width: 900px;
+  margin: 60px auto 90px;
+  padding: 0 30px;
 }
 
-.note:hover{
-  opacity:.55;
-  padding-left:6px;
+.back {
+  display: inline-block;
+  font-size: 14px; font-weight: 600;
+  border: 2px solid #111; padding: 10px 22px;
+  border-radius: 999px; transition: .2s; margin-bottom: 32px;
+}
+.back:hover { background: #111; color: #f7f7f7; }
+
+.breadcrumb {
+  font-size: 12px; opacity: .4;
+  letter-spacing: .08em; text-transform: uppercase; margin-bottom: 24px;
+}
+.breadcrumb span { margin: 0 6px; }
+
+.page-title {
+  font-size: 42px; font-weight: 700;
+  letter-spacing: -1.5px; margin-bottom: 10px; line-height: 1.1;
 }
 
-.note-title{
-  font-size:17px;
-  font-weight:500;
+.note-count {
+  font-size: 13px; opacity: .35;
+  letter-spacing: .06em; margin-bottom: 48px;
 }
 
-.note-arrow{
-  font-size:18px;
-  opacity:.4;
+/* ── NOTE ROWS ── */
+.note-list { display: flex; flex-direction: column; }
+
+.note-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+  text-decoration: none;
+  color: #111;
+  transition: .15s;
 }
+
+.note-list .note-row:first-child { border-top: 1px solid #ddd; }
+.note-row:hover { opacity: .55; padding-left: 6px; }
+
+.note-row-inner { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+
+.note-row-title {
+  font-size: 18px; font-weight: 600; line-height: 1.35;
+}
+
+.note-row-meta {
+  font-size: 12px; opacity: .35;
+  letter-spacing: .06em;
+}
+
+.note-row-arrow {
+  font-size: 18px; opacity: .3;
+  flex-shrink: 0; margin-left: 20px;
+  transition: .15s;
+}
+
+.note-row:hover .note-row-arrow { opacity: .7; transform: translateX(3px); }
+
+.footer { margin-top: 70px; font-size: 14px; opacity: .4; text-align: center; }
+
+@media (max-width: 640px) {
+  .page-title { font-size: 30px; }
+}
+
 </style>
 </head>
 <body>
 
-<a class="back" href="../notes.html">← Notes</a>
+<div class="inner">
 
-<div class="breadcrumb">Notes <span>›</span> The Future 💰</div>
+  <a class="back" href="{{ site.baseurl }}/notes.html">← Notes</a>
 
-<h1>The Future 💰</h1>
+  <div class="breadcrumb">
+    <a href="{{ site.baseurl }}/notes.html">Notes</a>
+    <span>›</span>
+    {{ page.topic_filter }}
+  </div>
 
-<a class="note" href="the-future/ipl-jerseys/">
-  <span class="note-title">The Future of IPL Jerseys: Arbitraging the "Digital Skin"</span>
-  <span class="note-arrow">→</span>
-</a>
+  <h1 class="page-title">{{ page.topic_filter }}</h1>
 
-<a class="note" href="the-future/icet/">
-  <span class="note-title">iCET — U.S.–India Initiative on Critical and Emerging Technology</span>
-  <span class="note-arrow">→</span>
-</a>
+  {% assign topic_notes = site.pages | where_exp: "p", "p.path contains 'notes/'" | where_exp: "p", "p.layout == 'note'" | where: "topic", page.topic_filter | sort: "date" | reverse %}
+
+  <div class="note-count">{{ topic_notes.size }} note{% if topic_notes.size != 1 %}s{% endif %}</div>
+
+  <div class="note-list">
+    {% for note in topic_notes %}
+    <a class="note-row" href="{{ note.url | prepend: site.baseurl }}">
+      <div class="note-row-inner">
+        <span class="note-row-title">{{ note.title }}</span>
+        {% if note.date %}
+        <span class="note-row-meta">{{ note.date | date: "%B %Y" }}</span>
+        {% endif %}
+      </div>
+      <span class="note-row-arrow">→</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div class="footer">Built, coded and written by Saptak</div>
+
+</div>
 
 </body>
 </html>

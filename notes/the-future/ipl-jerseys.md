@@ -2,7 +2,7 @@
 layout: note
 title: "The Future of IPL Jerseys: Arbitraging the \"Digital Skin\""
 topic: "The Future 💰"
-date: 2025-01-01
+date: 2026-04-02
 ---
 
 
