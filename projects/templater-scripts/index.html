@@ -1,0 +1,243 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Templater Scripts — Saptak</title>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #111;
+}
+
+a { text-decoration: none; color: #111; }
+
+.inner {
+  max-width: 900px;
+  margin: 60px auto 90px;
+  padding: 0 30px;
+}
+
+.back {
+  display: inline-block;
+  font-size: 14px; font-weight: 600;
+  border: 2px solid #111; padding: 10px 22px;
+  border-radius: 999px; transition: .2s; margin-bottom: 52px;
+}
+.back:hover { background: #111; color: #f7f7f7; }
+
+/* ── HEADER ── */
+.page-tag {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  opacity: .35; margin-bottom: 14px;
+}
+
+.page-title {
+  font-size: 52px; font-weight: 700;
+  letter-spacing: -2px; line-height: 1.05; margin-bottom: 14px;
+}
+
+.page-subtitle { font-size: 17px; opacity: .5; margin-bottom: 48px; }
+
+hr.divider { border: none; border-top: 1px solid #ddd; margin: 0 0 36px; }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px;
+}
+
+.filter-btn {
+  font-family: Arial, sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 2px solid #ddd; background: transparent;
+  color: #111; padding: 7px 16px; border-radius: 999px;
+  cursor: pointer; transition: .15s;
+}
+
+.filter-btn:hover { border-color: #111; }
+
+.filter-btn.active {
+  background: #111; color: #f7f7f7; border-color: #111;
+}
+
+/* ── SCRIPT COUNT ── */
+.script-count {
+  font-size: 12px; opacity: .35;
+  letter-spacing: .06em; margin-bottom: 24px;
+}
+
+/* ── CATALOGUE GRID ── */
+.catalogue {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.script-card {
+  display: block;
+  border: 2px solid #111;
+  border-radius: 18px;
+  padding: 26px;
+  text-decoration: none;
+  color: #111;
+  transition: .2s ease;
+  position: relative;
+}
+
+.script-card:hover {
+  background: #111; color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.11);
+}
+
+.script-card:hover .card-desc { opacity: .75; }
+.script-card:hover .card-arrow { opacity: .7; }
+
+.card-cat {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  opacity: .35; margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 18px; font-weight: 700;
+  letter-spacing: -.2px; margin-bottom: 8px; line-height: 1.3;
+}
+
+.card-desc {
+  font-size: 13px; opacity: .5;
+  line-height: 1.6; margin-bottom: 18px;
+}
+
+.card-tags {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+
+.card-tag {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  padding: 2px 8px; border-radius: 999px; opacity: .4;
+}
+
+.card-arrow {
+  position: absolute; bottom: 22px; right: 22px;
+  font-size: 18px; font-weight: 700; opacity: .2; transition: .2s;
+}
+
+/* hidden by filter */
+.script-card[hidden] { display: none; }
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center; padding: 60px 0;
+  opacity: .3; font-size: 15px;
+  display: none;
+}
+
+.footer {
+  margin-top: 80px; font-size: 14px; opacity: .4; text-align: center;
+}
+
+@media (max-width: 640px) {
+  .page-title { font-size: 36px; }
+  .catalogue { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="inner">
+
+  <a class="back" href="{{ site.baseurl }}/">← Home</a>
+
+  <div class="page-tag">⚡ Obsidian · Templater</div>
+  <h1 class="page-title">Templater Scripts</h1>
+  <p class="page-subtitle">A growing library of Templater scripts. Copy, paste, done.</p>
+
+  <hr class="divider">
+
+  <!-- FILTER BAR — categories auto-built from front matter -->
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" data-cat="all">All</button>
+    {% assign scripts = site.pages | where_exp: "p", "p.path contains 'projects/templater-scripts'" | where_exp: "p", "p.layout == 'templater'" %}
+    {% assign cats = scripts | map: "category" | uniq | sort %}
+
+    {% for cat in cats %}
+      {% if cat %}
+      <button class="filter-btn" data-cat="{{ cat | slugify }}">{{ cat }}</button>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="script-count" id="script-count"></div>
+
+  <!-- CATALOGUE GRID -->
+  <div class="catalogue" id="catalogue">
+
+    {% for script in scripts %}
+    <a class="script-card"
+       href="{{ script.url | prepend: site.baseurl }}"
+       data-cat="{{ script.category | slugify | default: 'utility' }}">
+      <div class="card-cat">{{ script.category | default: "Utility" }}</div>
+      <div class="card-title">{{ script.title }}</div>
+      <div class="card-desc">{{ script.description }}</div>
+      {% if script.tags %}
+      <div class="card-tags">
+        {% for tag in script.tags %}
+        <span class="card-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <span class="card-arrow">→</span>
+    </a>
+    {% endfor %}
+
+    <div class="empty-state" id="empty-state">No scripts in this category yet.</div>
+
+  </div>
+
+  <div class="footer">Built, coded and written by Saptak</div>
+
+</div>
+
+<script>
+// ── FILTER ──
+const btns    = document.querySelectorAll('.filter-btn');
+const cards   = document.querySelectorAll('.script-card');
+const counter = document.getElementById('script-count');
+const empty   = document.getElementById('empty-state');
+
+function updateCount() {
+  const visible = [...cards].filter(c => !c.hidden).length;
+  counter.textContent = visible + ' script' + (visible !== 1 ? 's' : '');
+  empty.style.display = visible === 0 ? 'block' : 'none';
+}
+
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cat = btn.dataset.cat;
+    cards.forEach(card => {
+      card.hidden = cat !== 'all' && card.dataset.cat !== cat;
+    });
+    updateCount();
+  });
+});
+
+updateCount();
+</script>
+
+</body>
+</html>

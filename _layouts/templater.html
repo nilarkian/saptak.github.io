@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ page.title }} — Templater Scripts — Saptak</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #111;
+  display: flex;
+  min-height: 100vh;
+}
+
+a { text-decoration: none; color: #111; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed; top: 0; left: 0;
+  width: 240px; height: 100vh;
+  background: #efefef;
+  border-right: 1px solid #ddd;
+  padding: 40px 20px;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 28px;
+}
+
+.sidebar .back {
+  font-size: 13px; font-weight: 600;
+  border: 2px solid #111; padding: 8px 16px;
+  border-radius: 999px; display: inline-block;
+  transition: .2s; width: fit-content;
+}
+.sidebar .back:hover { background: #111; color: #f7f7f7; }
+
+.toc-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; opacity: .4;
+}
+
+.toc { display: flex; flex-direction: column; gap: 4px; list-style: none; }
+.toc li a {
+  font-size: 13px; line-height: 1.5; display: block;
+  padding: 5px 10px; border-radius: 6px; color: #444;
+  transition: .15s; border-left: 2px solid transparent;
+}
+.toc li a:hover { background: rgba(0,0,0,.06); color: #111; }
+.toc li a.active { border-left: 2px solid #111; color: #111; font-weight: 600; background: rgba(0,0,0,.05); }
+.toc li.h3 a { padding-left: 20px; font-size: 12px; }
+
+/* ── MAIN ── */
+.main {
+  margin-left: 240px; flex: 1;
+  padding: 60px 64px 120px;
+  max-width: 860px;
+}
+
+.breadcrumb {
+  font-size: 12px; opacity: .4;
+  letter-spacing: .08em; text-transform: uppercase; margin-bottom: 24px;
+}
+.breadcrumb span { margin: 0 6px; }
+
+/* ── HEADER ── */
+.script-tag {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: #111; color: #f7f7f7;
+  display: inline-block; padding: 4px 12px;
+  border-radius: 999px; margin-bottom: 20px;
+}
+
+.script-title {
+  font-size: 36px; font-weight: 700;
+  line-height: 1.2; letter-spacing: -1px; margin-bottom: 14px;
+}
+
+.script-meta {
+  font-size: 13px; opacity: .4;
+  margin-bottom: 16px; display: flex; gap: 20px; flex-wrap: wrap;
+}
+
+.script-desc {
+  font-size: 17px; opacity: .65;
+  line-height: 1.6; margin-bottom: 52px;
+  padding-bottom: 40px; border-bottom: 1px solid #ddd;
+}
+
+/* ── SCRIPT CODE BLOCK ── */
+.script-body pre {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 48px 24px 24px;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.8;
+  position: relative;
+  margin: 32px 0 40px;
+}
+
+.script-body pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  color: #888;
+}
+
+/* two-tone syntax */
+.tp-delimiter { color: #c8440a; font-weight: 700; }   /* <%* and %> */
+.tp-inner     { color: #f0f0f0; }                      /* inside the block */
+
+/* copy button */
+.copy-btn {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.55);
+  font-family: Arial, sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 6px;
+  cursor: pointer; transition: .15s;
+  display: flex; align-items: center; gap: 6px;
+}
+.copy-btn:hover { background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); }
+.copy-btn.copied { color: #6fcf97; border-color: #6fcf97; }
+
+/* ── SCRIPT BODY (docs + explanation) ── */
+.script-body { font-size: 17px; line-height: 1.9; }
+
+.script-body p  { margin-bottom: 24px; }
+
+.script-body h2 {
+  font-size: 20px; font-weight: 700;
+  margin: 52px 0 12px; letter-spacing: -.3px;
+  scroll-margin-top: 32px;
+}
+
+.script-body h3 {
+  font-size: 15px; font-weight: 700;
+  margin: 32px 0 10px; scroll-margin-top: 32px;
+  text-transform: uppercase; letter-spacing: .08em; opacity: .5;
+}
+
+.script-body ul, .script-body ol {
+  padding-left: 22px; margin-bottom: 22px;
+}
+.script-body li { margin-bottom: 6px; }
+
+.script-body code {
+  font-family: monospace; font-size: 13px;
+  background: rgba(0,0,0,.07);
+  padding: 2px 6px; border-radius: 4px;
+}
+
+.script-body blockquote {
+  margin: 32px 0; padding: 18px 24px;
+  border-left: 4px solid #111;
+  background: rgba(0,0,0,.04);
+  border-radius: 0 10px 10px 0;
+  font-style: italic; font-size: 16px;
+}
+
+.script-body a {
+  color: #c8440a; text-decoration: underline;
+  text-underline-offset: 3px; font-weight: 600; transition: .2s;
+}
+.script-body a:hover { opacity: .55; }
+
+.script-body hr {
+  border: none; border-top: 1px solid #ddd; margin: 48px 0;
+}
+
+/* ── FOOTER ── */
+.script-footer {
+  font-size: 13px; opacity: .35;
+  margin-top: 80px; border-top: 1px solid #ddd; padding-top: 28px;
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 40px 24px 80px; }
+  .script-title { font-size: 28px; }
+}
+
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="back" href="{{ site.baseurl }}/projects/templater-scripts/">← Scripts</a>
+  <div><div class="toc-label">On this page</div></div>
+  <ul class="toc" id="toc"></ul>
+</aside>
+
+<main class="main">
+
+  <div class="breadcrumb">
+    <a href="{{ site.baseurl }}/">Home</a>
+    <span>›</span>
+    <a href="{{ site.baseurl }}/projects/templater-scripts/">Templater Scripts</a>
+    <span>›</span>
+    {{ page.title }}
+  </div>
+
+  <div class="script-tag">⚡ {{ page.category | default: "Utility" }}</div>
+
+  <h1 class="script-title">{{ page.title }}</h1>
+
+  <div class="script-meta">
+    {% if page.date %}<span>📅 {{ page.date | date: "%B %Y" }}</span>{% endif %}
+    {% if page.tags %}<span>🏷 {{ page.tags | join: " · " }}</span>{% endif %}
+  </div>
+
+  {% if page.description %}
+  <div class="script-desc">{{ page.description }}</div>
+  {% endif %}
+
+  <div class="script-body" id="script-body">
+    {{ content }}
+  </div>
+
+  <div class="script-footer">
+    Written by Saptak ·
+    <a href="{{ site.baseurl }}/">nilarkian.github.io/Saptak</a>
+  </div>
+
+</main>
+
+<script>
+// ── TWO-TONE SYNTAX HIGHLIGHTING ──
+// Finds all templater code blocks, splits on <%* ... %>
+// and applies colour spans. Stores raw text for copy.
+document.querySelectorAll('pre code.language-templater, pre code.language-tp').forEach(block => {
+  const rawText = block.textContent;
+  block.closest('pre').dataset.raw = rawText;
+
+  let html = block.innerHTML;
+
+  // handle HTML-encoded delimiters from kramdown
+  // <%* → &lt;%* and %> → %&gt;
+  html = html.replace(/(&lt;%\*)([\s\S]*?)(%&gt;)/g, (m, open, inner, close) => {
+    return `<span class="tp-delimiter">${open}</span><span class="tp-inner">${inner}</span><span class="tp-delimiter">${close}</span>`;
+  });
+
+  // also handle non-encoded (just in case)
+  html = html.replace(/(<%\*)([\s\S]*?)(%>)/g, (m, open, inner, close) => {
+    if (m.includes('tp-delimiter')) return m; // already processed
+    return `<span class="tp-delimiter">${open}</span><span class="tp-inner">${inner}</span><span class="tp-delimiter">${close}</span>`;
+  });
+
+  block.innerHTML = html;
+});
+
+// ── COPY BUTTONS ──
+document.querySelectorAll('.script-body pre').forEach(pre => {
+  const code = pre.querySelector('code');
+  if (!code) return;
+
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn';
+  btn.innerHTML = '⎘ Copy';
+
+  btn.addEventListener('click', () => {
+    const raw = pre.dataset.raw || code.textContent;
+    navigator.clipboard.writeText(raw.trim()).then(() => {
+      btn.innerHTML = '✓ Copied';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = '⎘ Copy';
+        btn.classList.remove('copied');
+      }, 1500);
+    });
+  });
+
+  pre.insertBefore(btn, pre.firstChild);
+});
+// ── AUTO TOC ──
+const body  = document.getElementById('script-body');
+const toc   = document.getElementById('toc');
+const heads = body.querySelectorAll('h2, h3');
+
+heads.forEach((h, i) => {
+  if (!h.id) h.id = 'section-' + i;
+  const li = document.createElement('li');
+  li.className = h.tagName.toLowerCase();
+  const a  = document.createElement('a');
+  a.href = '#' + h.id;
+  a.textContent = h.textContent;
+  li.appendChild(a);
+  toc.appendChild(li);
+});
+
+const links = toc.querySelectorAll('a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = toc.querySelector(`a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '0px 0px -70% 0px' });
+
+heads.forEach(h => observer.observe(h));
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</body>
+</html>

@@ -1,61 +1,231 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Projects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>Projects — Saptak</title>
 <style>
-body{font-family:Arial;margin:60px auto;max-width:900px;padding:0 30px;background:#f7f7f7;}
-a{text-decoration:none;color:#111;}
-.back{border:2px solid #111;padding:10px 20px;border-radius:999px;}
-.card{
-display:block;
-margin:30px 0;
-padding:30px;
-border:2px solid #111;
-border-radius:18px;
-transition:.2s;
+
+:root {
+  --bg: #f7f7f7;
+  --ink: #111;
+  --border: #ddd;
+  --radius: 18px;
+  --pill: 999px;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
 }
-.card:hover{
-transform:translateY(-4px);
-background:#111;
-color:white;
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
 }
+
+a { text-decoration: none; color: var(--ink); }
+
+.inner {
+  max-width: 900px;
+  margin: 60px auto 90px;
+  padding: 0 30px;
+}
+
+.back {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 14px; font-weight: 600;
+  border: 2px solid var(--ink);
+  padding: 10px 22px; border-radius: var(--pill);
+  transition: .2s; margin-bottom: 52px;
+}
+.back:hover { background: var(--ink); color: var(--bg); }
+
+/* ── HEADER ── */
+.page-tag {
+  font-family: var(--font-head);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  opacity: .35; margin-bottom: 14px;
+}
+
+.page-title {
+  font-family: var(--font-head);
+  font-size: 52px; font-weight: 700;
+  letter-spacing: -2px; line-height: 1.05; margin-bottom: 14px;
+}
+
+.page-subtitle {
+  font-size: 17px; opacity: .5; margin-bottom: 52px;
+}
+
+hr.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 44px; }
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-family: var(--font-head);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  opacity: .35; margin-bottom: 16px;
+}
+
+/* ── PROJECT CARD ── */
+.card {
+  display: block;
+  padding: 28px 30px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  transition: .2s ease;
+  position: relative;
+}
+
+.card:hover {
+  background: var(--ink);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.11);
+}
+
+.card:hover .card-meta { color: rgba(255,255,255,.5); }
+.card:hover .card-arrow { opacity: .7; }
+
+.card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-family: var(--font-head);
+  font-size: 20px; font-weight: 700;
+  letter-spacing: -.3px;
+}
+
+.card-status {
+  font-family: var(--font-head);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  opacity: .35; flex-shrink: 0;
+}
+
+.card-desc {
+  font-size: 15px; opacity: .6; line-height: 1.6;
+}
+
+.card-arrow {
+  position: absolute; right: 26px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px; font-weight: 700; opacity: .15;
+  transition: .2s;
+}
+
+/* card with no link yet */
+.card-soon {
+  display: block;
+  padding: 28px 30px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  opacity: .45;
+  cursor: default;
+}
+
+.card-soon .card-top { margin-bottom: 6px; }
+.card-soon .card-title { font-family: var(--font-head); font-size: 20px; font-weight: 700; }
+.card-soon .card-desc { font-size: 15px; opacity: .6; line-height: 1.6; }
+
+/* ── FOOTER ── */
+.footer { margin-top: 70px; font-size: 14px; opacity: .4; text-align: center; }
+
+@media (max-width: 640px) {
+  .page-title { font-size: 36px; }
+  .card-arrow { display: none; }
+}
+
 </style>
 </head>
 <body>
 
-<a class="back" href="index.html">← Home</a>
+<div class="inner">
 
-<h1>Projects</h1>
+  <a class="back" href="index.html">← Home</a>
 
-<a class="card" href="watchlist.html">
-<h2>Watchlist 📍</h2>
-<p>Tech news tracker — latest updates, timeline view</p>
-</a>
+  <div class="page-tag">Work & builds</div>
+  <h1 class="page-title">Projects</h1>
+  <p class="page-subtitle">Things I've built, shipped, or am actively working on.</p>
 
-<a class="card" href="#">
-<h2>Quant Project</h2>
-<p>Predictive modeling / market systems</p>
-</a>
+  <hr class="divider">
 
-<a class="card" href="#">
-<h2>Obsidian Plugins</h2>
-<p>pill-view & Hill-Chart-Interactive — shipped open source</p>
-</a>
+  <!-- LIVE -->
+  <div class="section-label">Live</div>
 
-<a class="card" href="#">
-<h2>Templater Scripts</h2>
-<p>Automation scripts built in TypeScript for Obsidian</p>
-</a>
+  <a class="card" href="watchlist.html">
+    <div class="card-top">
+      <span class="card-title">Watchlist 📍</span>
+      <span class="card-status">Live</span>
+    </div>
+    <div class="card-desc">Tech news tracker — latest updates, timeline view.</div>
+    <span class="card-arrow">→</span>
+  </a>
 
-<a class="card" href="#">
-<h2>FMS_PPI</h2>
-<p>Financial Management System — Peer Performance Index · Uni Project</p>
-</a>
+  <a class="card" href="projects/templater-scripts/">
+    <div class="card-top">
+      <span class="card-title">Templater Scripts ⚡</span>
+      <span class="card-status">Growing</span>
+    </div>
+    <div class="card-desc">A library of Templater automation scripts for Obsidian. Copy, paste, done.</div>
+    <span class="card-arrow">→</span>
+  </a>
 
-<a class="card" href="#">
-<h2>Research Experiments</h2>
-<p>Ideas explored through code</p>
-</a>
+  <a class="card" href="https://github.com/nilarkian2025" target="_blank" rel="noopener">
+    <div class="card-top">
+      <span class="card-title">Obsidian Plugins</span>
+      <span class="card-status">Open Source ↗</span>
+    </div>
+    <div class="card-desc">pill-view & Hill-Chart-Interactive — two shipped TypeScript plugins against the Obsidian API.</div>
+    <span class="card-arrow">→</span>
+  </a>
+
+  <!-- IN PROGRESS -->
+  <div class="section-label" style="margin-top:36px;">In Progress</div>
+
+  <div class="card-soon">
+    <div class="card-top">
+      <span class="card-title">Quant Project</span>
+      <span class="card-status">Research</span>
+    </div>
+    <div class="card-desc">Kinetic Regime Synchronization — HSMM-based trading engine with game-theoretic payoff analysis.</div>
+  </div>
+
+  <!-- SHIPPED -->
+  <div class="section-label" style="margin-top:36px;">Shipped</div>
+
+  <div class="card-soon">
+    <div class="card-top">
+      <span class="card-title">FMS — Peer Performance Index</span>
+      <span class="card-status">Uni Project</span>
+    </div>
+    <div class="card-desc">Full-stack financial management system in PHP + MySQL with a custom cohort benchmarking metric.</div>
+  </div>
+
+  <div class="card-soon">
+    <div class="card-top">
+      <span class="card-title">Research Experiments</span>
+      <span class="card-status">Ongoing</span>
+    </div>
+    <div class="card-desc">Ideas explored through code. No fixed scope.</div>
+  </div>
+
+  <div class="footer">Built, coded and written by Saptak</div>
+
+</div>
 
 </body>
 </html>
