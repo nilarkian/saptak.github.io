@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>ASPI — Websites I Like — Saptak</title>
+<style>
+
+:root {
+  --bg: #f7f7f7;
+  --ink: #111;
+  --muted: #aaa;
+  --border: #ddd;
+  --accent: #c8440a;
+  --radius: 18px;
+  --pill: 999px;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  display: flex;
+  min-height: 100vh;
+}
+
+a { text-decoration: none; color: var(--ink); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 240px;
+  height: 100vh;
+  background: #efefef;
+  border-right: 1px solid var(--border);
+  padding: 40px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sidebar .back {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid var(--ink);
+  padding: 8px 16px;
+  border-radius: var(--pill);
+  display: inline-block;
+  transition: .2s;
+  width: fit-content;
+}
+.sidebar .back:hover { background: var(--ink); color: var(--bg); }
+
+.toc-label {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .4;
+}
+
+.toc { display: flex; flex-direction: column; gap: 4px; list-style: none; }
+
+.toc li a {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  display: block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: #444;
+  transition: .15s;
+  border-left: 2px solid transparent;
+}
+.toc li a:hover { background: rgba(0,0,0,.06); color: var(--ink); }
+.toc li a.active {
+  border-left: 2px solid var(--ink);
+  color: var(--ink);
+  font-weight: 600;
+  background: rgba(0,0,0,.05);
+}
+.toc li.h3 a { padding-left: 20px; font-size: 12px; }
+
+/* ── MAIN ── */
+.main {
+  margin-left: 240px;
+  flex: 1;
+  padding: 60px 64px 120px;
+  max-width: 860px;
+}
+
+.breadcrumb {
+  font-family: var(--font-body);
+  font-size: 12px;
+  opacity: .4;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.breadcrumb span { margin: 0 6px; }
+
+.tag-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.page-tag {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--bg);
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--pill);
+}
+
+.entry-num {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .3;
+}
+
+.entry-title {
+  font-family: var(--font-head);
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1.0;
+  margin-bottom: 6px;
+}
+
+.entry-full-name {
+  font-family: var(--font-body);
+  font-size: 15px;
+  opacity: .45;
+  margin-bottom: 14px;
+}
+
+.entry-url {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: .2s;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+.entry-url:hover { opacity: .6; }
+
+.entry-meta {
+  font-size: 13px;
+  opacity: .4;
+  margin-bottom: 52px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ── LEDE ── */
+.lede {
+  font-family: var(--font-head);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: -.2px;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── BODY ── */
+.entry-body { font-size: 18px; line-height: 1.9; }
+
+.entry-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: .2s;
+}
+.entry-body a:hover { opacity: .55; }
+
+.entry-body p { margin-bottom: 26px; }
+
+.entry-body h2 {
+  font-family: var(--font-head);
+  font-size: 22px;
+  font-weight: 700;
+  margin: 56px 0 14px;
+  letter-spacing: -.3px;
+  scroll-margin-top: 32px;
+}
+
+.entry-body h3 {
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 36px 0 10px;
+  scroll-margin-top: 32px;
+  opacity: .45;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+
+.entry-body blockquote {
+  margin: 36px 0;
+  padding: 20px 28px;
+  border-left: 4px solid var(--ink);
+  background: rgba(0,0,0,.04);
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.entry-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 52px 0;
+}
+
+/* ── STAT PILLS ── */
+.stat-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 28px 0 36px;
+}
+
+.stat-pill {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  min-width: 120px;
+}
+
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 12px;
+  opacity: .45;
+  line-height: 1.4;
+}
+
+/* ── DOMAINS GRID ── */
+.domains-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 24px 0 40px;
+}
+
+.domain-card {
+  padding: 18px 20px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.domain-num {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  opacity: .25;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.domain-name {
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.domain-card.aukus {
+  border-style: dashed;
+  opacity: .6;
+}
+
+/* ── ENABLERS ── */
+.enabler-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 24px 0 36px;
+}
+
+.enabler-card {
+  padding: 24px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: var(--radius);
+}
+
+.enabler-name {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.enabler-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: .65;
+}
+
+/* ── TRACKERS TABLE ── */
+.trackers-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0 40px;
+  font-size: 15px;
+}
+
+.trackers-table th {
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .4;
+  text-align: left;
+  padding: 10px 16px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.trackers-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+  vertical-align: top;
+}
+
+.trackers-table tr:last-child td { border-bottom: none; }
+
+.trackers-table td:first-child {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.trackers-table td:nth-child(2) { opacity: .5; font-size: 13px; }
+.trackers-table td:nth-child(3) { opacity: .7; font-size: 14px; }
+
+/* ── VERDICT ── */
+.verdict {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 32px 36px;
+  border-radius: var(--radius);
+  margin: 52px 0;
+}
+
+.verdict-label {
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .4;
+  margin-bottom: 12px;
+}
+
+.verdict-text {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -.2px;
+}
+
+/* ── FOOTER ── */
+.page-footer {
+  font-family: var(--font-body);
+  font-size: 13px;
+  opacity: .35;
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 40px 24px 80px; }
+  .entry-title { font-size: 36px; }
+  .lede { font-size: 17px; }
+  .enabler-row { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="back" href="../websites.html">← Websites I Like</a>
+  <div><div class="toc-label">On this page</div></div>
+  <ul class="toc" id="toc"></ul>
+</aside>
+
+<main class="main">
+
+  <div class="breadcrumb">
+    <a href="../inspo.html">Inspo</a>
+    <span>›</span>
+    <a href="../websites.html">Websites I Like</a>
+    <span>›</span>
+    ASPI
+  </div>
+
+  <div class="tag-row">
+    <span class="page-tag">🌐 Deep Dive</span>
+    <span class="entry-num">Entry #001</span>
+  </div>
+
+  <h1 class="entry-title">ASPI</h1>
+  <div class="entry-full-name">Australian Strategic Policy Institute</div>
+
+  <a class="entry-url" href="https://www.aspi.org.au" target="_blank" rel="noopener">
+    aspi.org.au ↗    
+  </a>
+
+    <a class="entry-url" href="https://techtracker.aspi.org.au/" target="_blank" rel="noopener">
+    Tech_Tracker ↗
+  </a>
+
+  <div class="entry-meta">
+    <span>🏛 Canberra, Australia</span>
+    <span>🏷 Think Tank · Policy · Tech Intelligence</span>
+  </div>
+
+  <div class="lede">
+    Government-funded. Editorially independent. Tracks which countries are winning
+    the race for 64 technologies that will define the next 30 years — and publishes
+    the data openly. That combination is rarer than it should be.
+  </div>
+
+  <div class="entry-body" id="entry-body">
+
+    <h2 id="what-is-aspi">What Is ASPI</h2>
+
+    <p>
+      ASPI is Australia's independent, non-partisan think tank on defence and strategic policy.
+      Government-funded but editorially independent — a distinction that matters when the output
+      includes research that names China's technology dominance across 37 of 44 critical
+      technology categories. It publishes reports, runs the <strong>Critical Technology Tracker</strong>,
+      and operates parallel projects like the <strong>Xinjiang Data Project</strong>, which maps
+      detention infrastructure in Xinjiang using satellite imagery and open-source data.
+    </p>
+
+    <p>
+      The institutional model — public funding, independent editorial line, open data — is
+      the interesting part. Most government-adjacent research is either captured or classified.
+      ASPI publishes everything.
+    </p>
+
+    <h2 id="critical-technology-tracker">Critical Technology Tracker</h2>
+
+    <p>
+      ASPI's flagship data project. It measures national research output — publications and
+      citations — across <strong>64 critical technologies</strong> in 7 domains, country by
+      country, year by year since 2003.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-pill">
+        <div class="stat-num">64</div>
+        <div class="stat-label">Technologies tracked</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-num">7</div>
+        <div class="stat-label">Domains</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years of data (2003–present)</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-num">Mar<br>2023</div>
+        <div class="stat-label">Launched, updated annually</div>
+      </div>
+    </div>
+
+    <p>
+      The public tool lives at <a href="https://techtracker.aspi.org.au/" target="_blank" rel="noopener">techtracker.aspi.org.au ↗</a>.
+      Pick a technology, pick a country, get ranked output over time. The data runs from 2003
+      through the August 2024 update — long enough to watch China's research machine
+      accelerate in real time across every chart.
+    </p>
+
+    <h2 id="the-7-domains">The 7 Domains</h2>
+
+    <p>
+      ASPI organises its 64-technology taxonomy into 7 domains, plus a dedicated
+      AUKUS-relevant subset focused on submarine, undersea, and electronic warfare capabilities.
+    </p>
+
+    <div class="domains-grid">
+      <div class="domain-card">
+        <span class="domain-num">01</span>
+        <span class="domain-name">Advanced Materials and Manufacturing</span>
+      </div>
+      <div class="domain-card">
+        <span class="domain-num">02</span>
+        <span class="domain-name">AI, Computing and Communications</span>
+      </div>
+      <div class="domain-card">
+        <span class="domain-num">03</span>
+        <span class="domain-name">Biotechnology, Gene Technology and Vaccines</span>
+      </div>
+      <div class="domain-card">
+        <span class="domain-num">04</span>
+        <span class="domain-name">Energy and Environment</span>
+      </div>
+      <div class="domain-card">
+        <span class="domain-num">05</span>
+        <span class="domain-name">Quantum</span>
+      </div>
+      <div class="domain-card">
+        <span class="domain-num">06</span>
+        <span class="domain-name">Sensing, Timing and Navigation</span>
+      </div>
+      <div class="domain-card">
+        <span class="domain-num">07</span>
+        <span class="domain-name">Defence, Space, Robotics and Transportation</span>
+      </div>
+      <div class="domain-card aukus">
+        <span class="domain-num">+</span>
+        <span class="domain-name">AUKUS subset — submarine, undersea, electronic warfare</span>
+      </div>
+    </div>
+
+    <h2 id="why-critical-technologies">Why "Critical Technologies"</h2>
+
+    <blockquote>
+      Technologies with the capacity to significantly enhance, or pose risk to, a country's
+      national interests, including economic prosperity, social cohesion, and national
+      security. — Australian Government, 2022
+    </blockquote>
+
+    <p>
+      The term has gone mainstream across Five Eyes governments, the EU, and multilateral bodies.
+      The underlying logic is <strong>dual-use</strong>: the same technology drives economic
+      growth <em>and</em> enables military advantage, often from the same research pipeline.
+      You can't cleanly separate civilian AI from autonomous weapons development. That's
+      the policy problem.
+    </p>
+
+    <h3>Why It Matters Now</h3>
+
+    <p>
+      Critical technologies are the primary arena of US–China strategic competition. Three
+      pressure points dominate the policy conversation. First, <strong>research
+      concentration</strong> — a handful of countries lead output across most domains, and
+      single-country monopoly risk now registers as a security concern, not just an economic
+      one. Next, <strong>supply chain dependencies</strong> — access to critical minerals,
+      semiconductors, and biotech inputs gets treated as a security issue, not a procurement
+      issue. Finally, the <strong>dual-use dilemma</strong> — civilian and military
+      applications can't be separated in AI, quantum, or biotech, which makes export controls
+      complicated and intelligence harder to read.
+    </p>
+
+    <h2 id="cross-cutting-enablers">Cross-Cutting Enablers</h2>
+
+    <p>
+      Two domains function as force multipliers across all others — less individual
+      technologies, more infrastructure that makes every other domain faster and harder to secure.
+    </p>
+
+    <div class="enabler-row">
+      <div class="enabler-card">
+        <div class="enabler-name">Quantum</div>
+        <div class="enabler-desc">
+          Quantum sensors sharpen navigation, radar, and imaging. Post-quantum cryptography
+          is a prerequisite for securing every other domain — once it breaks, everything
+          built on current encryption breaks with it.
+        </div>
+      </div>
+      <div class="enabler-card">
+        <div class="enabler-name">AI / ML</div>
+        <div class="enabler-desc">
+          Accelerates drug discovery, materials science, and autonomous systems
+          simultaneously. Less a domain than a layer that sits under everything
+          else and makes it faster.
+        </div>
+      </div>
+    </div>
+
+    <h2 id="comparable-trackers">Comparable Trackers</h2>
+
+    <p>
+      ASPI isn't the only one doing this. These are the others worth knowing — each
+      brings a different institutional lens to the same underlying competition.
+    </p>
+
+    <table class="trackers-table">
+      <thead>
+        <tr>
+          <th>Tracker</th>
+          <th>Org</th>
+          <th>Focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CSET ETO</td>
+          <td>Georgetown CSET</td>
+          <td>Emerging tech, global scope</td>
+        </tr>
+        <tr>
+          <td>Carnegie India Tech Tracker</td>
+          <td>Carnegie India</td>
+          <td>India-focused, monthly cadence</td>
+        </tr>
+        <tr>
+          <td>WIPO Inspire TechTracker</td>
+          <td>WIPO</td>
+          <td>IP and patents lens</td>
+        </tr>
+        <tr>
+          <td>MIT Technology Tracker</td>
+          <td>MIT</td>
+          <td>Broad tech trends</td>
+        </tr>
+        <tr>
+          <td>Delhi Policy Group</td>
+          <td>DPG</td>
+          <td>India–China tech and security</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <div class="verdict">
+      <div class="verdict-label">Why It's In Here</div>
+      <div class="verdict-text">
+        Open data, government-independent, geopolitically honest. The Critical Technology
+        Tracker answers "who's actually winning" with citations, not opinions — and the
+        answer is often uncomfortable for Western audiences. That's exactly the kind of
+        source worth keeping close.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    Collected by Saptak ·
+    <a href="index.html">nilarkian.github.io/Saptak</a>
+  </div>
+
+</main>
+
+<script>
+const body  = document.getElementById('entry-body');
+const toc   = document.getElementById('toc');
+const heads = body.querySelectorAll('h2, h3');
+
+heads.forEach((h, i) => {
+  if (!h.id) h.id = 'section-' + i;
+  const li = document.createElement('li');
+  li.className = h.tagName.toLowerCase();
+  const a  = document.createElement('a');
+  a.href = '#' + h.id;
+  a.textContent = h.textContent;
+  li.appendChild(a);
+  toc.appendChild(li);
+});
+
+const links = toc.querySelectorAll('a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = toc.querySelector(`a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '0px 0px -70% 0px' });
+
+heads.forEach(h => observer.observe(h));
+</script>
+
+</body>
+</html>

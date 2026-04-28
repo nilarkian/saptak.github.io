@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>Websites I Like — Saptak</title>
+<style>
+
+:root {
+  --bg: #f7f7f7;
+  --ink: #111;
+  --muted: #aaa;
+  --border: #ddd;
+  --accent: #c8440a;
+  --radius: 18px;
+  --pill: 999px;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  display: flex;
+  min-height: 100vh;
+}
+
+a { text-decoration: none; color: var(--ink); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 240px;
+  height: 100vh;
+  background: #efefef;
+  border-right: 1px solid var(--border);
+  padding: 40px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sidebar .back {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid var(--ink);
+  padding: 8px 16px;
+  border-radius: var(--pill);
+  display: inline-block;
+  transition: .2s;
+  width: fit-content;
+}
+.sidebar .back:hover { background: var(--ink); color: var(--bg); }
+
+.toc-label {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .4;
+}
+
+.toc { display: flex; flex-direction: column; gap: 4px; list-style: none; }
+
+.toc li a {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  display: block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: #444;
+  transition: .15s;
+  border-left: 2px solid transparent;
+}
+.toc li a:hover { background: rgba(0,0,0,.06); color: var(--ink); }
+.toc li a.active {
+  border-left: 2px solid var(--ink);
+  color: var(--ink);
+  font-weight: 600;
+  background: rgba(0,0,0,.05);
+}
+
+/* ── MAIN ── */
+.main {
+  margin-left: 240px;
+  flex: 1;
+  padding: 60px 64px 120px;
+  max-width: 860px;
+}
+
+.breadcrumb {
+  font-family: var(--font-body);
+  font-size: 12px;
+  opacity: .4;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.breadcrumb span { margin: 0 6px; }
+
+.page-tag {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--bg);
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--pill);
+  margin-bottom: 20px;
+}
+
+.page-title {
+  font-family: var(--font-head);
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.page-subtitle {
+  font-size: 17px;
+  opacity: .5;
+  margin-bottom: 60px;
+}
+
+/* ── SECTION HEADERS ── */
+.section-head {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .35;
+  margin-bottom: 20px;
+  scroll-margin-top: 32px;
+}
+
+/* ── DEEP DIVE CARDS ── */
+.deepdive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 64px;
+}
+
+.deepdive-card {
+  display: block;
+  padding: 30px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--ink);
+  transition: .22s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.deepdive-card::after {
+  content: '→';
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 700;
+  opacity: .25;
+  transition: .2s;
+}
+
+.deepdive-card:hover {
+  background: var(--ink);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+.deepdive-card:hover::after { opacity: .7; }
+
+.card-label {
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .4;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-family: var(--font-head);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -.3px;
+}
+
+.card-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: .65;
+  margin-bottom: 20px;
+}
+
+.card-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  padding: 3px 9px;
+  border-radius: var(--pill);
+  opacity: .5;
+}
+
+/* ── STANDALONE LINKS ── */
+.links-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.links-group-label {
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .35;
+  padding: 32px 0 10px;
+}
+
+.link-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--ink);
+  transition: .15s;
+}
+
+.links-group-label + .link-entry { border-top: 1px solid var(--border); }
+
+.link-entry:hover { opacity: .55; }
+.link-entry:hover .link-arrow { transform: translateX(4px); }
+
+.link-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.link-name {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.link-desc {
+  font-size: 13px;
+  opacity: .45;
+  line-height: 1.5;
+}
+
+.link-arrow {
+  font-size: 14px;
+  opacity: .25;
+  transition: .15s;
+  flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+.page-footer {
+  font-family: var(--font-body);
+  font-size: 13px;
+  opacity: .35;
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 40px 24px 80px; }
+  .page-title { font-size: 30px; }
+}
+
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="back" href="inspo.html">← Inspo</a>
+  <div><div class="toc-label">On this page</div></div>
+  <ul class="toc" id="toc"></ul>
+</aside>
+
+<main class="main">
+
+  <div class="breadcrumb">
+    <a href="inspo.html">Inspo</a>
+    <span>›</span>
+    Websites I Like
+  </div>
+
+  <div class="page-tag">🌐 Websites</div>
+
+  <h1 class="page-title">Websites I Like</h1>
+  <p class="page-subtitle">Sites worth studying. Some get a full breakdown, some just a link.</p>
+
+  <!-- DEEP DIVES -->
+  <div class="section-head" id="deep-dives">⬇ Deep Dives — sites worth taking apart</div>
+  <div class="deepdive-grid">
+
+    <a class="deepdive-card" href="aspi.html">
+      <div class="card-label">Deep Dive #001</div>
+      <div class="card-title">ASPI</div>
+      <div class="card-desc">Tracks which countries are winning the race for 64 critical technologies — with citations, not opinions. The data is open. The conclusions are uncomfortable.</div>
+      <div class="card-tags">
+        <span class="tag">Policy</span>
+        <span class="tag">Data</span>
+        <span class="tag">Research</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- QUICK LINKS -->
+  <div class="section-head" id="quick-links">→ Quick Links — no writeup, just worth bookmarking</div>
+  <div class="links-list">
+
+    <div class="links-group-label">Learning</div>
+    <a class="link-entry" href="https://thevalleyofcode.com/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">The Valley of Code</span>
+        <span class="link-desc">Structured web dev curriculum, free and no fluff.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://pz.harvard.edu/thinking-routines" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">PZ Thinking Routines</span>
+        <span class="link-desc">Harvard's toolbox for structured thinking. Surprisingly practical.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+    <a class="link-entry" href="https://untools.co/" target="_blank" rel="noopener">
+        <div class="link-text">
+            <span class="link-name">Untools</span>
+            <span class="link-desc">Mental models and thinking frameworks, one clean page each.</span>
+        </div>
+        <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://www.mindtools.com/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">MindTools</span>
+        <span class="link-desc">Dense but useful. Good reference when you need to get better at explaining things.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+    <div class="links-group-label">Tools</div>
+    <a class="link-entry" href="https://alternativeto.net/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">AlternativeTo</span>
+        <span class="link-desc">Crowdsourced software alternatives. Beats Googling "X but free."</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://tinywow.com/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">TinyWow</span>
+        <span class="link-desc">Free AI + file tools. PDF, image, writing — no sign-up.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://www.mymap.ai/map?mid=bartapHAaDbAk" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">MyMap.ai</span>
+        <span class="link-desc">Ideas that changed the world, mapped visually.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://yourlogicalfallacyis.com/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Your Logical Fallacy Is</span>
+        <span class="link-desc">Every fallacy, named and explained. Bookmark it for arguments.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://yourbias.is/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Your Bias Is</span>
+        <span class="link-desc">24 cognitive biases with clean one-liners. Sister site to the above.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+    <div class="links-group-label">Quotes & Writing</div>
+    <a class="link-entry" href="https://datagovernance.com/quotes/information-quotes/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Information Quotes — DGI</span>
+        <span class="link-desc">Data Governance Institute's quote bank. Good for framing ideas.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://www.bookey.app/quote-book/the-information" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">The Information — Bookey</span>
+        <span class="link-desc">30 quotes from Gleick's The Information. Worth reading cold.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://careerfoundry.com/en/blog/data-analytics/inspirational-data-quotes/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Data Quotes — CareerFoundry</span>
+        <span class="link-desc">23 quotes on data. Some are actually good.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://neilpatel.com/wp-content/uploads/2020/05/ultimate-headline-formula-list.pdf" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Headline Formula List — Neil Patel</span>
+        <span class="link-desc">PDF. Every headline pattern worth knowing, in one place.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+    <div class="links-group-label">Ads</div>
+    <a class="link-entry" href="https://marketingexamples.com/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Marketing Examples</span>
+        <span class="link-desc">Harry Dry's breakdowns. Short, specific, actually useful.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=IN&is_targeted_country=false&media_type=all&q=kolkata&search_type=keyword_unordered" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Meta Ad Library</span>
+        <span class="link-desc">What's running in Kolkata right now. Good reality check on local copy.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://www.adsoftheworld.com/campaigns?search=kolkata" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Ads of the World</span>
+        <span class="link-desc">Award-level campaigns, searchable. Kolkata filter bookmarked.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://adespresso.com/ads-examples/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">AdEspresso Examples</span>
+        <span class="link-desc">Facebook ad examples, curated and categorised.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+    <div class="links-group-label">Landing Pages</div>
+    <a class="link-entry" href="https://instapage.com/blog/landing-page-examples" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Instapage Examples</span>
+        <span class="link-desc">110 landing pages with annotations. Good for structure ideas.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://www.growtharchive.xyz/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Growth Archive</span>
+        <span class="link-desc">B2B growth marketing examples. What's working in the wild.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://www.landingfolio.com/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Landingfolio</span>
+        <span class="link-desc">Landing page design inspiration. Best visual reference in this list.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+    <div class="links-group-label">Email</div>
+    <a class="link-entry" href="https://www.getresponse.com/blog/7-welcome-emails-that-set-the-standard" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Welcome Email Examples</span>
+        <span class="link-desc">15 welcome emails worth studying. GetResponse's breakdown is solid.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+    <a class="link-entry" href="https://reallygoodemails.com/" target="_blank" rel="noopener">
+      <div class="link-text">
+        <span class="link-name">Really Good Emails</span>
+        <span class="link-desc">The email swipe file. Searchable by type, brand, and industry.</span>
+      </div>
+      <span class="link-arrow">↗</span>
+    </a>
+
+  </div>
+
+  <div class="page-footer">
+    Collected by Saptak ·
+    <a href="../index.html">nilarkian.github.io/Saptak</a>
+  </div>
+
+</main>
+
+<script>
+const main  = document.querySelector('.main');
+const toc   = document.getElementById('toc');
+const heads = main.querySelectorAll('.section-head');
+
+heads.forEach((h, i) => {
+  if (!h.id) h.id = 'section-' + i;
+  const li = document.createElement('li');
+  const a  = document.createElement('a');
+  a.href = '#' + h.id;
+  a.textContent = h.textContent.replace(/^[^a-zA-Z]+/, '').split('—')[0].trim();
+  li.appendChild(a);
+  toc.appendChild(li);
+});
+
+const links = toc.querySelectorAll('a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = toc.querySelector(`a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '0px 0px -60% 0px' });
+
+heads.forEach(h => observer.observe(h));
+</script>
+
+</body>
+</html>

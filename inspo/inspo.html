@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>Inspo — Saptak</title>
+
+<style>
+:root {
+  --bg: #f7f7f7;
+  --ink: #111;
+  --muted: #aaa;
+  --border: #ddd;
+  --radius: 18px;
+  --pill: 999px;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+a { text-decoration: none; color: var(--ink); }
+
+.inner {
+  max-width: 900px;
+  margin: 60px auto 90px;
+  padding: 0 30px;
+}
+
+/* ── BACK PILL ── */
+.back {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid var(--ink);
+  padding: 10px 22px;
+  border-radius: var(--pill);
+  transition: .2s;
+  margin-bottom: 52px;
+}
+.back:hover { background: var(--ink); color: var(--bg); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  margin-bottom: 52px;
+}
+
+.page-tag {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .35;
+  margin-bottom: 14px;
+}
+
+.page-title {
+  font-family: var(--font-head);
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+
+.page-subtitle {
+  font-size: 17px;
+  opacity: .5;
+  line-height: 1.6;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 0 44px;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .35;
+  margin-bottom: 20px;
+}
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ── TILE (live — has link) ── */
+.tile {
+  display: block;
+  padding: 32px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  color: var(--ink);
+  text-decoration: none;
+  transition: .22s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tile:hover {
+  background: var(--ink);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.11);
+}
+
+.tile-arrow {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  font-size: 16px;
+  opacity: .2;
+  transition: .2s;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+
+.tile:hover .tile-arrow { opacity: .65; }
+
+.tile-icon {
+  font-size: 22px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.tile h3 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  margin-bottom: 8px;
+}
+
+.tile p {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: .6;
+  margin: 0;
+}
+
+.tile:hover p { opacity: .8; }
+
+/* ── TILE SOON (no link yet) ── */
+.tile-soon {
+  display: block;
+  padding: 32px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--ink);
+  opacity: .45;
+  cursor: default;
+  position: relative;
+}
+
+.tile-soon .soon-badge {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  font-family: var(--font-head);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  padding: 3px 8px;
+  border-radius: var(--pill);
+  opacity: .5;
+}
+
+.tile-soon h3 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  margin-bottom: 8px;
+}
+
+.tile-soon p {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: .6;
+  margin: 0;
+}
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 80px;
+  font-size: 14px;
+  opacity: .4;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .page-title { font-size: 36px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="inner">
+
+  <a class="back" href="../index.html">← Home</a>
+
+  <div class="page-header">
+    <div class="page-tag">Things I find interesting</div>
+    <h1 class="page-title">Inspo</h1>
+    <p class="page-subtitle">
+      A collection of things worth revisiting — design patterns, writing,
+      sites I like, ideas I keep coming back to.
+    </p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">Sections</div>
+
+  <div class="grid">
+
+    <!-- SWIPE FILE — live -->
+    <a class="tile" href="swipefile.html">
+      <span class="tile-arrow">→</span>
+      <span class="tile-icon">📎</span>
+      <h3>Swipe File</h3>
+      <p>Interesting things collected. Patterns, references, stuff worth keeping.</p>
+    </a>
+
+    <!-- WRITING — coming soon -->
+    <a class="tile" href="writing.html">
+        <span class="tile-arrow">→</span>
+        <span class="tile-icon">✍️</span>
+        <h3>Writing</h3>
+        <p>Essays and ideas I keep coming back to.</p>
+    </a>
+
+    <!-- WEBSITES I LIKE — live -->
+    <a class="tile" href="websites.html">
+      <span class="tile-arrow">→</span>
+      <span class="tile-icon">🌐</span>
+      <h3>Websites I Like</h3>
+      <p>Sites worth studying. Some get a full breakdown, some just a link.</p>
+    </a>
+
+ </div>
+
+  <div class="footer">Built, coded and written by Saptak</div>
+
+</div>
+
+</body>
+</html>
