@@ -7,13 +7,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <title>YouTube — Swipe File — Saptak</title>
+
+<!-- ═══════════════════════════════════════════════
+     ADD VIDEOS HERE — just paste the YouTube URL
+     ═══════════════════════════════════════════════ -->
+<script>
+const VIDEOS = [
+
+  {
+    url:  "https://youtu.be/hpgK51w6uhk",
+    title: "America's Iron Giants - The World's Most Powerful Metalworkers",
+    // desc: "One line on why it's worth watching."
+  },
+
+];
+</script>
+
 <style>
 
 :root {
   --bg: #f7f7f7;
   --ink: #111;
   --border: #ddd;
-  --accent: #c8440a;
   --radius: 18px;
   --pill: 999px;
   --font-head: 'Syne', sans-serif;
@@ -24,7 +39,6 @@
 body { font-family: var(--font-body); background: var(--bg); color: var(--ink); display: flex; min-height: 100vh; }
 a { text-decoration: none; color: var(--ink); }
 
-/* ── SIDEBAR ── */
 .sidebar {
   position: fixed; top: 0; left: 0;
   width: 240px; height: 100vh;
@@ -44,7 +58,6 @@ a { text-decoration: none; color: var(--ink); }
 .toc li a:hover { background: rgba(0,0,0,.06); color: var(--ink); }
 .toc li a.active { border-left: 2px solid var(--ink); color: var(--ink); font-weight: 600; background: rgba(0,0,0,.05); }
 
-/* ── MAIN ── */
 .main { margin-left: 240px; flex: 1; padding: 60px 64px 120px; max-width: 860px; }
 .breadcrumb { font-family: var(--font-body); font-size: 12px; opacity: .4; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 24px; }
 .breadcrumb span { margin: 0 6px; }
@@ -53,7 +66,6 @@ a { text-decoration: none; color: var(--ink); }
 .page-subtitle { font-size: 17px; opacity: .5; margin-bottom: 60px; }
 .section-head { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; opacity: .35; margin-bottom: 20px; scroll-margin-top: 32px; }
 
-/* ── VIDEO GRID ── */
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -78,86 +90,41 @@ a { text-decoration: none; color: var(--ink); }
   color: white;
 }
 
-/* 16:9 thumbnail area */
 .video-thumb {
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #1a1a1a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   overflow: hidden;
 }
 
-.video-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+.video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* play button overlay */
 .video-thumb::after {
   content: '▶';
   position: absolute;
-  font-size: 28px;
-  color: white;
+  font-size: 24px; color: white;
   background: rgba(0,0,0,.55);
-  width: 52px; height: 52px;
+  width: 48px; height: 48px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 4px;
+  display: flex; align-items: center; justify-content: center;
+  padding-left: 3px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
   transition: .2s;
 }
 
 .video-card:hover .video-thumb::after {
   background: rgba(255,255,255,.2);
-  transform: scale(1.1);
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* placeholder when no thumbnail */
-.video-thumb.no-thumb {
-  background: #e8e8e8;
-  font-size: 36px;
-}
-.video-thumb.no-thumb::after { display: none; }
-.video-thumb.no-thumb .play-placeholder {
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  background: var(--ink);
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-size: 20px;
-  padding-left: 4px;
-}
-
-.video-body {
-  padding: 16px 18px;
-  border-top: 2px solid var(--ink);
-}
-
+.video-body { padding: 16px 18px; border-top: 2px solid var(--ink); }
 .video-card:hover .video-body { border-top-color: rgba(255,255,255,.15); }
 
-.video-channel {
-  font-family: var(--font-head);
-  font-size: 10px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  opacity: .4; margin-bottom: 6px;
-}
+.video-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; line-height: 1.4; margin-bottom: 6px; }
+.video-desc { font-size: 13px; opacity: .45; line-height: 1.5; }
 
-.video-title {
-  font-family: var(--font-head);
-  font-size: 15px; font-weight: 700;
-  line-height: 1.4; margin-bottom: 6px;
-}
-
-.video-desc {
-  font-size: 13px; opacity: .45; line-height: 1.5;
-}
-
-/* ── FOOTER ── */
 .page-footer { font-family: var(--font-body); font-size: 13px; opacity: .35; margin-top: 80px; border-top: 1px solid var(--border); padding-top: 28px; }
 
 @media (max-width: 768px) {
@@ -191,37 +158,7 @@ a { text-decoration: none; color: var(--ink); }
   <p class="page-subtitle">Videos I actually watched twice.</p>
 
   <div class="section-head" id="collected">Collected</div>
-  <div class="video-grid">
-
-    <!-- TEMPLATE — duplicate this block to add a video -->
-    <!-- Option A: with YouTube thumbnail (paste video ID from URL) -->
-    <a class="video-card" href="https://youtube.com/watch?v=VIDEO_ID" target="_blank" rel="noopener">
-      <div class="video-thumb">
-        <img src="https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg" alt="Video title" loading="lazy">
-      </div>
-      <div class="video-body">
-        <div class="video-channel">Channel Name</div>
-        <div class="video-title">Video Title</div>
-        <div class="video-desc">One line on why it's worth watching.</div>
-      </div>
-    </a>
-
-    <!-- Option B: no thumbnail (just replace VIDEO_ID with actual id, or use this) -->
-    <!--
-    <a class="video-card" href="https://youtube.com/watch?v=VIDEO_ID" target="_blank" rel="noopener">
-      <div class="video-thumb no-thumb">
-        <div class="play-placeholder">▶</div>
-      </div>
-      <div class="video-body">
-        <div class="video-channel">Channel Name</div>
-        <div class="video-title">Video Title</div>
-        <div class="video-desc">One line on why it's worth watching.</div>
-      </div>
-    </a>
-    -->
-    <!-- END TEMPLATE -->
-
-  </div>
+  <div class="video-grid" id="video-grid"></div>
 
   <div class="page-footer">
     Collected by Saptak ·
@@ -231,6 +168,43 @@ a { text-decoration: none; color: var(--ink); }
 </main>
 
 <script>
+// ── NOTHING BELOW NEEDS EDITING ──
+
+function getVideoId(url) {
+  try {
+    const u = new URL(url);
+    if (u.searchParams.get('v')) return u.searchParams.get('v');
+    if (u.hostname === 'youtu.be') return u.pathname.slice(1);
+    const embedMatch = u.pathname.match(/\/embed\/([^/?]+)/);
+    if (embedMatch) return embedMatch[1];
+  } catch(e) {}
+  return null;
+}
+
+function renderVideos() {
+  const grid = document.getElementById('video-grid');
+  VIDEOS.forEach(v => {
+    const id    = getVideoId(v.url);
+    const thumb = id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
+    const card  = document.createElement('a');
+    card.className = 'video-card';
+    card.href      = v.url;
+    card.target    = '_blank';
+    card.rel       = 'noopener';
+    card.innerHTML = `
+      <div class="video-thumb">
+        ${thumb ? `<img src="${thumb}" alt="" loading="lazy">` : ''}
+      </div>
+      <div class="video-body">
+        <div class="video-title">${v.title || id || v.url}</div>
+        ${v.desc ? `<div class="video-desc">${v.desc}</div>` : ''}
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+renderVideos();
+
 const main  = document.querySelector('.main');
 const toc   = document.getElementById('toc');
 const heads = main.querySelectorAll('.section-head');

@@ -1,6 +1,7 @@
 ---
 topic_filter: "The Future 💰"
 permalink: /notes/the-future.html
+description: "Essays on what's coming next — markets, tech, power."
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +51,6 @@ a { text-decoration: none; color: #111; }
   letter-spacing: .06em; margin-bottom: 48px;
 }
 
-/* ── NOTE ROWS ── */
 .note-list { display: flex; flex-direction: column; }
 
 .note-row {
@@ -68,22 +68,9 @@ a { text-decoration: none; color: #111; }
 .note-row:hover { opacity: .55; padding-left: 6px; }
 
 .note-row-inner { display: flex; flex-direction: column; gap: 4px; flex: 1; }
-
-.note-row-title {
-  font-size: 18px; font-weight: 600; line-height: 1.35;
-}
-
-.note-row-meta {
-  font-size: 12px; opacity: .35;
-  letter-spacing: .06em;
-}
-
-.note-row-arrow {
-  font-size: 18px; opacity: .3;
-  flex-shrink: 0; margin-left: 20px;
-  transition: .15s;
-}
-
+.note-row-title { font-size: 18px; font-weight: 600; line-height: 1.35; }
+.note-row-meta { font-size: 12px; opacity: .35; letter-spacing: .06em; }
+.note-row-arrow { font-size: 18px; opacity: .3; flex-shrink: 0; margin-left: 20px; transition: .15s; }
 .note-row:hover .note-row-arrow { opacity: .7; transform: translateX(3px); }
 
 .footer { margin-top: 70px; font-size: 14px; opacity: .4; text-align: center; }
@@ -108,7 +95,7 @@ a { text-decoration: none; color: #111; }
 
   <h1 class="page-title">{{ page.topic_filter }}</h1>
 
-  {% assign topic_notes = site.pages | where_exp: "p", "p.path contains 'notes/'" | where_exp: "p", "p.layout == 'note'" | where: "topic", page.topic_filter | sort: "date" | reverse %}
+  {% assign topic_notes = site.pages | where_exp: "p", "p.dir contains 'the-future'" | where_exp: "p", "p.layout == 'note'" | sort: "date" | reverse %}
 
   <div class="note-count">{{ topic_notes.size }} note{% if topic_notes.size != 1 %}s{% endif %}</div>
 

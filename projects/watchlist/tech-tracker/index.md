@@ -22,6 +22,23 @@ If Intel's gamble lands, the next era of computing won't be defined by the machi
 
 
 ---
+## February 2026
+
+### 🤖 This 0.6-Second 3D Printing Breakthrough Could Reshape Manufacturing
+
+3D printing may have just crossed from “slow prototyping tool” to real manufacturing platform. If this scales, products from phone cameras to micro-robots could become cheaper, faster to design, and radically easier to produce.
+
+Researchers at Tsinghua University unveiled DISH, a breakthrough volumetric 3D printing system that creates detailed 3D objects in 0.6 seconds—versus minutes or hours today.
+
+What’s new: Instead of building objects layer by layer, DISH uses holographic light fields to form entire structures almost instantly inside resin, hitting 12-micron precision and record print speeds.
+
+Why it matters: This could unlock mass production of photonic chips, camera modules, flexible electronics and micro-robotics—areas where manufacturing bottlenecks have slowed innovation.
+
+Led by Dai Qionghai, the work hints at a bigger shift: hardware may be entering its “instant compute” moment.
+
+Bottom line: This isn’t faster 3D printing. It could be a new manufacturing primitive.
+
+---
 
 ## October 2025
 
@@ -33,6 +50,20 @@ India's trade agreement with EFTA — Iceland, Liechtenstein, Norway, Switzerlan
 The deal is a geopolitical hedge as much as a trade play. But USD 100 billion from four small economies is an ambitious ask — Switzerland accounts for most of EFTA's financial firepower, and pledges on paper don't build factories.
 
 [Source →](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2177724)
+
+---
+
+## September 2025
+
+### **🇮🇳🇺🇸 iCET Gains Momentum as Strategic Tech Alliance Deepens (Sept. 2025)**
+
+The **U.S.–India Initiative on Critical and Emerging Technology (iCET)** is quietly becoming one of the most important tech partnerships in the world. Launched in 2023, the framework is accelerating cooperation in semiconductors, defense, space and export controls, with major progress including Micron’s Gujarat plant, the GE F414 jet engine deal, MQ-9B drones, and closer NASA-ISRO collaboration.
+
+**Why it matters:** iCET is moving beyond diplomacy into industrial strategy. It is helping India plug into trusted supply chains, strengthen defense manufacturing, and gain greater access to frontier technologies, while giving the U.S. a long-term partner in de-risking from China.
+
+Unlike a treaty, iCET works as a flexible delivery framework driven by high-level summits that force execution. Challenges remain in AI and biotech, but the model is influential enough that similar frameworks are now being copied by the UK and others.
+
+**Bottom line:** iCET is evolving into the operating system for U.S.–India strategic technology ties.
 
 ---
 

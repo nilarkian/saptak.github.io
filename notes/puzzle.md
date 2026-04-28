@@ -1,11 +1,11 @@
 ---
 layout: note
 title: "Manufacturers Puzzle: The Need to Constantly Predict Market Demand & The Temu Story"
-topic: "The Future 💰"
 date: 2025-01-01
+permalink: /notes/puzzle.html
 ---
 
-Why does a toaster cost five dollars?
+Why does a air fryer cost 3000/-?
 
 If you think the answer is "cheap labor" or "bad materials," you’re still playing the old game. You’re looking at the shadow on the wall instead of the hand moving the puppet. The five-dollar toaster isn't a product; it’s a data point in a war against the most expensive ghost in history: **The Prediction Tax.**
 

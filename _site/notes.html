@@ -35,38 +35,95 @@ a { text-decoration: none; color: #111; }
   letter-spacing: -2px; line-height: 1.05; margin-bottom: 52px;
 }
 
-/* ── TOPIC BLOCK ── */
-.topic { margin-bottom: 52px; }
-
-.topic-label {
+/* ── SECTION LABEL ── */
+.section-label {
   font-size: 11px; font-weight: 700;
   letter-spacing: .14em; text-transform: uppercase;
-  opacity: .35; margin-bottom: 12px;
+  opacity: .35; margin-bottom: 20px;
 }
 
-.topic-link {
+/* ── TOPIC CARD GRID ── */
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 64px;
+}
+
+.topic-card {
+  display: block;
+  padding: 28px;
+  border: 2px solid #111;
+  border-radius: 18px;
+  text-decoration: none;
+  color: #111;
+  transition: .22s ease;
+  position: relative;
+}
+
+.topic-card:hover {
+  background: #111;
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.11);
+}
+
+.topic-card:hover .topic-card-desc { opacity: .75; }
+.topic-card:hover .topic-card-arrow { opacity: .7; }
+
+.topic-card-name {
+  font-size: 20px; font-weight: 700;
+  letter-spacing: -.3px; margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.topic-card-desc {
+  font-size: 14px; opacity: .5;
+  line-height: 1.6;
+}
+
+.topic-card-arrow {
+  position: absolute;
+  bottom: 22px; right: 22px;
+  font-size: 18px; font-weight: 700;
+  opacity: .2; transition: .2s;
+}
+
+/* ── DIVIDER ── */
+hr.section-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0 0 44px;
+}
+
+/* ── STANDALONE NOTES LIST ── */
+.note-list { display: flex; flex-direction: column; }
+
+.note-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 24px; font-weight: 700;
-  border: 2px solid #111;
-  border-radius: 14px;
-  padding: 20px 24px;
-  transition: .2s;
-  margin-bottom: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+  text-decoration: none;
+  color: #111;
+  transition: .15s;
 }
 
-.topic-link:hover {
-  background: #111; color: white;
-  transform: translateY(-3px);
-}
+.note-list .note-row:first-child { border-top: 1px solid #ddd; }
+.note-row:hover { opacity: .55; padding-left: 6px; }
 
+.note-row-inner { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.note-row-title { font-size: 17px; font-weight: 600; line-height: 1.35; }
+.note-row-meta { font-size: 12px; opacity: .35; letter-spacing: .06em; }
+.note-row-arrow { font-size: 16px; opacity: .3; flex-shrink: 0; margin-left: 20px; transition: .15s; }
+.note-row:hover .note-row-arrow { opacity: .7; transform: translateX(3px); }
 
 .footer { margin-top: 70px; font-size: 14px; opacity: .4; text-align: center; }
 
 @media (max-width: 640px) {
   .page-title { font-size: 36px; }
-  .topic-link { font-size: 18px; }
+  .topic-grid { grid-template-columns: 1fr; }
 }
 
 </style>
@@ -81,22 +138,56 @@ a { text-decoration: none; color: #111; }
 
   
   
+  
+  
 
   
-    
-    
-    
 
-    <div class="topic">
-      <div class="topic-label">Topic</div>
-      <a class="topic-link" href="/Saptak/notes/the-future.html">
-        <span>The Future 💰</span>
-        <span>→</span>
+  
+  <div class="section-label">Topics</div>
+  <div class="topic-grid">
+    
+      
+      
+      <a class="topic-card" href="/Saptak/notes/the-future.html">
+        <div class="topic-card-name">The Future 💰</div>
+        <div class="topic-card-desc">
+          
+            Essays on what's coming next — markets, tech, power.
+          
+        </div>
+        <span class="topic-card-arrow">→</span>
       </a>
-
-
-    </div>
     
+  </div>
+  
+
+  
+  <hr class="section-divider">
+  <div class="section-label">Standalone Notes</div>
+  <div class="note-list">
+    
+    <a class="note-row" href="/Saptak/notes/lottery-president.html">
+      <div class="note-row-inner">
+        <span class="note-row-title">The Sortition Protocol: Decentralizing Governance via Algorithmic Representation</span>
+        
+        <span class="note-row-meta">April 2026</span>
+        
+      </div>
+      <span class="note-row-arrow">→</span>
+    </a>
+    
+    <a class="note-row" href="/Saptak/notes/puzzle.html">
+      <div class="note-row-inner">
+        <span class="note-row-title">Manufacturers Puzzle: The Need to Constantly Predict Market Demand & The Temu Story</span>
+        
+        <span class="note-row-meta">January 2025</span>
+        
+      </div>
+      <span class="note-row-arrow">→</span>
+    </a>
+    
+  </div>
   
 
   <div class="footer">Built, coded and written by Saptak</div>

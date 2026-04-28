@@ -38,38 +38,95 @@ a { text-decoration: none; color: #111; }
   letter-spacing: -2px; line-height: 1.05; margin-bottom: 52px;
 }
 
-/* ── TOPIC BLOCK ── */
-.topic { margin-bottom: 52px; }
-
-.topic-label {
+/* ── SECTION LABEL ── */
+.section-label {
   font-size: 11px; font-weight: 700;
   letter-spacing: .14em; text-transform: uppercase;
-  opacity: .35; margin-bottom: 12px;
+  opacity: .35; margin-bottom: 20px;
 }
 
-.topic-link {
+/* ── TOPIC CARD GRID ── */
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 64px;
+}
+
+.topic-card {
+  display: block;
+  padding: 28px;
+  border: 2px solid #111;
+  border-radius: 18px;
+  text-decoration: none;
+  color: #111;
+  transition: .22s ease;
+  position: relative;
+}
+
+.topic-card:hover {
+  background: #111;
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.11);
+}
+
+.topic-card:hover .topic-card-desc { opacity: .75; }
+.topic-card:hover .topic-card-arrow { opacity: .7; }
+
+.topic-card-name {
+  font-size: 20px; font-weight: 700;
+  letter-spacing: -.3px; margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.topic-card-desc {
+  font-size: 14px; opacity: .5;
+  line-height: 1.6;
+}
+
+.topic-card-arrow {
+  position: absolute;
+  bottom: 22px; right: 22px;
+  font-size: 18px; font-weight: 700;
+  opacity: .2; transition: .2s;
+}
+
+/* ── DIVIDER ── */
+hr.section-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0 0 44px;
+}
+
+/* ── STANDALONE NOTES LIST ── */
+.note-list { display: flex; flex-direction: column; }
+
+.note-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 24px; font-weight: 700;
-  border: 2px solid #111;
-  border-radius: 14px;
-  padding: 20px 24px;
-  transition: .2s;
-  margin-bottom: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+  text-decoration: none;
+  color: #111;
+  transition: .15s;
 }
 
-.topic-link:hover {
-  background: #111; color: white;
-  transform: translateY(-3px);
-}
+.note-list .note-row:first-child { border-top: 1px solid #ddd; }
+.note-row:hover { opacity: .55; padding-left: 6px; }
 
+.note-row-inner { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.note-row-title { font-size: 17px; font-weight: 600; line-height: 1.35; }
+.note-row-meta { font-size: 12px; opacity: .35; letter-spacing: .06em; }
+.note-row-arrow { font-size: 16px; opacity: .3; flex-shrink: 0; margin-left: 20px; transition: .15s; }
+.note-row:hover .note-row-arrow { opacity: .7; transform: translateX(3px); }
 
 .footer { margin-top: 70px; font-size: 14px; opacity: .4; text-align: center; }
 
 @media (max-width: 640px) {
   .page-title { font-size: 36px; }
-  .topic-link { font-size: 18px; }
+  .topic-grid { grid-template-columns: 1fr; }
 }
 
 </style>
@@ -82,25 +139,51 @@ a { text-decoration: none; color: #111; }
 
   <h1 class="page-title">Notes</h1>
 
-  {% assign all_notes = site.pages | where_exp: "p", "p.path contains 'notes/'" | where_exp: "p", "p.layout == 'note'" | where_exp: "p", "p.topic != nil" %}
-  {% assign topics = all_notes | map: "topic" | uniq | sort %}
+  {% assign all_notes = site.pages | where_exp: "p", "p.layout == 'note'" %}
+  {% assign root_notes = all_notes | where_exp: "p", "p.path contains 'notes/'" | where_exp: "p", "p.dir == '/notes/'" | sort: "date" | reverse %}
+  {% assign topic_notes_all = all_notes | where_exp: "p", "p.topic != ''" | where_exp: "p", "p.topic != nil" %}
+  {% assign topics = topic_notes_all | map: "topic" | compact | uniq | sort %}
 
-  {% for topic in topics %}
-    {% if topic %}
-    {% assign topic_notes = all_notes | where: "topic", topic %}
-    {% assign topic_slug = topic | slugify %}
+  {% assign topic_pages = site.pages | where_exp: "p", "p.topic_filter != nil" %}
 
-    <div class="topic">
-      <div class="topic-label">Topic</div>
-      <a class="topic-link" href="{{ site.baseurl }}/notes/{{ topic_slug }}.html">
-        <span>{{ topic }}</span>
-        <span>→</span>
+  {% if topics.size > 0 %}
+  <div class="section-label">Topics</div>
+  <div class="topic-grid">
+    {% for topic in topics %}
+      {% assign topic_slug = topic | slugify %}
+      {% assign matched_page = topic_pages | where: "topic_filter", topic | first %}
+      <a class="topic-card" href="{{ site.baseurl }}/notes/{{ topic_slug }}.html">
+        <div class="topic-card-name">{{ topic }}</div>
+        <div class="topic-card-desc">
+          {% if matched_page and matched_page.description %}
+            {{ matched_page.description }}
+          {% else %}
+            A collection of notes on {{ topic }}.
+          {% endif %}
+        </div>
+        <span class="topic-card-arrow">→</span>
       </a>
+    {% endfor %}
+  </div>
+  {% endif %}
 
-
-    </div>
-    {% endif %}
-  {% endfor %}
+  {% if root_notes.size > 0 %}
+  <hr class="section-divider">
+  <div class="section-label">Standalone Notes</div>
+  <div class="note-list">
+    {% for note in root_notes %}
+    <a class="note-row" href="{{ note.url | prepend: site.baseurl }}">
+      <div class="note-row-inner">
+        <span class="note-row-title">{{ note.title }}</span>
+        {% if note.date %}
+        <span class="note-row-meta">{{ note.date | date: "%B %Y" }}</span>
+        {% endif %}
+      </div>
+      <span class="note-row-arrow">→</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
 
   <div class="footer">Built, coded and written by Saptak</div>
 
