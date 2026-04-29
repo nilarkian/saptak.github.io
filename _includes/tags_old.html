@@ -1,277 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Notes — Saptak</title>
-<style>
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f7f7f7;
-  color: #111;
-}
-
-a { text-decoration: none; color: #111; }
-
-.inner {
-  max-width: 900px;
-  margin: 60px auto 90px;
-  padding: 0 30px;
-  margin-right: calc(190px + 30px);
-  transition: margin-right .25s ease;
-}
-
-body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
-
-.back {
-  display: inline-block;
-  font-size: 14px; font-weight: 600;
-  border: 2px solid #111; padding: 10px 22px;
-  border-radius: 999px; transition: .2s; margin-bottom: 52px;
-}
-.back:hover { background: #111; color: #f7f7f7; }
-
-.page-title {
-  font-size: 52px; font-weight: 700;
-  letter-spacing: -2px; line-height: 1.05; margin-bottom: 48px;
-}
-
-/* ── FILTER BAR ── */
-.filter-bar {
-  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px;
-}
-
-.filter-btn {
-  font-family: Arial, sans-serif;
-  font-size: 12px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  border: 2px solid #ddd; background: transparent;
-  color: #111; padding: 7px 16px; border-radius: 999px;
-  cursor: pointer; transition: .15s;
-}
-
-.filter-btn:hover { border-color: #111; }
-.filter-btn.active { background: #111; color: #f7f7f7; border-color: #111; }
-
-/* ── NOTE COUNT ── */
-.note-count {
-  font-size: 12px; opacity: .35;
-  letter-spacing: .06em; margin-bottom: 8px;
-}
-
-/* ── NOTE LIST ── */
-.note-list { display: flex; flex-direction: column; }
-
-.note-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #ddd;
-  text-decoration: none;
-  color: #111;
-  transition: .15s;
-}
-
-.note-list .note-row:first-child { border-top: 1px solid #ddd; }
-.note-row:hover { opacity: .55; padding-left: 6px; }
-.note-row[hidden] { display: none; }
-
-.note-row-inner { display: flex; flex-direction: column; gap: 4px; flex: 1; }
-.note-row-title { font-size: 17px; font-weight: 600; line-height: 1.35; }
-.note-row-meta { font-size: 12px; opacity: .35; letter-spacing: .06em; }
-.note-row-arrow { font-size: 16px; opacity: .3; flex-shrink: 0; margin-left: 20px; transition: .15s; }
-.note-row:hover .note-row-arrow { opacity: .7; transform: translateX(3px); }
-
-.empty-state {
-  padding: 60px 0; text-align: center;
-  opacity: .3; font-size: 15px; display: none;
-}
-
-/* ── FOOTER ── */
-.footer { margin-top: 70px; font-size: 14px; opacity: .4; text-align: center; }
-
-/* ── MOBILE ── */
-@media (max-width: 768px) {
-  .inner { margin-right: 30px; }
-  .page-title { font-size: 36px; }
-}
-
-</style>
-</head>
-<body>
-
-<div class="inner">
-
-  <a class="back" href="/Saptak/">← Home</a>
-  <h1 class="page-title">Notes</h1>
-
-  
-  
-
-  <!-- TOPIC FILTER BAR -->
-  <div class="filter-bar" id="filter-bar">
-    <button class="filter-btn active" data-cat="all">All</button>
-    
-      
-      <button class="filter-btn" data-cat="the-future">The Future 💰</button>
-      
-    
-  </div>
-
-  <div class="note-count" id="note-count"></div>
-
-  <!-- NOTE LIST -->
-  <div class="note-list" id="note-list">
-    
-    <a class="note-row"
-       href="/Saptak/notes/ipl-jerseys/"
-       data-cat="the-future"
-       data-tags="cricket,india,marketing,ai,ar">
-      <div class="note-row-inner">
-        <span class="note-row-title">The Future of IPL Jerseys: Arbitraging the "Digital Skin"</span>
-        
-        <span class="note-row-meta">April 2026</span>
-        
-      </div>
-      <span class="note-row-arrow">→</span>
-    </a>
-    
-    <a class="note-row"
-       href="/Saptak/notes/oi/"
-       data-cat="the-future"
-       data-tags="">
-      <div class="note-row-inner">
-        <span class="note-row-title">Organoid Intelligence: Computing with Grown Brains</span>
-        
-        <span class="note-row-meta">February 2026</span>
-        
-      </div>
-      <span class="note-row-arrow">→</span>
-    </a>
-    
-    <a class="note-row"
-       href="/Saptak/notes/spin/"
-       data-cat="the-future"
-       data-tags="">
-      <div class="note-row-inner">
-        <span class="note-row-title">SPINTRONICS: The Trillion-Dollar Bet Hidden Inside Your RAM Chip</span>
-        
-        <span class="note-row-meta">February 2026</span>
-        
-      </div>
-      <span class="note-row-arrow">→</span>
-    </a>
-    
-    <a class="note-row"
-       href="/Saptak/notes/icet/"
-       data-cat="the-future"
-       data-tags="india,america,economics">
-      <div class="note-row-inner">
-        <span class="note-row-title">iCET — U.S.–India Initiative on Critical and Emerging Technology</span>
-        
-        <span class="note-row-meta">September 2025</span>
-        
-      </div>
-      <span class="note-row-arrow">→</span>
-    </a>
-    
-    <a class="note-row"
-       href="/Saptak/notes/puzzle.html"
-       data-cat="standalone"
-       data-tags="">
-      <div class="note-row-inner">
-        <span class="note-row-title">Manufacturers Puzzle: The Need to Constantly Predict Market Demand & The Temu Story</span>
-        
-        <span class="note-row-meta">January 2025</span>
-        
-      </div>
-      <span class="note-row-arrow">→</span>
-    </a>
-    
-    <a class="note-row"
-       href="/Saptak/notes/lottery-president.html"
-       data-cat="standalone"
-       data-tags="policy,governance,though-experiment">
-      <div class="note-row-inner">
-        <span class="note-row-title">The Sortition Protocol: Decentralizing Governance via Algorithmic Representation</span>
-        
-        <span class="note-row-meta">April 2024</span>
-        
-      </div>
-      <span class="note-row-arrow">→</span>
-    </a>
-    
-
-    <div class="empty-state" id="empty-state">No notes here yet.</div>
-  </div>
-
-  <div class="footer">Built, coded and written by Saptak</div>
-
-</div>
-
-<script>
-// ── TOPIC FILTER ──────────────────────────────────────────────────────
-const topicBtns = document.querySelectorAll('.filter-btn');
-const rows      = document.querySelectorAll('.note-row');
-const counter   = document.getElementById('note-count');
-const empty     = document.getElementById('empty-state');
-
-let activeTopic = 'all';
-
-function applyTopicFilter() {
-  rows.forEach(row => {
-    const matchesTopic = activeTopic === 'all' || row.dataset.cat === activeTopic;
-    const rowTags      = row.dataset.tags ? row.dataset.tags.split(',').filter(Boolean) : [];
-    const activeTagBtn = document.querySelector('.child-tag-btn.active, .standalone-tag-btn.active');
-    const activeTag    = activeTagBtn ? activeTagBtn.dataset.tag : null;
-    const activeParent = document.querySelector('.parent-row.active');
-    const activeParentTag = activeParent
-      ? activeParent.querySelector('.parent-filter-btn').dataset.tag
-      : null;
-
-    let matchesTag = true;
-    if (activeTag) {
-      matchesTag = rowTags.includes(activeTag);
-    } else if (activeParentTag) {
-      // parent active — check parent or any child
-      const allBtns = document.querySelectorAll('.parent-filter-btn');
-      let kids = [];
-      allBtns.forEach(b => {
-        if (b.dataset.tag === activeParentTag) {
-          const childRow = b.closest('.tag-group').querySelector('.tag-group-children');
-          if (childRow) kids = [...childRow.querySelectorAll('.child-tag-btn')].map(c => c.dataset.tag);
-        }
-      });
-      matchesTag = rowTags.includes(activeParentTag) || kids.some(k => rowTags.includes(k));
-    }
-
-    row.hidden = !(matchesTopic && matchesTag);
-  });
-
-  const visible = [...rows].filter(r => !r.hidden).length;
-  counter.textContent = visible + ' note' + (visible !== 1 ? 's' : '');
-  empty.style.display = visible === 0 ? 'block' : 'none';
-}
-
-topicBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    topicBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeTopic = btn.dataset.cat;
-    applyTopicFilter();
-  });
-});
-
-// expose for tags.html to call after tag filter changes
-window.applyTopicFilter = applyTopicFilter;
-
-applyTopicFilter();
-</script>
-
 <style>
 /* ── RIGHT TAG SIDEBAR ── */
 .tag-sidebar{
@@ -286,26 +12,6 @@ applyTopicFilter();
   display:flex;
   flex-direction:column;
   gap:10px;
-
-  scrollbar-width:thin;
-  scrollbar-color:#c8c8c8 transparent;
-}
-
-.tag-sidebar::-webkit-scrollbar{
-  width:6px;
-}
-
-.tag-sidebar::-webkit-scrollbar-track{
-  background:transparent;
-}
-
-.tag-sidebar::-webkit-scrollbar-thumb{
-  background:rgba(0,0,0,.12);
-  border-radius:999px;
-}
-
-.tag-sidebar:hover::-webkit-scrollbar-thumb{
-  background:rgba(0,0,0,.28);
 }
 
 .tag-sidebar-label{
@@ -338,14 +44,13 @@ applyTopicFilter();
 .all-btn.active{ background:#111; color:#f7f7f7; border-color:#111; }
 
 /* ── tag list ── */
-
 .tag-list{
   display:flex;
   flex-direction:column;
   gap:8px;
   list-style:none;
-  padding-bottom:80px;
 }
+
 .tag-group{ display:flex; flex-direction:column; gap:5px; }
 
 /* ── parent pill row ── */
@@ -473,23 +178,8 @@ applyTopicFilter();
   flex-direction:column;
   gap:10px;
   flex:1;
+  overflow:hidden;
   min-width:160px;
-
-  scrollbar-width:thin;
-  scrollbar-color:#bbb transparent;
-}
-
-.tag-sidebar-inner::-webkit-scrollbar{
-  width:6px;
-}
-
-.tag-sidebar-inner::-webkit-scrollbar-thumb{
-  background:#bbb;
-  border-radius:999px;
-}
-
-.tag-sidebar-inner::-webkit-scrollbar-track{
-  background:transparent;
 }
 .tag-sidebar.collapsed .tag-sidebar-inner{ opacity:0; pointer-events:none; }
 
@@ -531,7 +221,7 @@ body.tag-collapsed .tag-toggle-btn{ right:44px; }
 (function () {
 
 // ── TAG TREE injected by Jekyll ───────────────────────────────────────
-const TAG_TREE = [{"name":"interests","children":["history","sports","mindset","travel","writing","tools-for-thought"]},{"name":"news","children":["china","america"]},{"name":"coding","children":["webdev"]},{"name":"tech","children":["ai","ar","semiconductors","manufacturing","fintech"]},{"name":"business","children":["branding","marketing","copywriting","equities","markets","macro","commodities"]},{"name":"governance","children":["policy","regulation","defence"]},{"name":"design","children":["ads","landing-pages","email"]},{"name":"india","children":["cricket"]},{"name":"money","children":["economics"]},{"name":"resources","children":["learning","tools","quotes"]},{"name":"misc"}];
+const TAG_TREE = {{ site.data.tags | jsonify }};
 
 // ── DOM ───────────────────────────────────────────────────────────────
 const tagList = document.getElementById('tag-list');
@@ -541,7 +231,6 @@ const toc     = document.getElementById('toc');
 // ── 1. Context detection — collect usedTags + filter function ─────────
 const timelineBody = document.getElementById('timeline-body');
 const noteList     = document.getElementById('note-list');
-const inspoBody    = document.getElementById('inspo-body');
 
 let usedTags   = new Set();
 let filterFn   = () => {};   // set below per context
@@ -648,22 +337,6 @@ if (timelineBody) {
     // delegate back to notes.html topic+tag composition logic
     if (typeof window.applyTopicFilter === 'function') {
       window.applyTopicFilter();
-    }
-  };
-
-} else if (inspoBody) {
-  // ── INSPO context: read data-tags from inspo cards ──────────────────
-  const cards = document.querySelectorAll('.inspo-card');
-
-  cards.forEach(card => {
-    const tags = card.dataset.tags ? card.dataset.tags.split(',').filter(Boolean) : [];
-    tags.forEach(t => usedTags.add(t.trim().toLowerCase()));
-  });
-
-  filterFn = (activeTag, activeIsParent, parentToChildren) => {
-    // delegate to inspo.html category+tag composition logic
-    if (typeof window.applyInspoFilter === 'function') {
-      window.applyInspoFilter();
     }
   };
 }
@@ -840,6 +513,3 @@ applyTagState();
 
 })();
 </script>
-
-</body>
-</html>

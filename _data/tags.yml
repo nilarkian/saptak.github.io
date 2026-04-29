@@ -1,0 +1,99 @@
+# ─────────────────────────────────────────────
+# TAG POLICY
+# ─────────────────────────────────────────────
+#
+# Vision:
+#   Parent tags  = topics    (broad domain areas)
+#   Child tags   = subtopics (specific angles within a topic)
+#
+# Rules:
+#   1. Every child tag must belong to exactly one parent.
+#      A child cannot have two parents.
+#
+#   2. Add a parent tag when a domain area is broad enough
+#      to have 2+ distinct subtopics.
+#      A parent with one child forever is just noise.
+#
+#   3. Add a child tag when a subtopic recurs across
+#      multiple entries. One-off tags don't earn a slot.
+#
+#   4. Entry-level tags (in watchlist.md) use child tags only.
+#      Never tag an entry with a parent tag directly —
+#      clicking the parent already surfaces all its children.
+#      Exception: if a topic has no children yet, the parent
+#      tag itself can be used on entries temporarily.
+#
+#   5. To add a new tag: add it here first, then use it in
+#      watchlist.md. Tags used in entries but absent from
+#      this file will still appear in the sidebar as
+#      orphan pills with no parent grouping.
+#
+#   6. Only tags that appear in the current page's entries
+#      are shown in the sidebar. This file is the master list —
+#      not every tag here will appear on every page.
+#
+# ─────────────────────────────────────────────
+
+- name: interests
+  children:
+    - history
+    - sports
+    - mindset
+    - travel
+    - writing
+    - tools-for-thought
+
+- name: news
+  children:
+    - china
+    - america
+
+- name: coding
+  children:
+    - webdev
+
+- name: tech
+  children:
+    - ai
+    - ar
+    - semiconductors
+    - manufacturing
+    - fintech
+
+- name: business
+  children:
+    - branding
+    - marketing
+    - copywriting
+    - equities
+    - markets
+    - macro
+    - commodities
+
+- name: governance
+  children:
+    - policy
+    - regulation
+    - defence
+
+- name: design
+  children:
+    - ads
+    - landing-pages
+    - email
+
+- name: india
+  children:
+    - cricket
+
+- name: money
+  children:
+    - economics
+
+- name: resources
+  children:
+    - learning
+    - tools
+    - quotes
+
+- name: misc

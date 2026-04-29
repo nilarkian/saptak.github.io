@@ -1,0 +1,790 @@
+---
+permalink: /inspo.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>Inspo — Saptak</title>
+
+<style>
+:root {
+  --bg: #f7f7f7;
+  --ink: #111;
+  --muted: #aaa;
+  --border: #ddd;
+  --accent: #c8440a;
+  --radius: 18px;
+  --pill: 999px;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+a { text-decoration: none; color: var(--ink); }
+
+.inner {
+  max-width: 1100px;
+  margin: 60px auto 90px;
+  padding: 0 30px;
+  margin-right: calc(190px + 30px);
+  transition: margin-right .25s ease;
+}
+
+body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
+
+/* ── BACK ── */
+.back {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 14px; font-weight: 600;
+  border: 2px solid var(--ink); padding: 10px 22px;
+  border-radius: var(--pill); transition: .2s; margin-bottom: 40px;
+}
+.back:hover { background: var(--ink); color: var(--bg); }
+
+/* ── PAGE HEADER ── */
+.page-tag {
+  font-family: var(--font-head);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  opacity: .35; margin-bottom: 14px;
+}
+
+.page-title {
+  font-family: var(--font-head);
+  font-size: 52px; font-weight: 700;
+  letter-spacing: -2px; line-height: 1.05; margin-bottom: 14px;
+}
+
+.page-subtitle {
+  font-size: 17px; opacity: .5; line-height: 1.6; margin-bottom: 44px;
+}
+
+/* ── CATEGORY TABS ── */
+.cat-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.cat-tab {
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 18px 18px;
+  cursor: pointer;
+  background: var(--bg);
+  transition: .22s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  font-family: var(--font-head);
+}
+
+.cat-tab::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,.05) 1px, transparent 1px);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+
+.cat-tab .cat-icon {
+  font-size: 22px;
+  margin-bottom: 8px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.cat-tab .cat-name {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -.2px;
+  position: relative;
+  z-index: 1;
+}
+
+.cat-tab .cat-count {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: .45;
+  margin-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.cat-tab:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+.cat-tab.active { background: var(--ink); color: white; border-color: var(--ink); }
+.cat-tab.active::after { background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px); }
+
+/* category-specific tab tints (when not active) */
+.cat-tab[data-cat="all"]      { background: #f0f0f0; }
+.cat-tab[data-cat="youtube"]  { background: #fde8e8; }
+.cat-tab[data-cat="tweets"]   { background: #e8f4fd; }
+.cat-tab[data-cat="design"]   { background: #e8fde8; }
+.cat-tab[data-cat="writing"]  { background: #fdf3e8; }
+.cat-tab[data-cat="websites"] { background: #f5e8fd; }
+
+.cat-tab.active { background: var(--ink) !important; color: white; }
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-family: var(--font-head);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  opacity: .35; margin-bottom: 20px;
+}
+#dd-label-btn{
+ background:none;
+ border:none;
+ cursor:pointer;
+ text-align:left;
+ padding:0;
+}
+
+#dd-label-btn:hover{
+ opacity:.6;
+}
+
+/* ── DEEP DIVE GRID ── */
+.deepdive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 60px;
+}
+
+.deepdive-card {
+  display: block;
+  padding: 28px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  position: relative;
+  transition: .22s ease;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.deepdive-card[hidden] { display: none; }
+
+.deepdive-card:hover {
+  background: var(--ink); color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+
+.deepdive-label {
+  font-family: var(--font-head);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  opacity: .4; margin-bottom: 8px;
+}
+
+.deepdive-title {
+  font-family: var(--font-head);
+  font-size: 22px; font-weight: 700;
+  letter-spacing: -.3px; margin-bottom: 8px;
+}
+
+.deepdive-blurb {
+  font-size: 14px; line-height: 1.6; opacity: .65; margin-bottom: 16px;
+}
+
+.deepdive-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.deepdive-tag {
+  font-family: var(--font-head);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  padding: 3px 8px; border-radius: var(--pill);
+  opacity: .5;
+}
+
+.deepdive-card::after {
+  content: '→';
+  position: absolute;
+  bottom: 22px; right: 22px;
+  font-family: var(--font-head);
+  font-size: 16px; font-weight: 700;
+  opacity: .25; transition: .2s;
+}
+.deepdive-card:hover::after { opacity: .7; }
+.deepdive-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin-bottom:14px;
+}
+
+
+.deepdive-collapse{
+ width:30px;
+ height:30px;
+ border:1.5px solid #bbb;
+ background:transparent;
+ border-radius:999px;
+ cursor:pointer;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+} 
+
+.deepdive-collapse:hover{
+ border-color:#111;
+}
+
+.dd-chevron{
+ width:14px;
+ height:14px;
+ transition:transform .2s ease;
+ transform:rotate(0deg); /* expanded */
+}
+
+.dd-chevron.collapsed{
+ transform:rotate(-90deg); /* collapsed */
+}
+.deepdive-grid.collapsed{
+ display:none;
+}
+
+/* ── COLLECTED MIXED GRID — masonry via CSS columns ── */
+/* .collected-grid {
+  column-gap: 18px;
+  margin-bottom: 60px;
+  columns: 3; 
+} */
+
+/* ── COLLECTED MIXED GRID — masonry via CSS columns ── */
+.collected-grid{
+  column-gap:18px;
+  margin-bottom:60px;
+}
+
+@media (min-width:1000px){
+  .collected-grid{
+    columns:3;
+  }
+}
+
+@media (max-width:999px){
+  .collected-grid{
+    columns:2;
+  }
+}
+
+@media (max-width:768px){
+  .collected-grid{
+    columns:1;
+  }
+}
+.inspo-card {
+  break-inside: avoid;
+  display: block;
+  margin-bottom: 18px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: .22s ease;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.inspo-card[hidden] { display: none; }
+.inspo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.1);
+}
+
+/* ── YOUTUBE GRID — separate from masonry, narrower cards ── */
+
+.inspo-card.yt{
+  max-width:100%;
+}
+/* ── YOUTUBE CARD ── */
+.yt-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+.yt-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.yt-thumb::after {
+  content: '▶';
+  position: absolute;
+  font-size: 22px; color: white;
+  background: rgba(0,0,0,.55);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  padding-left: 3px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  transition: .2s;
+}
+.inspo-card.yt:hover .yt-thumb::after { transform: translate(-50%, -50%) scale(1.1); }
+
+.yt-body { padding: 14px 16px; border-top: 2px solid var(--ink); }
+.yt-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; line-height: 1.4; margin-bottom: 5px; }
+.yt-desc  { font-size: 12px; opacity: .5; line-height: 1.5; }
+
+/* ── TWEET CARD ── */
+.inspo-card.tweet { padding: 20px; }
+.tweet-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.tweet-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+  border: 1.5px solid currentColor;
+}
+.tweet-meta { display: flex; flex-direction: column; gap: 1px; }
+.tweet-name { font-family: var(--font-head); font-size: 13px; font-weight: 700; }
+.tweet-handle { font-size: 11px; opacity: .45; }
+.tweet-body { font-size: 14px; line-height: 1.65; margin-bottom: 12px; }
+.tweet-foot { font-family: var(--font-head); font-size: 10px; opacity: .35; letter-spacing: .06em; text-transform: uppercase; }
+
+/* ── DESIGN CARD ── */
+.design-img {
+  width: 100%;
+  display: block;
+  border-bottom: 2px solid var(--ink);
+  background: #e8e8e8;
+}
+.design-img img { width: 100%; height: auto; display: block; }
+.design-img.no-img {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  background: #e8fde8;
+}
+.design-body { padding: 14px 16px; }
+.design-source {
+  font-family: var(--font-head);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  opacity: .35; margin-bottom: 4px;
+}
+.design-caption { font-family: var(--font-head); font-size: 13px; font-weight: 700; line-height: 1.4; margin-bottom: 4px; }
+.design-note { font-size: 12px; opacity: .5; line-height: 1.5; }
+
+/* ── WRITING CARD ── */
+.inspo-card.writing { padding: 18px 20px; }
+.writing-byline {
+  font-family: var(--font-head);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  opacity: .4; margin-bottom: 6px;
+}
+.writing-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; line-height: 1.35; margin-bottom: 6px; }
+.writing-desc  { font-size: 12px; opacity: .55; line-height: 1.6; }
+
+/* ── WEBSITE CARD ── */
+.inspo-card.website { padding: 18px 20px; }
+.web-name  { font-family: var(--font-head); font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+.web-desc  { font-size: 12px; opacity: .55; line-height: 1.6; }
+
+/* arrow on tweet/writing/website */
+.inspo-card .ext-arrow {
+  font-family: var(--font-head);
+  font-size: 12px;
+  opacity: .3;
+  float: right;
+  margin-left: 8px;
+}
+
+.empty-state {
+  padding: 60px 0; text-align: center;
+  opacity: .3; font-size: 15px; display: none;
+}
+
+.footer { margin-top: 70px; font-size: 14px; opacity: .4; text-align: center; }
+
+/* @media (max-width: 768px) {
+  .inner { margin-right: 30px; }
+  .page-title { font-size: 36px; }
+  .collected-grid { columns: 1; }
+  .cat-tabs { grid-template-columns: repeat(2, 1fr); }
+} */
+
+
+
+@media (max-width: 768px) {
+  .inner { margin-right: 30px; }
+  .page-title { font-size: 36px; }
+  .cat-tabs { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="inner">
+
+  <a class="back" href="{{ site.baseurl }}/">← Home</a>
+
+  <div class="page-tag">Things I find interesting</div>
+  <h1 class="page-title">Inspo</h1>
+  <p class="page-subtitle">A collection of things worth revisiting — videos, tweets, designs, writing, and sites I keep coming back to.</p>
+
+  {% comment %} ─── PRECOMPUTE ARRAYS ─── {% endcomment %}
+  {% assign yt_count    = site.data.inspo.youtube  | size %}
+  {% assign tw_count    = site.data.inspo.tweets   | size %}
+  {% assign dz_count    = site.data.inspo.design   | size %}
+  {% assign wr_count    = site.data.inspo.writing  | size %}
+  {% assign ws_count    = site.data.inspo.websites | size %}
+  {% assign all_count   = yt_count | plus: tw_count | plus: dz_count | plus: wr_count | plus: ws_count %}
+
+  {% comment %} Deep dives — across all writing collection items {% endcomment %}
+  {% assign deep_dives  = site.writing | sort: "date" | reverse %}
+  {% assign dd_count    = deep_dives | size %}
+
+  <!-- ── CATEGORY TABS ── -->
+  <div class="cat-tabs" id="cat-tabs">
+    <button class="cat-tab active" data-cat="all">
+      <span class="cat-icon">☆</span>
+      <div class="cat-name">All</div>
+      <div class="cat-count">{{ all_count | plus: dd_count }} items</div>
+    </button>
+    <button class="cat-tab" data-cat="youtube">
+      <span class="cat-icon">▶</span>
+      <div class="cat-name">YouTube</div>
+      <div class="cat-count">{{ yt_count }} videos</div>
+    </button>
+    <button class="cat-tab" data-cat="tweets">
+      <span class="cat-icon">🐦</span>
+      <div class="cat-name">Tweets</div>
+      <div class="cat-count">{{ tw_count }} tweets</div>
+    </button>
+    <button class="cat-tab" data-cat="design">
+      <span class="cat-icon">✦</span>
+      <div class="cat-name">Design</div>
+      <div class="cat-count">{{ dz_count }} screenshots</div>
+    </button>
+    <button class="cat-tab" data-cat="writing">
+      <span class="cat-icon">✍️</span>
+      <div class="cat-name">Writing</div>
+      <div class="cat-count">{{ wr_count }} essays</div>
+    </button>
+    <button class="cat-tab" data-cat="websites">
+      <span class="cat-icon">🌐</span>
+      <div class="cat-name">Websites</div>
+      <div class="cat-count">{{ ws_count }} sites</div>
+    </button>
+  </div>
+
+  <!-- ── DEEP DIVES ── -->
+  {% if dd_count > 0 %}
+  <div id="inspo-body">
+    
+    <div class="deepdive-head" id="dd-head">
+      <button class="section-label" id="dd-label-btn">
+        Deep Dives
+      </button>
+      <button class="deepdive-collapse" id="dd-toggle" aria-label="toggle deep dives">
+      
+        <svg class="dd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      
+      </button>
+    </div>
+    
+    <div class="deepdive-grid" id="deepdive-grid">
+
+      {% for d in deep_dives %}
+      <a class="deepdive-card"
+         href="{{ d.url | prepend: site.baseurl }}"
+         data-category="{{ d.category | default: 'writing' }}"
+         data-format="deep-dive"
+         data-tags="{% for t in d.tags %}{{ t | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}">
+        {% if d.number %}<div class="deepdive-label">Deep Dive #{{ d.number }}</div>{% endif %}
+        <div class="deepdive-title">{{ d.title }}</div>
+        {% if d.blurb %}<div class="deepdive-blurb">{{ d.blurb }}</div>{% endif %}
+        {% if d.tags %}
+        <div class="deepdive-tags">
+          {% for t in d.tags %}<span class="deepdive-tag">{{ t }}</span>{% endfor %}
+        </div>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  {% else %}
+  <div id="inspo-body">
+  {% endif %}
+
+    <!-- ── COLLECTED ── -->
+    <div class="section-label" id="col-label">Collected</div>
+
+   <!-- YouTube mixed into masonry -->
+
+    <div class="collected-grid" id="collected-grid">
+
+    {% for v in site.data.inspo.youtube %}
+    <a class="inspo-card yt"
+    data-category="youtube"
+    data-date="{{ v.date }}"
+    data-tags="{% for tag in v.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+    href="{{ v.url }}" target="_blank">
+
+    {% if v.url contains "youtu.be/" %}
+    {% assign yt_id = v.url | split:"youtu.be/" | last | split:"?" | first %}
+    {% else %}
+    {% assign yt_id = v.url | split:"v=" | last | split:"&" | first %}
+    {% endif %}
+
+    <div class="yt-thumb">
+    <img src="https://i.ytimg.com/vi/{{ yt_id }}/hqdefault.jpg">
+    </div>
+
+    <div class="yt-body">
+    <div class="yt-title">{{ v.title }}</div>
+    {% if v.desc %}<div class="yt-desc">{{ v.desc }}</div>{% endif %}
+    </div>
+
+    </a>
+    {% endfor %}
+
+
+    {% for t in site.data.inspo.tweets %}
+    <a class="inspo-card tweet"
+    data-category="tweets"
+    data-date="{{ t.date }}"
+    data-tags="{% for tag in t.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+    href="{{ t.url }}" target="_blank">
+
+    <div class="tweet-head">
+    <div class="tweet-avatar">{{ t.avatar | default:"🧑" }}</div>
+    <div class="tweet-meta">
+    <span class="tweet-name">{{ t.name }}</span>
+    <span class="tweet-handle">@{{ t.handle }}</span>
+    </div>
+    </div>
+
+    <div class="tweet-body">{{ t.body }}</div>
+    <div class="tweet-foot">{{ t.date | date: "%b %Y" }}</div>
+
+    </a>
+    {% endfor %}
+
+
+    {% for d in site.data.inspo.design %}
+    <a class="inspo-card design"
+    data-category="design"
+    data-date="{{ d.date }}"
+    data-tags="{% for tag in d.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+    href="{{ d.url }}" target="_blank">
+
+    {% if d.img %}
+    <div class="design-img">
+    <img src="{{ d.img }}">
+    </div>
+    {% else %}
+    <div class="design-img no-img">✦</div>
+    {% endif %}
+
+    <div class="design-body">
+    {% if d.source %}<div class="design-source">{{ d.source }}</div>{% endif %}
+    {% if d.caption %}<div class="design-caption">{{ d.caption }}</div>{% endif %}
+    {% if d.note %}<div class="design-note">{{ d.note }}</div>{% endif %}
+    </div>
+
+    </a>
+    {% endfor %}
+
+
+    {% for w in site.data.inspo.writing %}
+    <a class="inspo-card writing"
+    data-category="writing"
+    data-date="{{ w.date }}"
+    data-tags="{% for tag in w.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+    href="{{ w.url }}" target="_blank">
+
+    <span class="ext-arrow">↗</span>
+    <div class="writing-byline">{{ w.author }}</div>
+    <div class="writing-title">{{ w.title }}</div>
+    {% if w.desc %}<div class="writing-desc">{{ w.desc }}</div>{% endif %}
+
+    </a>
+    {% endfor %}
+
+
+    {% for s in site.data.inspo.websites %}
+    <a class="inspo-card website"
+    data-category="websites"
+    data-date="{{ s.date }}"
+    data-tags="{% for tag in s.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+    href="{{ s.url }}" target="_blank">
+
+    <span class="ext-arrow">↗</span>
+    <div class="web-name">{{ s.name }}</div>
+    {% if s.desc %}<div class="web-desc">{{ s.desc }}</div>{% endif %}
+
+    </a>
+    {% endfor %}
+
+    </div>
+
+    <div class="empty-state" id="empty-state">No items in this view.</div>
+
+  </div> {% comment %} end #inspo-body {% endcomment %}
+
+  <div class="footer">Built, coded and written by Saptak</div>
+
+</div>
+
+<script>
+// ── CATEGORY TABS ─────────────────────────────────────────────────────
+const tabs           = document.querySelectorAll('.cat-tab');
+const deepCards      = document.querySelectorAll('.deepdive-card');
+const collectedCards = document.querySelectorAll('.inspo-card');
+const empty          = document.getElementById('empty-state');
+const ddLabel        = document.getElementById('dd-label');
+const colLabel       = document.getElementById('col-label');
+const ddGrid         = document.getElementById('deepdive-grid');
+
+let activeCategory = 'all';
+
+
+function sortCollectedByDate(){
+ const grid=document.getElementById('collected-grid');
+ const cards=[...grid.querySelectorAll('.inspo-card')];
+
+ cards.sort((a,b)=>
+   Date.parse(b.dataset.date) -
+   Date.parse(a.dataset.date)
+ );
+
+ cards.forEach(card=>grid.appendChild(card));
+}
+function applyInspoFilter() {
+  // active tag from sidebar
+  const activeTagBtn  = document.querySelector('.child-tag-btn.active, .standalone-tag-btn.active');
+  const activeTag     = activeTagBtn ? activeTagBtn.dataset.tag : null;
+  const activeParent  = document.querySelector('.parent-row.active');
+  let activeParentTag = null;
+  let parentKids      = [];
+  if (activeParent) {
+    activeParentTag = activeParent.querySelector('.parent-filter-btn').dataset.tag;
+    parentKids = [...activeParent.closest('.tag-group').querySelectorAll('.child-tag-btn')]
+                  .map(c => c.dataset.tag);
+  }
+
+  function matchesTag(cardTags) {
+    if (activeTag)        return cardTags.includes(activeTag);
+    if (activeParentTag)  return cardTags.includes(activeParentTag) || parentKids.some(k => cardTags.includes(k));
+    return true;
+  }
+
+  function matchesCategory(cardCat) {
+    return activeCategory === 'all' || cardCat === activeCategory;
+  }
+
+  // deep dives
+  let deepVisible = 0;
+  deepCards.forEach(card => {
+    const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+    const show = matchesCategory(card.dataset.category) && matchesTag(cardTags);
+    card.hidden = !show;
+    if (show) deepVisible++;
+  });
+
+  // collected standalones
+  let colVisible = 0;
+  collectedCards.forEach(card => {
+    const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+    const show = matchesCategory(card.dataset.category) && matchesTag(cardTags);
+    card.hidden = !show;
+    if (show) colVisible++;
+  });
+
+  // toggle section labels based on visibility
+  if (ddLabel) ddLabel.style.display = deepVisible > 0 ? '' : 'none';
+  if (ddGrid)  ddGrid.style.display  = deepVisible > 0 ? '' : 'none';
+  if (colLabel) colLabel.style.display = colVisible > 0 ? '' : 'none';
+
+  empty.style.display = (deepVisible + colVisible) === 0 ? 'block' : 'none';
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeCategory = tab.dataset.cat;
+    sortCollectedByDate();
+    applyInspoFilter();
+  });
+});
+
+// expose for tags.html to call
+window.applyInspoFilter = applyInspoFilter;
+
+const ddToggle=document.getElementById('dd-toggle');
+const ddLabelBtn=
+ document.getElementById('dd-label-btn');
+let deepCollapsed=
+ localStorage.getItem('deep-collapsed')==='true';
+
+function applyDeepState(){
+ if(!ddGrid||!ddToggle) return;
+
+ ddGrid.classList.toggle(
+   'collapsed',
+   deepCollapsed
+ );
+ 
+ const chevron =
+    ddToggle.querySelector('.dd-chevron');
+
+  if (chevron) {
+    chevron.classList.toggle(
+      'collapsed',
+      deepCollapsed
+    );
+  }
+}
+if(ddLabelBtn){
+ ddLabelBtn.addEventListener('click',()=>{
+   ddToggle.click();
+ });
+}
+if(ddToggle){
+ ddToggle.addEventListener('click',()=>{
+   deepCollapsed=!deepCollapsed;
+   localStorage.setItem(
+     'deep-collapsed',
+     deepCollapsed
+   );
+   applyDeepState();
+ });
+}
+
+sortCollectedByDate();
+applyDeepState();
+applyInspoFilter();
+</script>
+
+{% include tags.html %}
+
+</body>
+</html>

@@ -12,3 +12,9 @@ permalink: pretty
 include:
   - notes
 
+
+collections:
+  writing:
+    output: true
+    permalink: /writing/:name/
+ 

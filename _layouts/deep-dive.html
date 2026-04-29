@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>{{ page.title }} — Deep Dive — Saptak</title>
+<style>
+
+:root {
+  --bg: #f7f7f7;
+  --ink: #111;
+  --border: #ddd;
+  --accent: #c8440a;
+  --radius: 18px;
+  --pill: 999px;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  display: flex;
+  min-height: 100vh;
+}
+
+a { text-decoration: none; color: var(--ink); }
+
+.main {
+  margin-left: 240px;
+  margin-right: 190px;
+  flex: 1;
+  padding: 60px 64px 120px;
+  max-width: 880px;
+  transition: margin-left .25s ease, margin-right .25s ease;
+}
+
+body.toc-collapsed .main { margin-left: 44px; }
+body.tag-collapsed .main { margin-right: 44px; }
+
+.breadcrumb {
+  font-family: var(--font-body);
+  font-size: 12px; opacity: .4;
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.breadcrumb span { margin: 0 6px; }
+
+.page-tag {
+  font-family: var(--font-head);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: var(--ink); color: var(--bg);
+  display: inline-block;
+  padding: 4px 12px; border-radius: var(--pill);
+  margin-bottom: 20px;
+}
+
+.deepdive-number {
+  font-family: var(--font-head);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  opacity: .35; margin-bottom: 8px;
+}
+
+.page-title {
+  font-family: var(--font-head);
+  font-size: 48px; font-weight: 700;
+  letter-spacing: -1.5px; line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.meta {
+  font-size: 13px; opacity: .4;
+  margin-bottom: 48px;
+  display: flex; gap: 18px;
+}
+
+/* ── ARTICLE BODY ── */
+.article-body {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.article-body h2 {
+  font-family: var(--font-head);
+  font-size: 24px; font-weight: 700;
+  margin: 48px 0 16px;
+  letter-spacing: -.5px;
+  scroll-margin-top: 32px;
+}
+
+.article-body h3 {
+  font-family: var(--font-head);
+  font-size: 18px; font-weight: 700;
+  margin: 32px 0 10px;
+  scroll-margin-top: 32px;
+}
+
+.article-body p { margin-bottom: 22px; }
+
+.article-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: .2s;
+}
+.article-body a:hover { opacity: .6; }
+
+.article-body blockquote {
+  margin: 32px 0;
+  padding: 18px 24px;
+  border-left: 4px solid var(--ink);
+  background: rgba(0,0,0,.04);
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+}
+
+.article-body ul, .article-body ol {
+  padding-left: 24px;
+  margin-bottom: 22px;
+}
+
+.article-body li { margin-bottom: 6px; }
+
+.article-body code {
+  font-family: monospace;
+  font-size: 14px;
+  background: rgba(0,0,0,.07);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.article-body pre {
+  background: #1a1a1a;
+  color: #f0f0f0;
+  padding: 22px;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin-bottom: 24px;
+}
+
+.article-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
+}
+
+.article-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 24px 0;
+}
+
+.page-footer {
+  font-family: var(--font-body);
+  font-size: 13px; opacity: .35;
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+
+@media (max-width: 768px) {
+  .main { margin-left: 0; margin-right: 0; padding: 40px 24px 80px; }
+  .page-title { font-size: 32px; }
+}
+
+</style>
+</head>
+<body>
+
+{% include toc.html %}
+
+<main class="main">
+
+  <div class="breadcrumb">
+    <a href="{{ site.baseurl }}/inspo.html">Inspo</a>
+    <span>›</span>
+    Deep Dive
+  </div>
+
+  <div class="page-tag">📖 Deep Dive{% if page.number %} #{{ page.number }}{% endif %}</div>
+  <h1 class="page-title">{{ page.title }}</h1>
+  <div class="meta">
+    {% if page.date %}<span>📅 {{ page.date | date: "%B %Y" }}</span>{% endif %}
+    {% if page.category %}<span>🏷 {{ page.category }}</span>{% endif %}
+  </div>
+
+  <div class="article-body" id="timeline-body">
+    {{ content }}
+  </div>
+
+  <div class="page-footer">
+    Written by Saptak ·
+    <a href="{{ site.baseurl }}/inspo.html">← Back to Inspo</a>
+  </div>
+
+</main>
+
+
+</body>
+</html>

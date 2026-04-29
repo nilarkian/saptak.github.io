@@ -1,0 +1,202 @@
+<style>
+/* ── LEFT SIDEBAR ── */
+.sidebar{
+  position:fixed;
+  top:0;left:0;
+  width:190px;
+  height:100vh;
+  background:#efefef;
+  border-right:1px solid #ddd;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  transition:width .25s ease;
+  z-index:10;
+}
+
+.sidebar.collapsed{ width:44px; }
+
+/* inner content — hides when collapsed */
+.sidebar-inner{
+  padding:40px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+  overflow:hidden;
+  flex:1;
+  min-width:200px; /* prevents content reflow during transition */
+}
+
+.sidebar.collapsed .sidebar-inner{ opacity:0; pointer-events:none; }
+
+/* collapse toggle — fixed, straddling the right border at top */
+.toc-toggle-btn{
+  position:fixed;
+  top:20px;
+  left:190px;
+  transform:translateX(-50%);
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#efefef;
+  border:1px solid #ccc;
+  color:#888;
+  cursor:pointer;
+  font-size:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:left .25s ease, color .15s, border-color .15s;
+  z-index:20;
+}
+.toc-toggle-btn:hover{ border-color:#111; color:#111; }
+body.toc-collapsed .toc-toggle-btn{ left:44px; }
+
+.sidebar .back{
+  font-size:13px;
+  font-weight:600;
+  border:2px solid #111;
+  padding:8px 16px;
+  border-radius:999px;
+  display:inline-block;
+  transition:.2s;
+  width:fit-content;
+  text-decoration:none;
+  color:#111;
+}
+.sidebar .back:hover{ background:#111; color:#f7f7f7; }
+
+.toc-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.4;
+}
+
+.toc{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  list-style:none;
+}
+
+.toc li a{
+  font-size:13px;
+  line-height:1.5;
+  display:block;
+  padding:5px 10px;
+  border-radius:6px;
+  color:#444;
+  transition:.15s;
+  border-left:2px solid transparent;
+  text-decoration:none;
+}
+.toc li a:hover{ background:rgba(0,0,0,.06); color:#111; }
+.toc li a.active{
+  border-left:2px solid #111;
+  color:#111;
+  font-weight:600;
+  background:rgba(0,0,0,.05);
+}
+.toc li[hidden]{ display:none; }
+
+@media(max-width:768px){ .sidebar{ display:none; } }
+</style>
+
+<aside class="sidebar" id="toc-sidebar">
+  <div class="sidebar-inner">
+    <a class="back" href="{{ site.baseurl }}/">← Home</a>
+    <div>
+      <div class="toc-label">On this page</div>
+    </div>
+    <ul class="toc" id="toc"></ul>
+  </div>
+</aside>
+
+<button class="toc-toggle-btn" id="toc-toggle" aria-label="toggle sidebar">‹</button>
+
+<script>
+(function () {
+  const sidebar   = document.getElementById('toc-sidebar');
+  const toggleBtn = document.getElementById('toc-toggle');
+
+  const TOC_KEY = 'toc-collapsed';
+  let collapsed = localStorage.getItem(TOC_KEY) === 'true';
+
+  function applyTocState() {
+    sidebar.classList.toggle('collapsed', collapsed);
+    toggleBtn.textContent = collapsed ? '›' : '‹';
+    document.body.classList.toggle('toc-collapsed', collapsed);
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    collapsed = !collapsed;
+    localStorage.setItem(TOC_KEY, collapsed);
+    applyTocState();
+  });
+
+  applyTocState();
+})();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+const toc=document.getElementById('toc');
+const headings=[
+ ...document.querySelectorAll(
+ '.article-body h1, .article-body h2, .article-body h3'
+ )
+];
+
+if(!headings.length) return;
+
+headings.forEach((h,i)=>{
+
+ if(!h.id){
+   h.id='section-'+(i+1);
+ }
+
+ const li=document.createElement('li');
+ if(h.tagName==='H2'){
+   li.style.paddingLeft='7px';
+ }
+ if(h.tagName==='H3'){
+   li.style.paddingLeft='14px';
+ }
+
+ li.innerHTML=
+ `<a href="#${h.id}">
+   ${h.textContent}
+ </a>`;
+
+ toc.appendChild(li);
+
+});
+
+const links=[
+ ...toc.querySelectorAll('a')
+];
+
+window.addEventListener('scroll',()=>{
+
+ let current='';
+
+ headings.forEach(h=>{
+   if(h.getBoundingClientRect().top<140){
+      current=h.id;
+   }
+ });
+
+ links.forEach(a=>{
+   a.classList.toggle(
+     'active',
+     a.getAttribute('href')==='#'+current
+   );
+ });
+
+});
+
+});
+</script>

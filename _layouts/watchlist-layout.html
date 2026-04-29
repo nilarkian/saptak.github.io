@@ -1,0 +1,187 @@
+---
+permalink: /watchlist.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Watchlist — Saptak</title>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f7f7f7;
+  color:#111;
+  display:flex;
+  min-height:100vh;
+}
+
+a{ text-decoration:none; color:#111; }
+
+/* ── MAIN — margins respond to sidebar collapse state ── */
+.main{
+  margin-left:190px;
+  margin-right:190px;
+  flex:1;
+  padding:60px 64px 120px;
+  max-width:860px;
+  transition:margin-left .25s ease, margin-right .25s ease;
+}
+
+body.toc-collapsed .main { margin-left:44px; }
+body.tag-collapsed .main  { margin-right:44px; }
+
+.page-tag{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  background:#111;
+  color:#f7f7f7;
+  display:inline-block;
+  padding:4px 12px;
+  border-radius:999px;
+  margin-bottom:20px;
+}
+
+.page-title{
+  font-size:36px;
+  font-weight:700;
+  letter-spacing:-1px;
+  margin-bottom:12px;
+}
+
+.meta{
+  font-size:13px;
+  opacity:.4;
+  margin-bottom:48px;
+}
+
+/* ── TIMELINE ── */
+.timeline-body{
+  border-left:2px solid #ddd;
+  padding-left:28px;
+  margin-left:4px;
+}
+
+.timeline-body h2{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.4;
+  margin:52px 0 24px;
+  scroll-margin-top:32px;
+}
+
+.timeline-body h2[hidden]{ display:none; }
+
+.timeline-body h3{
+  font-size:17px;
+  font-weight:700;
+  margin-bottom:6px;
+  scroll-margin-top:32px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.timeline-body h3::before{
+  content:'';
+  display:inline-block;
+  width:10px; height:10px;
+  border-radius:50%;
+  background:#111;
+  flex-shrink:0;
+}
+
+.timeline-body h3[hidden]{ display:none; }
+.timeline-body p[hidden]{ display:none; }
+.timeline-body hr[hidden]{ display:none; }
+
+.timeline-body p{
+  font-size:16px;
+  line-height:1.8;
+  margin-bottom:24px;
+  opacity:.85;
+}
+
+.timeline-body a{
+  color:#c8440a;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.timeline-body a:hover{ opacity:.6; }
+
+.timeline-body hr{
+  border:none;
+  border-top:1px solid #ddd;
+  margin:40px 0;
+}
+
+.timeline-body ul{ padding-left:20px; margin-bottom:20px; }
+
+.timeline-body li{
+  font-size:16px;
+  line-height:1.8;
+  margin-bottom:6px;
+}
+
+.timeline-body blockquote{
+  margin:20px 0;
+  padding:16px 22px;
+  border-left:4px solid #111;
+  background:rgba(0,0,0,.04);
+  border-radius:0 10px 10px 0;
+  font-style:italic;
+  font-size:16px;
+}
+
+/* ── FOOTER ── */
+.page-footer{
+  font-size:13px;
+  opacity:.35;
+  margin-top:80px;
+  border-top:1px solid #ccc;
+  padding-top:28px;
+}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .main{ margin-left:0; margin-right:0; padding:40px 24px 80px; }
+  .page-title{ font-size:28px; }
+}
+
+</style>
+</head>
+<body>
+
+{% include toc.html %}
+
+<main class="main">
+
+  <div class="page-tag">📡 Watchlist</div>
+  <h1 class="page-title">Watchlist</h1>
+  <div class="meta">Things I'm tracking</div>
+
+  <div class="timeline-body" id="timeline-body">
+    {{ content }}
+  </div>
+
+  <div class="page-footer">
+    Tracked by Saptak ·
+    <a href="{{ site.baseurl }}/">nilarkian.github.io/Saptak</a>
+  </div>
+
+</main>
+
+{% include tags.html %}
+
+</body>
+</html>

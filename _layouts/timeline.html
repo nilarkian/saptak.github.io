@@ -44,10 +44,7 @@ a{text-decoration:none;color:#111;}
   width:fit-content;
 }
 
-.sidebar .back:hover{
-  background:#111;
-  color:#f7f7f7;
-}
+.sidebar .back:hover{ background:#111; color:#f7f7f7; }
 
 .toc-label{
   font-size:11px;
@@ -75,10 +72,7 @@ a{text-decoration:none;color:#111;}
   border-left:2px solid transparent;
 }
 
-.toc li a:hover{
-  background:rgba(0,0,0,.06);
-  color:#111;
-}
+.toc li a:hover{ background:rgba(0,0,0,.06); color:#111; }
 
 .toc li a.active{
   border-left:2px solid #111;
@@ -86,6 +80,8 @@ a{text-decoration:none;color:#111;}
   font-weight:600;
   background:rgba(0,0,0,.05);
 }
+
+.toc li[hidden]{ display:none; }
 
 /* ── MAIN ── */
 .main{
@@ -102,7 +98,7 @@ a{text-decoration:none;color:#111;}
   text-transform:uppercase;
   margin-bottom:24px;
 }
-.breadcrumb span{margin:0 6px;}
+.breadcrumb span{ margin:0 6px; }
 
 .page-tag{
   font-size:11px;
@@ -127,10 +123,42 @@ a{text-decoration:none;color:#111;}
 .meta{
   font-size:13px;
   opacity:.4;
-  margin-bottom:52px;
+  margin-bottom:24px;
 }
 
+/* ── ENTRY TAG FILTER BAR ── */
+.entry-filter{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:48px;
+}
+
+.entry-tag-btn{
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  border:2px solid #ddd;
+  background:transparent;
+  color:#111;
+  padding:5px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:.15s;
+}
+
+.entry-tag-btn:hover{ border-color:#111; }
+.entry-tag-btn.active{ background:#111; color:#f7f7f7; border-color:#111; }
+
 /* ── TIMELINE ── */
+.timeline-body{
+  border-left:2px solid #ddd;
+  padding-left:28px;
+  margin-left:4px;
+}
+
 .timeline-body h2{
   font-size:13px;
   font-weight:700;
@@ -141,7 +169,8 @@ a{text-decoration:none;color:#111;}
   scroll-margin-top:32px;
 }
 
-/* each entry = h3 + content until next h3 */
+.timeline-body h2[hidden]{ display:none; }
+
 .timeline-body h3{
   font-size:17px;
   font-weight:700;
@@ -162,12 +191,7 @@ a{text-decoration:none;color:#111;}
   flex-shrink:0;
 }
 
-/* the vertical line running through entries */
-.timeline-body{
-  border-left:2px solid #ddd;
-  padding-left:28px;
-  margin-left:4px;
-}
+.timeline-body h3[hidden]{ display:none; }
 
 .timeline-body p{
   font-size:16px;
@@ -175,6 +199,9 @@ a{text-decoration:none;color:#111;}
   margin-bottom:24px;
   opacity:.85;
 }
+
+.timeline-body p[hidden]{ display:none; }
+.timeline-body hr[hidden]{ display:none; }
 
 .timeline-body a{
   color:#c8440a;
@@ -184,7 +211,7 @@ a{text-decoration:none;color:#111;}
   transition:.2s;
 }
 
-.timeline-body a:hover{opacity:.6;}
+.timeline-body a:hover{ opacity:.6; }
 
 .timeline-body hr{
   border:none;
@@ -224,9 +251,9 @@ a{text-decoration:none;color:#111;}
 
 /* ── MOBILE ── */
 @media(max-width:768px){
-  .sidebar{display:none;}
-  .main{margin-left:0;padding:40px 24px 80px;}
-  .page-title{font-size:28px;}
+  .sidebar{ display:none; }
+  .main{ margin-left:0; padding:40px 24px 80px; }
+  .page-title{ font-size:28px; }
 }
 
 </style>
@@ -250,10 +277,11 @@ a{text-decoration:none;color:#111;}
   </div>
 
   <div class="page-tag">📡 Tracker</div>
-
   <h1 class="page-title">{{ page.title }}</h1>
-
   <div class="meta">Last updated: {{ page.last_updated }}</div>
+
+  <!-- entry tag pills injected here by JS -->
+  <div class="entry-filter" id="entry-filter"></div>
 
   <div class="timeline-body" id="timeline-body">
     {{ content }}
@@ -267,33 +295,142 @@ a{text-decoration:none;color:#111;}
 </main>
 
 <script>
-const body  = document.getElementById('timeline-body');
-const toc   = document.getElementById('toc');
-const heads = body.querySelectorAll('h2');
+const timelineBody = document.getElementById('timeline-body');
+const filterBar    = document.getElementById('entry-filter');
+const toc          = document.getElementById('toc');
 
-heads.forEach((h, i) => {
-  if (!h.id) h.id = 'entry-' + i;
+// ── STEP 1: Walk children, group into entries ──────────────────────────
+const children = Array.from(timelineBody.children);
+const entries  = []; // { h3, sectionH2, nodes, tags }
+
+let currentH2    = null;
+let currentEntry = null;
+
+children.forEach(el => {
+  if (el.tagName === 'H2') {
+    currentH2    = el;
+    currentEntry = null;
+
+  } else if (el.tagName === 'H3') {
+    currentEntry = { h3: el, sectionH2: currentH2, nodes: [], tags: [] };
+    entries.push(currentEntry);
+
+  } else if (currentEntry) {
+    const text = el.textContent.trim();
+
+    // Detect and parse the tags line: tags: [india, fintech]
+    if (/^tags:\s*\[/i.test(text)) {
+      const match = text.match(/\[([^\]]+)\]/);
+      if (match) {
+        currentEntry.tags = match[1]
+          .split(',')
+          .map(t => t.trim().toLowerCase())
+          .filter(Boolean);
+      }
+      el.style.display = 'none'; // strip from view — reader never sees it
+
+    } else {
+      currentEntry.nodes.push(el);
+    }
+  }
+});
+
+// ── STEP 2: Collect all unique tags ───────────────────────────────────
+const allTags = [...new Set(entries.flatMap(e => e.tags))].sort();
+
+// ── STEP 3: Build pill filter bar ─────────────────────────────────────
+let activeTag = null;
+
+function buildFilterBar() {
+  filterBar.innerHTML = '';
+  if (allTags.length === 0) return;
+
+  const allBtn = document.createElement('button');
+  allBtn.className    = 'entry-tag-btn active';
+  allBtn.textContent  = 'All';
+  allBtn.dataset.tag  = 'all';
+  filterBar.appendChild(allBtn);
+
+  allTags.forEach(tag => {
+    const btn       = document.createElement('button');
+    btn.className   = 'entry-tag-btn';
+    btn.textContent = tag;
+    btn.dataset.tag = tag;
+    filterBar.appendChild(btn);
+  });
+
+  filterBar.addEventListener('click', e => {
+    const btn = e.target.closest('.entry-tag-btn');
+    if (!btn) return;
+
+    const tag = btn.dataset.tag;
+    activeTag = tag === 'all' ? null : tag;
+
+    filterBar.querySelectorAll('.entry-tag-btn')
+      .forEach(b => b.classList.toggle('active', b === btn));
+
+    applyFilter();
+  });
+}
+
+// ── STEP 4: Filter entries + hide empty h2 sections ───────────────────
+function applyFilter() {
+  entries.forEach(entry => {
+    const visible = !activeTag || entry.tags.includes(activeTag);
+    entry.h3.hidden = !visible;
+    entry.nodes.forEach(n => n.hidden = !visible);
+  });
+
+  // Hide month h2 if every entry under it is hidden
+  timelineBody.querySelectorAll('h2').forEach(h2 => {
+    const h2Entries   = entries.filter(e => e.sectionH2 === h2);
+    const anyVisible  = h2Entries.some(e => !e.h3.hidden);
+    h2.hidden         = !anyVisible;
+  });
+
+  updateToc();
+}
+
+// ── STEP 5: Build sidebar TOC from h2s ────────────────────────────────
+const h2s     = timelineBody.querySelectorAll('h2');
+const tocItems = []; // { li, h2 }
+
+h2s.forEach((h, i) => {
+  if (!h.id) h.id = 'section-' + i;
 
   const li = document.createElement('li');
   const a  = document.createElement('a');
   a.href        = '#' + h.id;
-  a.textContent = h.textContent.replace(/^●\s*/, '');
+  a.textContent = h.textContent;
   li.appendChild(a);
   toc.appendChild(li);
+  tocItems.push({ li, h2: h });
 });
 
-const links = toc.querySelectorAll('a');
+function updateToc() {
+  tocItems.forEach(({ li, h2 }) => {
+    li.hidden = h2.hidden;
+  });
+}
+
+// ── STEP 6: Scroll-spy active TOC link ────────────────────────────────
+const tocLinks = toc.querySelectorAll('a');
+
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      links.forEach(l => l.classList.remove('active'));
-      const a = toc.querySelector(`a[href="#${e.target.id}"]`);
-      if (a) a.classList.add('active');
+      tocLinks.forEach(l => l.classList.remove('active'));
+      const active = toc.querySelector(`a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
     }
   });
 }, { rootMargin: '0px 0px -70% 0px' });
 
-heads.forEach(h => observer.observe(h));
+h2s.forEach(h => observer.observe(h));
+
+// ── INIT ──────────────────────────────────────────────────────────────
+buildFilterBar();
+applyFilter();
 </script>
 
 </body>

@@ -3,6 +3,7 @@ layout: note
 title: "The Future of IPL Jerseys: Arbitraging the \"Digital Skin\""
 topic: "The Future 💰"
 date: 2026-04-02
+tags: [cricket, india, marketing, AI, AR]
 ---
 
 
