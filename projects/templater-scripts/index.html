@@ -22,7 +22,17 @@ a { text-decoration: none; color: #111; }
   max-width: 900px;
   margin: 60px auto 90px;
   padding: 0 30px;
+  margin-right: calc(190px + 30px);
+  transition: margin-right .25s ease;
 }
+
+body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
+
+body {
+  padding-right: 190px;
+  transition: padding-right .25s ease;
+}
+body.tag-collapsed { padding-right: 44px; }
 
 .back {
   display: inline-block;
@@ -187,7 +197,8 @@ hr.divider { border: none; border-top: 1px solid #ddd; margin: 0 0 36px; }
     {% for script in scripts %}
     <a class="script-card"
        href="{{ script.url | prepend: site.baseurl }}"
-       data-cat="{{ script.category | slugify | default: 'utility' }}">
+       data-cat="{{ script.category | slugify | default: 'utility' }}"
+       data-tags="{{ script.tags | join: ',' | downcase }}">
       <div class="card-cat">{{ script.category | default: "Utility" }}</div>
       <div class="card-title">{{ script.title }}</div>
       <div class="card-desc">{{ script.description }}</div>
@@ -217,27 +228,55 @@ const cards   = document.querySelectorAll('.script-card');
 const counter = document.getElementById('script-count');
 const empty   = document.getElementById('empty-state');
 
+let activeCat = 'all';
+
 function updateCount() {
   const visible = [...cards].filter(c => !c.hidden).length;
   counter.textContent = visible + ' script' + (visible !== 1 ? 's' : '');
   empty.style.display = visible === 0 ? 'block' : 'none';
 }
 
+// Composing cat + tag filters — called by both category buttons and tags sidebar
+// Reads active tag straight from DOM (same pattern as inspo.html)
+window.applyScriptFilter = function () {
+  const activeTagBtn  = document.querySelector('.child-tag-btn.active, .standalone-tag-btn.active');
+  const activeTag     = activeTagBtn ? activeTagBtn.dataset.tag : null;
+  const activeParent  = document.querySelector('.parent-row.active');
+  let activeParentTag = null;
+  let parentKids      = [];
+  if (activeParent) {
+    activeParentTag = activeParent.querySelector('.parent-filter-btn').dataset.tag;
+    parentKids = [...activeParent.closest('.tag-group').querySelectorAll('.child-tag-btn')]
+                  .map(c => c.dataset.tag);
+  }
+
+  cards.forEach(card => {
+    const catMatch  = activeCat === 'all' || card.dataset.cat === activeCat;
+    const cardTags  = (card.dataset.tags || '').split(',').map(t => t.trim()).filter(Boolean);
+
+    let tagMatch = true;
+    if (activeTag)        tagMatch = cardTags.includes(activeTag);
+    else if (activeParentTag) tagMatch = cardTags.includes(activeParentTag) || parentKids.some(k => cardTags.includes(k));
+
+    card.hidden = !(catMatch && tagMatch);
+  });
+
+  updateCount();
+};
+
 btns.forEach(btn => {
   btn.addEventListener('click', () => {
     btns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    const cat = btn.dataset.cat;
-    cards.forEach(card => {
-      card.hidden = cat !== 'all' && card.dataset.cat !== cat;
-    });
-    updateCount();
+    activeCat = btn.dataset.cat;
+    window.applyScriptFilter();
   });
 });
 
-updateCount();
+window.applyScriptFilter();
 </script>
+
+{% include tags.html %}
 
 </body>
 </html>

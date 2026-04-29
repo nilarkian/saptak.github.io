@@ -12,150 +12,169 @@ permalink: /watchlist.html
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#f7f7f7;
-  color:#111;
-  display:flex;
-  min-height:100vh;
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #111;
+  display: flex;
+  min-height: 100vh;
 }
 
-a{ text-decoration:none; color:#111; }
+a{ text-decoration: none; color: #111; }
 
-/* ── MAIN — margins respond to sidebar collapse state ── */
+/* ── MAIN ── */
 .main{
-  margin-left:190px;
-  margin-right:190px;
-  flex:1;
-  padding:60px 64px 120px;
-  max-width:860px;
-  transition:margin-left .25s ease, margin-right .25s ease;
+  margin-left: 190px;
+  margin-right: 190px;
+  flex: 1;
+  padding: 60px 64px 120px;
+  max-width: 860px;
+  transition: margin-left .25s ease, margin-right .25s ease;
 }
 
-body.toc-collapsed .main { margin-left:44px; }
-body.tag-collapsed .main  { margin-right:44px; }
+body.toc-collapsed .main { margin-left: 44px; }
+body.tag-collapsed .main  { margin-right: 44px; }
 
+page-tag, .page-title, .meta {
+  margin-left: 0; 
+}
 .page-tag{
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  background:#111;
-  color:#f7f7f7;
-  display:inline-block;
-  padding:4px 12px;
-  border-radius:999px;
-  margin-bottom:20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: #111;
+  color: #f7f7f7;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 20px;
 }
 
 .page-title{
-  font-size:36px;
-  font-weight:700;
-  letter-spacing:-1px;
-  margin-bottom:12px;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
 }
 
 .meta{
-  font-size:13px;
-  opacity:.4;
-  margin-bottom:48px;
+  font-size: 13px;
+  opacity: .4;
+  margin-bottom: 48px;
 }
 
 /* ── TIMELINE ── */
-.timeline-body{
-  border-left:2px solid #ddd;
-  padding-left:28px;
-  margin-left:4px;
+/* ── TIMELINE ── */
+:root {
+  --dot-size: 14px; /* Change this value to resize the dot; everything else auto-adjusts */
 }
 
-.timeline-body h2{
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  opacity:.4;
-  margin:52px 0 24px;
-  scroll-margin-top:32px;
+.timeline-body {
+  border-left: 2px solid #ddd;
+  padding-left: 32px; 
+  margin-left: 0; 
+  position: relative;
 }
 
-.timeline-body h2[hidden]{ display:none; }
-
-.timeline-body h3{
-  font-size:17px;
-  font-weight:700;
-  margin-bottom:6px;
-  scroll-margin-top:32px;
-  display:flex;
-  align-items:center;
-  gap:10px;
+.timeline-body h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .4;
+  margin: 52px 0 24px;
+  scroll-margin-top: 32px;
 }
 
-.timeline-body h3::before{
-  content:'';
-  display:inline-block;
-  width:10px; height:10px;
-  border-radius:50%;
-  background:#111;
-  flex-shrink:0;
+.timeline-body h3 {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 6px;
+  scroll-margin-top: 32px;
+  position: relative; 
+  display: block;
 }
 
-.timeline-body h3[hidden]{ display:none; }
-.timeline-body p[hidden]{ display:none; }
-.timeline-body hr[hidden]{ display:none; }
+/* The Dot: Automatically centers on the 2px line based on --dot-size */
+.timeline-body h3::before {
+  content: '';
+  position: absolute;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  
+  /* Calculation to keep dot centered on the 2px border-left line */
+  left: calc(-34px - (var(--dot-size) / 2) + 1px);
+  
+  /* Centers dot vertically with the first line of text */
+  top: calc(0.7em - (var(--dot-size) / 2));
+  
+  border-radius: 50%;
+  background: #111;
+  z-index: 2;
+}
+
+/* The Date: Pushed left to avoid overlap with the dot */
+.timeline-body h3 .date {
+  position: absolute;
+  /* Pulls date further left as the dot size increases */
+  left: calc(-116px - (var(--dot-size) / 2)); 
+  width: 80px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  opacity: 0.6;
+  top: 1.9px; /* Fine-tuned vertical alignment for the date text */
+}
 
 .timeline-body p{
-  font-size:16px;
-  line-height:1.8;
-  margin-bottom:24px;
-  opacity:.85;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  opacity: .85;
 }
 
 .timeline-body a{
-  color:#c8440a;
-  text-decoration:underline;
-  text-underline-offset:3px;
-  font-weight:600;
-  transition:.2s;
+  color: #c8440a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: .2s;
 }
-
-.timeline-body a:hover{ opacity:.6; }
 
 .timeline-body hr{
-  border:none;
-  border-top:1px solid #ddd;
-  margin:40px 0;
-}
-
-.timeline-body ul{ padding-left:20px; margin-bottom:20px; }
-
-.timeline-body li{
-  font-size:16px;
-  line-height:1.8;
-  margin-bottom:6px;
-}
-
-.timeline-body blockquote{
-  margin:20px 0;
-  padding:16px 22px;
-  border-left:4px solid #111;
-  background:rgba(0,0,0,.04);
-  border-radius:0 10px 10px 0;
-  font-style:italic;
-  font-size:16px;
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 40px 0;
 }
 
 /* ── FOOTER ── */
 .page-footer{
-  font-size:13px;
-  opacity:.35;
-  margin-top:80px;
-  border-top:1px solid #ccc;
-  padding-top:28px;
+  font-size: 13px;
+  opacity: .35;
+  margin-top: 80px;
+  border-top: 1px solid #ccc;
+  padding-top: 28px;
 }
 
 /* ── MOBILE ── */
 @media(max-width:768px){
-  .main{ margin-left:0; margin-right:0; padding:40px 24px 80px; }
-  .page-title{ font-size:28px; }
+  .main { 
+    margin-left: 0; 
+    margin-right: 0; 
+    padding: 40px 24px 80px; 
+  }
+  
+  .timeline-body { 
+    margin-left: 60px; /* Add margin back on mobile so dates have room */
+  }
+
+  .timeline-body h3 .date {
+    position: absolute;
+    left: -75px; /* Adjust for smaller mobile gutter */
+    text-align: right;
+  }
 }
 
 </style>
@@ -183,5 +202,16 @@ body.tag-collapsed .main  { margin-right:44px; }
 
 {% include tags.html %}
 
+<script>
+document.querySelectorAll('a[href]').forEach(link => {
+  if (
+    link.hostname &&
+    link.hostname !== window.location.hostname
+  ) {
+    link.target = '_blank';
+    link.rel = 'noopener';
+  }
+});
+</script>
 </body>
 </html>

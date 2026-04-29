@@ -542,6 +542,7 @@ const toc     = document.getElementById('toc');
 const timelineBody = document.getElementById('timeline-body');
 const noteList     = document.getElementById('note-list');
 const inspoBody    = document.getElementById('inspo-body');
+const catalogue    = document.getElementById('catalogue');
 
 let usedTags   = new Set();
 let filterFn   = () => {};   // set below per context
@@ -555,13 +556,31 @@ if (timelineBody) {
     if (el.tagName === 'H2') {
       currentH2 = el; currentEntry = null;
     } else if (el.tagName === 'H3') {
-      currentEntry = { h3: el, sectionH2: currentH2, nodes: [], tags: [] };
+      currentEntry = { h3: el, sectionH2: currentH2, nodes: [], tags: [], date: null };
       entries.push(currentEntry);
     } else if (currentEntry) {
       const text = el.textContent.trim();
-      if (/^tags:\s*\[/i.test(text)) {
-        const m = text.match(/\[([^\]]+)\]/);
-        if (m) currentEntry.tags = m[1].split(',').map(t => t.trim().toLowerCase()).filter(Boolean);
+      // Match: tags: [a, b]   OR   tags: [a, b] | YYYY-MM-DD
+      const tagDateMatch = text.match(/^tags:\s*\[([^\]]+)\](?:\s*\|\s*(\d{4}-\d{2}-\d{2}))?/i);
+      if (tagDateMatch) {
+        currentEntry.tags = tagDateMatch[1]
+          .split(',')
+          .map(t => t.trim().toLowerCase())
+          .filter(Boolean);
+
+        if (tagDateMatch[2]) {
+          currentEntry.date = tagDateMatch[2];
+
+          // Inject date pill before the h3
+          const pill = document.createElement('div');
+          pill.className = 'entry-date';
+          const d = new Date(tagDateMatch[2] + 'T00:00:00');
+          const month = d.toLocaleString('en-US', { month: 'short' });
+          const day   = d.getDate();
+          pill.textContent = `${month} ${day}`;
+          currentEntry.h3.parentNode.insertBefore(pill, currentEntry.h3);
+        }
+
         el.style.display = 'none';
       } else {
         currentEntry.nodes.push(el);
@@ -584,6 +603,9 @@ if (timelineBody) {
       }
       entry.h3.hidden = !show;
       entry.nodes.forEach(n => n.hidden = !show);
+      // hide the date pill that sits before the h3
+      const pill = entry.h3.previousElementSibling;
+      if (pill && pill.classList.contains('entry-date')) pill.hidden = !show;
     });
 
     timelineBody.querySelectorAll('h2').forEach(h2 => {
@@ -664,6 +686,22 @@ if (timelineBody) {
     // delegate to inspo.html category+tag composition logic
     if (typeof window.applyInspoFilter === 'function') {
       window.applyInspoFilter();
+    }
+  };
+
+} else if (catalogue) {
+  // ── SCRIPTS context: read data-tags from script cards ───────────────
+  const scriptCards = catalogue.querySelectorAll('.script-card');
+
+  scriptCards.forEach(card => {
+    const tags = card.dataset.tags ? card.dataset.tags.split(',').filter(Boolean) : [];
+    tags.forEach(t => usedTags.add(t.trim().toLowerCase()));
+  });
+
+  filterFn = (activeTag, activeIsParent, parentToChildren) => {
+    // delegate to index.html composition logic (reads DOM directly like inspo)
+    if (typeof window.applyScriptFilter === 'function') {
+      window.applyScriptFilter();
     }
   };
 }
@@ -750,7 +788,11 @@ TAG_TREE.forEach(parent => {
     filterBtn.className   = 'parent-filter-btn';
     filterBtn.textContent = parent.name;
     filterBtn.dataset.tag = parent.name;
-    filterBtn.addEventListener('click', () => setActive(parent.name, true, row));
+    filterBtn.addEventListener('click', () => {
+      setActive(parent.name, true, row);
+      const isCollapsed = childRow.classList.toggle('collapsed');
+      svg.classList.toggle('open', !isCollapsed);
+    });
 
     const chevron       = document.createElement('button');
     chevron.className   = 'parent-collapse-btn';

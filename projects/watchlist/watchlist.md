@@ -7,10 +7,9 @@ permalink: /watchlist.html
 
 ## April 2026
 
-### 🌞 Intel Bets on Self-Assembling Materials to Salvage Moore's Law
+### <span class="date">Apr 27</span>  🌞 Intel Bets on Self-Assembling Materials to Salvage Moore's Law
+The global semiconductor race is moving into the realm of computational chemistry...
 tags: [tech, semiconductors]
-
-**27th April 2026** · Semiconductors
 
 The global semiconductor race is shifting from a battle of machines to a battle of molecular chemistry. For 50+ years the industry shrunk transistors using finer beams of light — but as chip features approach atomic scale, the $200M EUV machines powering today's fabs are hitting a physical wall. The brush of light is simply too thick for the designs it needs to draw.
 
@@ -26,7 +25,7 @@ If Intel's gamble lands, the next era of computing won't be defined by the machi
 
 ## February 2026
 
-### 🤖 This 0.6-Second 3D Printing Breakthrough Could Reshape Manufacturing
+### <span class="date">Feb 04</span> 🤖 This 0.6-Second 3D Printing Breakthrough Could Reshape Manufacturing
 tags: [tech, manufacturing]
 
 3D printing may have just crossed from "slow prototyping tool" to real manufacturing platform. If this scales, products from phone cameras to micro-robots could become cheaper, faster to design, and radically easier to produce.
@@ -43,10 +42,8 @@ Bottom line: This isn't faster 3D printing. It could be a new manufacturing prim
 
 ## October 2025
 
-### 🌍 India Locks In Its First Binding FDI Pledge — With Four Nordic Countries
+### <span class="date">Oct 13</span> 🌍 India Locks In Its First Binding FDI Pledge — With Four Nordic Countries
 tags: [india, policy]
-
-**1st October 2025** · Policy · India
 
 India's trade agreement with EFTA — Iceland, Liechtenstein, Norway, Switzerland — entered into force today. The headline isn't the tariffs. It's the **USD 100 billion FDI commitment over 15 years**, the first binding investment pledge in any Indian FTA, directly linked to **1 million direct jobs**. EFTA covers **92.2% of India's export basket** with near-zero duties. India reciprocates on **82.7% of tariff lines**, phased over 10 years — gold, machinery, and pharma included. Dairy stays protected.
 
@@ -58,7 +55,7 @@ The deal is a geopolitical hedge as much as a trade play. But USD 100 billion fr
 
 ## September 2025
 
-### 🇮🇳🇺🇸 iCET Gains Momentum as Strategic Tech Alliance Deepens
+### <span class="date">Sep 01</span> 🇮🇳🇺🇸 iCET Gains Momentum as Strategic Tech Alliance Deepens
 tags: [india, tech, policy]
 
 The **U.S.–India Initiative on Critical and Emerging Technology (iCET)** is quietly becoming one of the most important tech partnerships in the world. Launched in 2023, the framework is accelerating cooperation in semiconductors, defense, space and export controls — with major progress including Micron's Gujarat plant, the GE F414 jet engine deal, MQ-9B drones, and closer NASA-ISRO collaboration.
@@ -71,7 +68,7 @@ The **U.S.–India Initiative on Critical and Emerging Technology (iCET)** is qu
 
 ## May 2025
 
-### 🚀 ULI Hits ₹65,000 Crore — India's Lending Stack Has a New Engine
+### <span class="date">May 05</span> 🚀 ULI Hits ₹65,000 Crore — India's Lending Stack Has a New Engine
 tags: [india, fintech]
 
 **May 2025** · Fintech · India
@@ -84,7 +81,7 @@ The headline product is the **Kisan Credit Card loan** — what previously took 
 
 ---
 
-### ⚙️ ULI's Real Innovation Isn't the Loans — It's the Plumbing
+### <span class="date">May 30</span> ⚙️ ULI's Real Innovation Isn't the Loans — It's the Plumbing
 tags: [india, fintech, tech]
 
 **May 2025** · Fintech · Infrastructure
@@ -97,7 +94,7 @@ The technical complexity reduction is estimated at **70%** versus the old model 
 
 ---
 
-### ⚠️ ULI Has Real Problems That the Growth Numbers Are Hiding
+### <span class="date">Apr 29</span> ⚠️ ULI Has Real Problems That the Growth Numbers Are Hiding
 tags: [india, fintech, policy]
 
 **May 2025** · Fintech · Analysis
@@ -114,7 +111,7 @@ The pitch is compelling. The cracks are real. Three problems worth watching:
 
 ---
 
-### 🎯 The Government's Bet: ₹5,000 Crore to Make ULI Inevitable
+### <span class="date">Apr 28</span> 🎯 The Government's Bet: ₹5,000 Crore to Make ULI Inevitable
 tags: [india, fintech, policy]
 
 **May 2025** · Fintech · Policy

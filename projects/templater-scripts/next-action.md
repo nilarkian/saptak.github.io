@@ -4,6 +4,7 @@ title: Next-Action + Closer
 description: Registers a close command that prompts for a next action before shutting the tab — so every note you leave has a task telling you exactly where to pick up.
 category: Utility
 tags: [tasks, next-action, close, workflow, commands]
+
 date: 2025-04-28
 ---
 
