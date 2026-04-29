@@ -8,32 +8,152 @@ tags: [policy, data, research]
 blurb: Tracks which countries are winning the race for 64 critical technologies — with citations, not opinions. The data is open. The conclusions are uncomfortable.
 ---
 
-The Australian Strategic Policy Institute's Critical Technology Tracker is one of those projects that quietly reframes how you think about geopolitics. It tracks which countries are leading research output across 64 critical technologies — from AI to advanced materials to quantum computing — and the methodology is unusually rigorous.
+# ASPI  
+*Australian Strategic Policy Institute*  
 
-## What it actually does
+🌐 Deep Dive · Entry #001  
+🏛 Canberra, Australia  
+🏷 Think Tank · Policy · Tech Intelligence  
 
-ASPI ranks countries by their share of the world's top 10% most-cited research papers in each field. Not raw paper count — citation-weighted output, normalised across institutions. The data is pulled from the Web of Science database, filtered for the past five years, and updated regularly.
+Website: [aspi](https://www.aspi.org.au)
 
-You can drill into any of the 64 technologies and see exactly which institutions, which countries, and which research clusters are dominating. **The visualisations are clean. The download links work. Every number traces back to a paper.**
+[the tech tracker](https://techtracker.aspi.org.au/)
 
-## Why it matters
+Government-funded. Editorially independent. Tracks which countries are winning the race for 64 technologies that will define the next 30 years — and publishes the data openly. That combination is rarer than it should be.
 
-Most "tech competition" coverage is vibes. Pundits gesturing at trends, journalists quoting analysts quoting other analysts. ASPI does the opposite — it gives you the actual primary research output, and lets you draw your own conclusions.
+---
 
-The conclusions are uncomfortable for a lot of established narratives. **China leads in 57 of the 64 technologies tracked.** The US leads in 7. That's not a forecast or an opinion — that's the data, with citations.
+## What Is ASPI
 
-Equally interesting: India shows up in the top 5 for several specific fields, the UK punches above its weight in biotech and quantum, and a few smaller European countries hold surprising leads in narrow domains.
+ASPI is Australia's independent, non-partisan think tank on defence and strategic policy.
 
-## What's worth stealing
+Government-funded but editorially independent — a distinction that matters when the output includes research that names China’s technology dominance across 37 of 44 critical technology categories.
 
-Three things make this a genuinely good site to study:
+It publishes reports, runs the **Critical Technology Tracker**, and operates projects like **Xinjiang Data Project**, which maps detention infrastructure in Xinjiang using satellite imagery and open-source data.
 
-1. **The data is the product.** Not infographics, not narrative essays — the raw, queryable data with download links. Trust comes from transparency, not polish.
-2. **The methodology is on the homepage.** They tell you exactly how the rankings are built before you see a single ranking. That builds credibility before scepticism kicks in.
-3. **The conclusions are stated plainly.** No hedging, no false balance — just the rankings, with the caveats clearly marked. Every number is auditable.
+The institutional model is the interesting part:
 
-## The link
+- Public funding  
+- Independent editorial line  
+- Open data  
 
-[ASPI Critical Technology Tracker](https://www.aspi.org.au/index.php/report/critical-technology-tracker)
+Most government-adjacent research is either captured or classified. ASPI publishes everything.
 
-Bookmark it. Come back to it next year and watch the rankings shift.
+---
+
+## Critical Technology Tracker
+
+ASPI’s flagship data project.
+
+It measures national research output — publications and citations — across **64 critical technologies**, country by country, year by year since 2003.
+
+**At a glance**
+
+- 64 technologies tracked  
+- 7 domains  
+- 20+ years of data  
+- Launched March 2023, updated annually  
+
+Explore: https://techtracker.aspi.org.au/
+
+Pick a technology, pick a country, get ranked output over time. The data runs through the August 2024 update — long enough to watch China’s research machine accelerate in real time.
+
+---
+
+## The 7 Domains
+
+1. Advanced Materials and Manufacturing  
+2. AI, Computing and Communications  
+3. Biotechnology, Gene Technology and Vaccines  
+4. Energy and Environment  
+5. Quantum  
+6. Sensing, Timing and Navigation  
+7. Defence, Space, Robotics and Transportation  
+
+**Plus:**  
+AUKUS subset — submarine, undersea, electronic warfare.
+
+---
+
+## Why “Critical Technologies”
+
+> Technologies with capacity to significantly enhance, or pose risk to, national interests, including economic prosperity, social cohesion and security. — Australian Government (2022)
+
+The key idea is **dual-use**.
+
+The same technology can drive economic growth *and* military advantage.
+
+Examples:
+
+- AI → productivity + autonomous weapons  
+- Quantum → computing + codebreaking  
+- Biotech → medicine + biosecurity risk  
+
+That’s the policy problem.
+
+### Why It Matters Now
+
+Three pressure points:
+
+### 1. Research concentration  
+A few countries lead most domains. Monopoly risk becomes security risk.
+
+### 2. Supply chain dependencies  
+Critical minerals, chips, biotech inputs are now security questions.
+
+### 3. Dual-use dilemma  
+Civilian and military applications overlap, making export controls messy.
+
+---
+
+## Cross-Cutting Enablers
+
+Two technologies amplify all others.
+
+### Quantum
+- Better navigation, sensing, radar  
+- Post-quantum cryptography matters for everything built on encryption
+
+### AI / ML
+- Accelerates drug discovery  
+- Accelerates materials science  
+- Accelerates autonomy  
+
+Less a sector, more a layer under everything.
+
+---
+
+## Comparable Trackers
+
+ASPI isn’t alone.
+
+| Tracker | Org | Focus |
+|---|---|---|
+| CSET ETO | Georgetown CSET | Emerging tech, global |
+| Carnegie India Tech Tracker | Carnegie India | India-focused |
+| WIPO Inspire TechTracker | WIPO | Patents/IP lens |
+| MIT Technology Tracker | MIT | Broad tech trends |
+| Delhi Policy Group | DPG | India–China tech security |
+
+---
+
+## Why It’s In Here
+
+Open data.  
+Government-independent.  
+Geopolitically honest.
+
+The Critical Technology Tracker answers:
+
+**Who’s actually winning?**
+
+…with citations, not vibes.
+
+And the answer is often uncomfortable for Western audiences.
+
+That’s exactly why it’s worth keeping close.
+
+---
+
+Collected by Saptak  
+https://nilarkian.github.io/Saptak
