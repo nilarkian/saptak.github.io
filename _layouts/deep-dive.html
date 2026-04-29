@@ -206,5 +206,16 @@ body.tag-collapsed .main { margin-right: 44px; }
 </main>
 
 
+<script>
+document.querySelectorAll('a[href]').forEach(link => {
+  if (
+    link.hostname &&
+    link.hostname !== window.location.hostname
+  ) {
+    link.target = '_blank';
+    link.rel = 'noopener';
+  }
+});
+</script>
 </body>
 </html>
