@@ -1,59 +1,3 @@
-# ─────────────────────────────────────────────
-# INSPO DATA SOURCE
-# ─────────────────────────────────────────────
-#
-# This file is the single source of truth for everything
-# in the Inspo section EXCEPT deep dives.
-#
-# Deep dives are .md files in _writing/ (collection).
-# Everything else lives here.
-#
-# ─────────────────────────────────────────────
-# RULES
-# ─────────────────────────────────────────────
-#
-# 1. Five categories: youtube, tweets, design, writing, websites
-#    Each is a top-level key. Each holds a list of entries.
-#
-# 2. Every entry needs:
-#    - url
-#    - date (YYYY-MM-DD)
-#    - tags (array, lowercase)
-#
-# 3. Category-specific fields below. Optional fields can be omitted.
-#
-# 4. Use child tags from _data/tags.yml when possible.
-#    Orphan tags appear under "Other" in the sidebar — fix by
-#    adding them to tags.yml.
-#
-# 5. Sort within each category is automatic — most recent date first.
-#    No need to manually order entries.
-#
-# ─────────────────────────────────────────────
-# FIELDS PER CATEGORY
-# ─────────────────────────────────────────────
-#
-# youtube:
-#   url, title, desc, date, tags
-#   (thumbnail auto-fetched from YouTube)
-#
-# tweets:
-#   url, name, handle, body, date, tags
-#   (avatar emoji optional — defaults to 🧑)
-#
-# design:
-#   url, source, caption, note, img, date, tags
-#   img is path like /assets/inspo/design/foo.png — optional
-#
-# writing:
-#   url, author, title, desc, date, tags
-#
-# websites:
-#   url, name, desc, date, tags
-#
-# ─────────────────────────────────────────────
-
-
 # ════════════════════════════════════════════
 # YOUTUBE
 # ════════════════════════════════════════════
@@ -298,3 +242,63 @@ websites:
     desc: "The email swipe file. Searchable by type, brand, and industry."
     date: 2025-08-08
     tags: [email, marketing]
+
+
+
+# INSPO DATA SOURCE
+
+#
+
+# This file is the single source of truth for everything
+# in the Inspo section EXCEPT deep dives.
+#
+# Deep dives are .md files in _writing/ (collection).
+# Everything else lives here.
+#
+# ─────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────
+#
+# 1. Five categories: youtube, tweets, design, writing, websites
+#    Each is a top-level key. Each holds a list of entries.
+#
+# 2. Every entry needs:
+#    - url
+#    - date (YYYY-MM-DD)
+#    - tags (array, lowercase)
+#
+# 3. Category-specific fields below. Optional fields can be omitted.
+#
+# 4. Use child tags from _data/tags.yml when possible.
+#    Orphan tags appear under "Other" in the sidebar — fix by
+#    adding them to tags.yml.
+#
+# 5. Sort within each category is automatic — most recent date first.
+#    No need to manually order entries.
+#
+# ─────────────────────────────────────────────
+
+# @@ FIELDS PER CATEGORY
+
+# ─────────────────────────────────────────────
+#
+# youtube:
+#   url, title, desc, date, tags
+#   (thumbnail auto-fetched from YouTube)
+#
+# tweets:
+#   url, name, handle, body, date, tags
+#   (avatar emoji optional — defaults to 🧑)
+#
+# design:
+#   url, source, caption, note, img, date, tags
+#   img is path like /assets/inspo/design/foo.png — optional
+#
+# writing:
+#   url, author, title, desc, date, tags
+#
+# websites:
+#   url, name, desc, date, tags
+#
+# ─────────────────────────────────────────────
+

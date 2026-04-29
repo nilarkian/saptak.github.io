@@ -128,8 +128,6 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 }
 
 .cat-tab:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
-.cat-tab.active { background: var(--ink); color: white; border-color: var(--ink); }
-.cat-tab.active::after { background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px); }
 
 /* category-specific tab tints (when not active) */
 .cat-tab[data-cat="all"]      { background: #f0f0f0; }
@@ -139,7 +137,10 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 .cat-tab[data-cat="writing"]  { background: #fdf3e8; }
 .cat-tab[data-cat="websites"] { background: #f5e8fd; }
 
-.cat-tab.active { background: var(--ink) !important; color: white; }
+/* active state — declared LAST so it wins without !important */
+.cat-tab.active,
+.cat-tab[data-cat].active { background: var(--ink); color: white; border-color: var(--ink); }
+.cat-tab.active::after { background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px); }
 
 /* ── SECTION LABEL ── */
 .section-label {
@@ -261,13 +262,6 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 .deepdive-grid.collapsed{
  display:none;
 }
-
-/* ── COLLECTED MIXED GRID — masonry via CSS columns ── */
-/* .collected-grid {
-  column-gap: 18px;
-  margin-bottom: 60px;
-  columns: 3; 
-} */
 
 /* ── COLLECTED MIXED GRID — masonry via CSS columns ── */
 .collected-grid{
@@ -554,7 +548,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
     {% endif %}
 
     <div class="yt-thumb">
-    <img src="https://i.ytimg.com/vi/{{ yt_id }}/hqdefault.jpg">
+    <img src="https://i.ytimg.com/vi/{{ yt_id }}/hqdefault.jpg" loading="lazy" alt="">
     </div>
 
     <div class="yt-body">
@@ -597,7 +591,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 
     {% if d.img %}
     <div class="design-img">
-    <img src="{{ d.img }}">
+    <img src="{{ d.img }}" loading="lazy" alt="">
     </div>
     {% else %}
     <div class="design-img no-img">✦</div>
@@ -659,7 +653,7 @@ const tabs           = document.querySelectorAll('.cat-tab');
 const deepCards      = document.querySelectorAll('.deepdive-card');
 const collectedCards = document.querySelectorAll('.inspo-card');
 const empty          = document.getElementById('empty-state');
-const ddLabel        = document.getElementById('dd-label');
+const ddHead         = document.getElementById('dd-head');
 const colLabel       = document.getElementById('col-label');
 const ddGrid         = document.getElementById('deepdive-grid');
 
@@ -719,7 +713,7 @@ function applyInspoFilter() {
   });
 
   // toggle section labels based on visibility
-  if (ddLabel) ddLabel.style.display = deepVisible > 0 ? '' : 'none';
+  if (ddHead)  ddHead.style.display  = deepVisible > 0 ? '' : 'none';
   if (ddGrid)  ddGrid.style.display  = deepVisible > 0 ? '' : 'none';
   if (colLabel) colLabel.style.display = colVisible > 0 ? '' : 'none';
 
@@ -779,9 +773,12 @@ if(ddToggle){
  });
 }
 
-sortCollectedByDate();
-applyDeepState();
-applyInspoFilter();
+// Defer sort + filter until after first paint — content visible faster
+requestAnimationFrame(() => {
+  sortCollectedByDate();
+  applyDeepState();
+  applyInspoFilter();
+});
 </script>
 
 {% include tags.html %}
