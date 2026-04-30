@@ -328,6 +328,13 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 
 .inspo-card.yt{
   max-width:100%;
+  border: 2px solid rgba(255, 0, 0, 1.0);
+}
+
+.yt-body { 
+  padding: 14px 16px; border-top: 2px solid var(--ink); 
+  background: rgba(255, 0, 0, 0.03);
+
 }
 /* ── YOUTUBE CARD ── */
 .yt-thumb {
@@ -353,7 +360,6 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 }
 .inspo-card.yt:hover .yt-thumb::after { transform: translate(-50%, -50%) scale(1.1); }
 
-.yt-body { padding: 14px 16px; border-top: 2px solid var(--ink); }
 .yt-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; line-height: 1.4; margin-bottom: 5px; }
 .yt-desc  { font-size: 12px; opacity: .5; line-height: 1.5; }
 /* ── MUSIC CARD ── */
@@ -439,7 +445,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 /* ── WRITING CARD ── */
 .inspo-card.writing { 
   padding: 18px 20px; 
-  border-radius: 0px;
+  border-radius: 16px;
   background: rgba(255, 103, 25, 0.02);
   border: 1px solid rgba(255, 103, 25, 1.0);
 }
