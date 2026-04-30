@@ -10,6 +10,7 @@ permalink: /watchlist.html
 
 ### <span class="date">Apr 30</span> ⚡CATL's Qilin Condensed Battery marks a major advancement in EV technology
 tags: [battery, china]
+
 CATL is bypassing the manufacturing bottlenecks of solid-state ceramics with a "condensed" polymer gel electrolyte that offers aviation-grade safety at 350 Wh/kg. By stabilizing a high-nickel cathode and silicon-rich anode within a non-flowing gel network, CATL has effectively solved the expansion and flammability issues that have stalled next-gen density.
 
 **The "So What":** This isn’t a lab prototype; it is a mass-producible pivot that delivers 1,000 km ranges using existing assembly lines. By trickling down 500 Wh/kg aviation tech to passenger cars, CATL is forcing competitors to justify continued investment in rigid solid-state R&D while rendering current premium NCM benchmarks instantly second-tier.
