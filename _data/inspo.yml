@@ -74,9 +74,13 @@ youtube:
 # ════════════════════════════════════════════
 tweets:
 
+
+  - url:    "https://x.com/NikoMcCarty/status/1820918122691305486"
+    avatar: "🪖"
+    body:   "30 Essays to Make You Love Biology."
+    date:   2026-04-22
+    tags:   [read, biology]
   - url:    "https://x.com/mmjukic/status/1834275373322043709"
-    name:   "Marko Jukic"
-    handle: "mmjukic"
     avatar: "🪖"
     body:   "This isn't just a light show. It's a demonstration of futuristic military power. You are looking at an unarmed drone swarm."
     date:   2024-09-12

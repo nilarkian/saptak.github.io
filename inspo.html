@@ -658,7 +658,8 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
     <div class="tweet-avatar">{{ t.avatar | default:"🧑" }}</div>
     <div class="tweet-meta">
     <span class="tweet-name">{{ t.name }}</span>
-    <span class="tweet-handle">@{{ t.handle }}</span>
+    {% assign handle = t.handle | default: t.url | split: "x.com/" | last | split: "/" | first %}
+    <span class="tweet-handle">@{{ handle }}</span>
     </div>
     </div>
 
