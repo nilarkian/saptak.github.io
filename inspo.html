@@ -80,7 +80,11 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
   margin-bottom: 48px;
 }
 
+
+
 .cat-tab {
+  --tab-size: 3px;
+
   border: 2px solid var(--ink);
   border-radius: 14px;
   padding: 18px 18px;
@@ -93,6 +97,10 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
   font-family: var(--font-head);
 }
 
+.cat-tab .cat-icon  { font-size: calc(var(--tab-size) * 5); }
+.cat-tab .cat-name  { font-size: calc(var(--tab-size) * 4); }
+.cat-tab .cat-count { font-size: calc(var(--tab-size) * 3.5); }
+
 .cat-tab::after {
   content: '';
   position: absolute;
@@ -103,7 +111,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 }
 
 .cat-tab .cat-icon {
-  font-size: 22px;
+  /* font-size: 22px; */
   margin-bottom: 8px;
   display: block;
   position: relative;
@@ -111,7 +119,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 }
 
 .cat-tab .cat-name {
-  font-size: 14px;
+  /* font-size: 14px; */
   font-weight: 700;
   letter-spacing: -.2px;
   position: relative;
@@ -119,7 +127,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 }
 
 .cat-tab .cat-count {
-  font-size: 11px;
+  /* font-size: 11px; */
   font-weight: 500;
   opacity: .45;
   margin-top: 4px;
@@ -136,6 +144,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 .cat-tab[data-cat="design"]   { background: #e8fde8; }
 .cat-tab[data-cat="writing"]  { background: #fdf3e8; }
 .cat-tab[data-cat="websites"] { background: #f5e8fd; }
+.cat-tab[data-cat="music"]   { background:  #fde8f5; }
 
 /* active state — declared LAST so it wins without !important */
 .cat-tab.active,
@@ -337,6 +346,39 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 .yt-body { padding: 14px 16px; border-top: 2px solid var(--ink); }
 .yt-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; line-height: 1.4; margin-bottom: 5px; }
 .yt-desc  { font-size: 12px; opacity: .5; line-height: 1.5; }
+/* ── MUSIC CARD ── */
+.inspo-card.mu { 
+  border-radius: 30px;
+  background: #111; color: #f7f7f7; border-color: #111; }
+.inspo-card.mu:hover { background: #2a2a2a; }
+
+.mu-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+.mu-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.75); }
+
+.mu-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  color: white;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(6px);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: .2s;
+}
+
+.inspo-card.mu:hover .mu-play { background: rgba(255,255,255,.25); transform: translate(-50%, -50%) scale(1.08); }
+
+
+.mu-desc  { font-size: 12px; opacity: .45; line-height: 1.5; }
 
 /* ── TWEET CARD ── */
 .inspo-card.tweet { padding: 20px; }
@@ -381,14 +423,17 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 .design-note { font-size: 12px; opacity: .5; line-height: 1.5; }
 
 /* ── WRITING CARD ── */
-.inspo-card.writing { padding: 18px 20px; }
+.inspo-card.writing { 
+  padding: 18px 20px; 
+  border-radius: 0px;
+}
 .writing-byline {
   font-family: var(--font-head);
   font-size: 9px; font-weight: 700;
   letter-spacing: .14em; text-transform: uppercase;
   opacity: .4; margin-bottom: 6px;
 }
-.writing-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; line-height: 1.35; margin-bottom: 6px; }
+.writing-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; line-height: 1.35; margin-bottom: 6px; border-bottom: 2px solid black;}
 .writing-desc  { font-size: 12px; opacity: .55; line-height: 1.6; }
 
 /* ── WEBSITE CARD ── */
@@ -442,11 +487,13 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 
   {% comment %} ─── PRECOMPUTE ARRAYS ─── {% endcomment %}
   {% assign yt_count    = site.data.inspo.youtube  | size %}
-  {% assign tw_count    = site.data.inspo.tweets   | size %}
-  {% assign dz_count    = site.data.inspo.design   | size %}
   {% assign wr_count    = site.data.inspo.writing  | size %}
   {% assign ws_count    = site.data.inspo.websites | size %}
-  {% assign all_count   = yt_count | plus: tw_count | plus: dz_count | plus: wr_count | plus: ws_count %}
+  {% assign tw_count    = site.data.inspo.tweets   | size %}
+  {% assign dz_count    = site.data.inspo.design   | size %}
+  {% assign mu_count    = site.data.inspo.music    | size %}
+  
+  {% assign all_count   = yt_count | plus: mu_count | plus: tw_count | plus: dz_count | plus: wr_count | plus: ws_count %}
 
   {% comment %} Deep dives — across all writing collection items {% endcomment %}
   {% assign deep_dives  = site.writing | sort: "date" | reverse %}
@@ -483,6 +530,11 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
       <span class="cat-icon">🌐</span>
       <div class="cat-name">Websites</div>
       <div class="cat-count">{{ ws_count }} sites</div>
+    </button>
+    <button class="cat-tab" data-cat="music">
+      <span class="cat-icon">🎵</span>
+      <div class="cat-name">Music</div>
+      <div class="cat-count">{{ mu_count }} tracks</div>
     </button>
   </div>
 
@@ -556,6 +608,31 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
     {% if v.desc %}<div class="yt-desc">{{ v.desc }}</div>{% endif %}
     </div>
 
+    </a>
+    {% endfor %}
+
+    {% for m in site.data.inspo.music %}
+    <a class="inspo-card mu" data-category="music" data-date="{{ m.date }}"
+      data-tags="{% for tag in m.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+      href="{{ m.url }}" target="_blank">
+    
+      {% if m.url contains "youtu.be/" %}
+      {% assign yt_id = m.url | split:"youtu.be/" | last | split:"?" | first %}
+      {% else %}
+      {% assign yt_id = m.url | split:"v=" | last | split:"&" | first %}
+      {% endif %}
+    
+      <div class="mu-thumb">
+        <img src="https://i.ytimg.com/vi/{{ yt_id }}/hqdefault.jpg" loading="lazy" alt="">
+        <div class="mu-play">♫</div>
+      </div>
+    
+      <div class="mu-body">
+        {% if m.artist %}<div class="mu-artist">{{ m.artist }}</div>{% endif %}
+        <div class="mu-title">{{ m.title }}</div>
+        {% if m.desc %}<div class="mu-desc">{{ m.desc }}</div>{% endif %}
+      </div>
+    
     </a>
     {% endfor %}
 
@@ -648,6 +725,30 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 </div>
 
 <script>
+  // ── SORT CAT-TABS BY COUNT ──────────────────────────────────────
+(function sortTabs() {
+  const container = document.getElementById('cat-tabs');
+  const tabs      = [...container.querySelectorAll('.cat-tab')];
+
+  // pull the "All" tab out — it stays first always
+  const allTab    = tabs.find(t => t.dataset.cat === 'all');
+  const rest      = tabs.filter(t => t.dataset.cat !== 'all');
+
+  // parse the integer out of "12 tracks", "3 videos", etc.
+  rest.sort((a, b) => {
+    const countA = parseInt(a.querySelector('.cat-count').textContent) || 0;
+    const countB = parseInt(b.querySelector('.cat-count').textContent) || 0;
+    return countB - countA;
+  });
+  rest.forEach(tab => {
+    const count = parseInt(tab.querySelector('.cat-count').textContent) || 0;
+    tab.hidden = count === 0;
+  });
+
+
+  // re-append in new order
+  [allTab, ...rest].forEach(tab => container.appendChild(tab));
+})();
 // ── CATEGORY TABS ─────────────────────────────────────────────────────
 const tabs           = document.querySelectorAll('.cat-tab');
 const deepCards      = document.querySelectorAll('.deepdive-card');

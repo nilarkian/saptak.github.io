@@ -1,4 +1,15 @@
 # ════════════════════════════════════════════
+# MUSIC
+# ════════════════════════════════════════════
+music:
+
+  - url:   "https://youtu.be/QPjttyVd7xE"
+    date:  2026-04-12
+
+  - url:   "https://youtu.be/anZjI9DlsnA"
+    date:  2026-04-13
+
+# ════════════════════════════════════════════
 # YOUTUBE
 # ════════════════════════════════════════════
 youtube:
@@ -140,13 +151,13 @@ websites:
   - url:  "https://tinywow.com/"
     name: "TinyWow"
     desc: "Free AI + file tools. PDF, image, writing — no sign-up."
-    date: 2025-04-05
+    date: 2024-04-05
     tags: [tools, ai]
 
   - url:  "https://www.mymap.ai/map?mid=bartapHAaDbAk"
     name: "MyMap.ai"
     desc: "Ideas that changed the world, mapped visually."
-    date: 2025-04-08
+    date: 2024-04-08
     tags: [tools, ai, tools-for-thought]
 
   - url:  "https://yourlogicalfallacyis.com/"
