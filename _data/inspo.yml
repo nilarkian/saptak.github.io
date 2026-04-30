@@ -103,6 +103,14 @@ design:
 # ════════════════════════════════════════════
 writing:
 
+
+  - url:    "https://www.palladiummag.com/2024/08/09/the-past-and-future-of-military-drones/"
+    author: "PALLADIUM"
+    title:  "# The Past and Future of Military Drones"
+    desc:   "how drones quietly shifted war from ‘protect pilots’ to ‘scale cheap, autonomous kill systems’—and why the next leap is less about hardware and more about coordination and mass."
+    date:   2026-04-02
+    tags:   [military, drones]
+    
   - url:    "https://www.highagency.com/"
     author: "George Mack"
     title:  "High Agency in 30 Minutes"

@@ -8,8 +8,15 @@ permalink: /watchlist.html
 
 ## April 2026
 
+### <span class="date">Apr 30</span> ⚡CATL's Qilin Condensed Battery marks a major advancement in EV technology
+tags: [battery, china]
+CATL is bypassing the manufacturing bottlenecks of solid-state ceramics with a "condensed" polymer gel electrolyte that offers aviation-grade safety at 350 Wh/kg. By stabilizing a high-nickel cathode and silicon-rich anode within a non-flowing gel network, CATL has effectively solved the expansion and flammability issues that have stalled next-gen density.
 
-### <span class="date">Apr 30</span>  🏢 Google breaks ground on $15B Vizag AI Hub 
+**The "So What":** This isn’t a lab prototype; it is a mass-producible pivot that delivers 1,000 km ranges using existing assembly lines. By trickling down 500 Wh/kg aviation tech to passenger cars, CATL is forcing competitors to justify continued investment in rigid solid-state R&D while rendering current premium NCM benchmarks instantly second-tier.
+[read more](https://chargedevs.com/newswire/catl-unveils-six-battery-innovations-including-350-wh-kg-condensed-cells/)
+
+---
+### <span class="date">Apr 28</span>  🏢 Google breaks ground on $15B Vizag AI Hub 
 tags: [google, ai, india]
 
 Google launched construction on a $15 billion, 1GW AI data center campus in Visakhapatnam, India, in partnership with Adani, marking a massive sovereign AI infrastructure play powered by 100% green energy. Phase 1 targets H1 2027 commissioning, positioning India as a global AI hub with subsea cables and job creation. This gigawatt-scale bet eyes decades of digital demand growth.[blog](https://blog.google/intl/en-in/company-news/our-first-ai-hub-in-india-powered-by-a-15-billion-investment/),  [dcpulse](https://dcpulse.com/project/adani-google-15b-1gw-visakhapatnam-india-ai-hub)

@@ -2,6 +2,7 @@
 - name: energy
   children:
     - nuclear
+    - battery
 
 - name: interests
   children:
@@ -27,6 +28,7 @@
   children:
     - ai
     - ar
+    - drones
     - semiconductors
     - manufacturing
     - fintech
