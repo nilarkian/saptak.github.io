@@ -1,4 +1,33 @@
 <style>
+
+
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.entry-tags[hidden] { display: none !important; }  /* ← add here */
+
+.entry-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #888;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1.5px solid #ddd;
+  background: transparent;
+  cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.entry-tag:hover {
+  color: #111;
+  border-color: #888;
+  background: rgba(0,0,0,.05);
+}
+
 /* ── RIGHT TAG SIDEBAR ── */
 .tag-sidebar{
   position:fixed;
@@ -287,7 +316,7 @@ if (timelineBody) {
     } else if (currentEntry) {
       const text = el.textContent.trim();
       // Match: tags: [a, b]   OR   tags: [a, b] | YYYY-MM-DD
-      const tagDateMatch = text.match(/^tags:\s*\[([^\]]+)\](?:\s*\|\s*(\d{4}-\d{2}-\d{2}))?/i);
+      const tagDateMatch = text.match(/^tags:\s*\[([^\]]+)\]/i);
       if (tagDateMatch) {
         currentEntry.tags = tagDateMatch[1]
           .split(',')
@@ -305,6 +334,44 @@ if (timelineBody) {
           const day   = d.getDate();
           pill.textContent = `${month} ${day}`;
           currentEntry.h3.parentNode.insertBefore(pill, currentEntry.h3);
+        }
+
+        // ── inject tag pills after h3 ──────────────────────────────
+        if (currentEntry.tags.length > 0) {
+          const tagsDiv = document.createElement('div');
+          tagsDiv.className = 'entry-tags';
+          currentEntry.tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = 'entry-tag';
+            span.textContent = tag;
+            
+            span.addEventListener('click', (e) => {
+              const isParent = !!tagList.querySelector(`.parent-filter-btn[data-tag="${tag}"]`);
+              if (isParent) {
+                const filterBtn = tagList.querySelector(`.parent-filter-btn[data-tag="${tag}"]`);
+                if (filterBtn) filterBtn.click();  // reuses sidebar's exact logic: setActive + expand + chevron
+              } else {
+                setActive(tag, false, null);
+                // expand the parent group in sidebar so child pill is visible
+                for (const [parent, children] of Object.entries(parentToChildren)) {
+                  if (children.includes(tag)) {
+                    const parentBtn = tagList.querySelector(`.parent-filter-btn[data-tag="${parent}"]`);
+                    if (parentBtn) {
+                      const row        = parentBtn.closest('.parent-row');
+                      const chevronBtn = row && row.querySelector('.parent-collapse-btn');
+                      const childRow = row && row.nextElementSibling;
+                      if (childRow && childRow.classList.contains('collapsed') && chevronBtn) chevronBtn.click();
+                    
+                    }
+                    break;
+                  }
+                }
+              }
+            });
+            tagsDiv.appendChild(span);
+          });
+          currentEntry.h3.after(tagsDiv);
+          currentEntry.tagPills = tagsDiv;
         }
 
         el.style.display = 'none';
@@ -329,6 +396,7 @@ if (timelineBody) {
       }
       entry.h3.hidden = !show;
       entry.nodes.forEach(n => n.hidden = !show);
+      if (entry.tagPills) entry.tagPills.hidden = !show;
       // hide the date pill that sits before the h3
       const pill = entry.h3.previousElementSibling;
       if (pill && pill.classList.contains('entry-date')) pill.hidden = !show;

@@ -11,6 +11,7 @@ permalink: /watchlist.html
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+
 body{
   font-family: Arial, sans-serif;
   background: #f7f7f7;
@@ -64,78 +65,126 @@ page-tag, .page-title, .meta {
 }
 
 /* ── TIMELINE ── */
-/* ── TIMELINE ── */
 :root {
-  --dot-size: 14px; /* Change this value to resize the dot; everything else auto-adjusts */
+  --line-x:      80px;  /* line offset — creates left gutter for dates */
+  --dot-size-h3: 8px;                 /* base unit */
+
+    --dot-size-h2: calc(var(--dot-size-h3) * 1.5);   /* 8 → 12 */
+    --gap:         calc(var(--dot-size-h3) * 3);     /* 8 → 24 */
+    --date-width:  calc(var(--gap) * 2.33);          /* 24 → ~56 */
 }
 
 .timeline-body {
-  border-left: 2px solid #ddd;
-  padding-left: 32px; 
-  margin-left: 0; 
   position: relative;
+  padding-left: calc(var(--line-x) + var(--gap));
+  margin-left: calc(-0.8 * var(--line-x));  /* ← exact inverse of the gutter */
 }
 
+/* THE LINE — centered on left: var(--line-x) via transform */
+.timeline-body::after {
+  content: '';
+  position: absolute;
+  left: var(--line-x);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  /* transparent for first ~15px (h2 margin-top 8px + half h2 height) → line starts at h2 dot */
+  background: linear-gradient(to bottom, transparent 0px, transparent 15px, #999 15px, #ccc 50%, #e8e8e8 100%);
+  z-index: 0;
+}
+
+/* ── H2 — MONTH MARKER ── */
 .timeline-body h2 {
-  font-size: 13px;
+  position: relative;
+  font-size: 19px;
   font-weight: 700;
-  letter-spacing: .12em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  opacity: .4;
-  margin: 52px 0 24px;
+  margin: 56px 0 16px;
   scroll-margin-top: 32px;
 }
 
+/* small filled dot on the line for h2 — same size as h3 but darker */
+.timeline-body h2::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--gap));
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--dot-size-h2);
+  height: var(--dot-size-h2);
+  border-radius: 50%;
+  background: #aaa;
+  z-index: 1;
+}
+
+.timeline-body h2:first-child { margin-top: 8px; }
+.timeline-body h2[hidden] { display: none; }
+
+/* ── H3 — ENTRY ── */
 .timeline-body h3 {
+  color: #414141;
+  position: relative;
   font-size: 17px;
   font-weight: 700;
   line-height: 1.4;
   margin-bottom: 6px;
   scroll-margin-top: 32px;
-  position: relative; 
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* The Dot: Automatically centers on the 2px line based on --dot-size */
+/* hollow ring dot on the line */
 .timeline-body h3::before {
   content: '';
   position: absolute;
-  width: var(--dot-size);
-  height: var(--dot-size);
-  
-  /* Calculation to keep dot centered on the 2px border-left line */
-  left: calc(-34px - (var(--dot-size) / 2) + 1px);
-  
-  /* Centers dot vertically with the first line of text */
-  top: calc(0.7em - (var(--dot-size) / 2));
-  
+  left: calc(-1 * var(--gap));
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--dot-size-h3);
+  height: var(--dot-size-h3);
   border-radius: 50%;
-  background: #111;
-  z-index: 2;
+  background: #555;
+  border: none;
+  z-index: 1;
 }
 
-/* The Date: Pushed left to avoid overlap with the dot */
+/* first entry = most recent → orange accent */
+.timeline-body h3:first-of-type::before {
+  background: #c8440a;
+}
+
+/* hover → dot goes orange */
+.timeline-body h3:hover::before {
+  background: #c8440a;
+}
+
+/* ── DATE — inline flex child before title, no absolute positioning ── */
+/* ── DATE — absolute-positioned into the left gutter, right-aligned 8px left of line ── */
 .timeline-body h3 .date {
   position: absolute;
-  /* Pulls date further left as the dot size increases */
-  left: calc(-116px - (var(--dot-size) / 2)); 
-  width: 80px;
+  top: 52%;
+  transform: translateY(-50%);
+  left: calc(-1.1 * var(--gap) - 8px - var(--date-width)); /* dot is at -gap; date sits 8px further left */
+  width: var(--date-width);
   text-align: right;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: #111;
-  opacity: 0.6;
-  top: 1.9px; /* Fine-tuned vertical alignment for the date text */
+  opacity: 0.4;
+  white-space: nowrap;
 }
 
-.timeline-body p{
+.timeline-body p {
   font-size: 16px;
   line-height: 1.8;
   margin-bottom: 24px;
   opacity: .85;
 }
 
-.timeline-body a{
+.timeline-body a {
   color: #c8440a;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -143,14 +192,39 @@ page-tag, .page-title, .meta {
   transition: .2s;
 }
 
-.timeline-body hr{
+.timeline-body a:hover { opacity: .6; }
+
+.timeline-body hr {
   border: none;
   border-top: 1px solid #ddd;
   margin: 40px 0;
 }
 
+.timeline-body ul { padding-left: 20px; margin-bottom: 20px; }
+
+.timeline-body li {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+
+.timeline-body blockquote {
+  margin: 20px 0;
+  padding: 16px 22px;
+  border-left: 4px solid #111;
+  background: rgba(0,0,0,.04);
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.timeline-body h3[hidden] { display: none; }
+.timeline-body p[hidden]  { display: none; }
+.timeline-body hr[hidden] { display: none; }
+.timeline-body h2[hidden] { display: none; }
+
 /* ── FOOTER ── */
-.page-footer{
+.page-footer {
   font-size: 13px;
   opacity: .35;
   margin-top: 80px;
@@ -159,21 +233,21 @@ page-tag, .page-title, .meta {
 }
 
 /* ── MOBILE ── */
-@media(max-width:768px){
-  .main { 
-    margin-left: 0; 
-    margin-right: 0; 
-    padding: 40px 24px 80px; 
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 40px 24px 80px;
   }
-  
-  .timeline-body { 
-    margin-left: 60px; /* Add margin back on mobile so dates have room */
+
+  :root {
+    --line-x:     56px;  /* tighter gutter on mobile */
+    --gap:        18px;
+    --date-width: 48px;
   }
 
   .timeline-body h3 .date {
-    position: absolute;
-    left: -75px; /* Adjust for smaller mobile gutter */
-    text-align: right;
+    font-size: 11px;
   }
 }
 
@@ -213,5 +287,7 @@ document.querySelectorAll('a[href]').forEach(link => {
   }
 });
 </script>
+
+
 </body>
 </html>
