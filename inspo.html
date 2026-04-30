@@ -279,6 +279,16 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 }
 
 @media (min-width:1000px){
+  .collected-grid{ display:flex; gap:18px; align-items:flex-start; }
+}
+
+@media (max-width:999px){
+  .collected-grid{ display:flex; gap:18px; align-items:flex-start; }
+}
+
+.col-bucket{ display:flex; flex-direction:column; gap:18px; flex:1; }
+
+/* @media (min-width:1000px){
   .collected-grid{
     columns:3;
   }
@@ -288,7 +298,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
   .collected-grid{
     columns:2;
   }
-}
+} */
 
 @media (max-width:768px){
   .collected-grid{
@@ -760,18 +770,22 @@ const ddGrid         = document.getElementById('deepdive-grid');
 
 let activeCategory = 'all';
 
-
 function sortCollectedByDate(){
- const grid=document.getElementById('collected-grid');
- const cards=[...grid.querySelectorAll('.inspo-card')];
-
- cards.sort((a,b)=>
-   Date.parse(b.dataset.date) -
-   Date.parse(a.dataset.date)
- );
-
- cards.forEach(card=>grid.appendChild(card));
+  const grid    = document.getElementById('collected-grid');
+  const cards   = [...grid.querySelectorAll('.inspo-card')]
+                    .sort((a,b) => Date.parse(b.dataset.date) - Date.parse(a.dataset.date));
+  const numCols = window.innerWidth < 1000 ? 2 : 3;
+  const buckets = Array.from({length: numCols}, () => {
+    const col = document.createElement('div');
+    col.className = 'col-bucket';
+    return col;
+  });
+  cards.forEach((card, i) => buckets[i % numCols].appendChild(card));
+  grid.innerHTML = '';
+  buckets.forEach(b => grid.appendChild(b));
 }
+
+
 function applyInspoFilter() {
   // active tag from sidebar
   const activeTagBtn  = document.querySelector('.child-tag-btn.active, .standalone-tag-btn.active');
