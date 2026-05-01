@@ -1,0 +1,24 @@
+{% for v in include.items %}
+<a class="inspo-card yt"
+   data-category="youtube"
+   data-date="{{ v.date }}"
+   data-tags="{% for tag in v.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+   href="{{ v.url }}" target="_blank">
+
+  {% if v.url contains "youtu.be/" %}
+    {% assign yt_id = v.url | split:"youtu.be/" | last | split:"?" | first %}
+  {% else %}
+    {% assign yt_id = v.url | split:"v=" | last | split:"&" | first %}
+  {% endif %}
+
+  <div class="yt-thumb">
+    <img src="https://i.ytimg.com/vi/{{ yt_id }}/hqdefault.jpg" loading="lazy" alt="">
+  </div>
+
+  <div class="yt-body">
+    <div class="yt-title">{{ v.title }}</div>
+    {% if v.desc %}<div class="yt-desc">{{ v.desc }}</div>{% endif %}
+  </div>
+
+</a>
+{% endfor %}

@@ -1,0 +1,23 @@
+{% for d in include.items %}
+<a class="inspo-card design"
+   data-category="design"
+   data-date="{{ d.date }}"
+   data-tags="{% for tag in d.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+   href="{{ d.url }}" target="_blank">
+
+  {% if d.img %}
+    <div class="design-img">
+      <img src="{{ d.img }}" loading="lazy" alt="">
+    </div>
+  {% else %}
+    <div class="design-img no-img">✦</div>
+  {% endif %}
+
+  <div class="design-body">
+    {% if d.source %}<div class="design-source">{{ d.source }}</div>{% endif %}
+    {% if d.caption %}<div class="design-caption">{{ d.caption }}</div>{% endif %}
+    {% if d.note %}<div class="design-note">{{ d.note }}</div>{% endif %}
+  </div>
+
+</a>
+{% endfor %}

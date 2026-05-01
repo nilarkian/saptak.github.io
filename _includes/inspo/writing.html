@@ -1,0 +1,14 @@
+{% for w in include.items %}
+<a class="inspo-card writing"
+   data-category="writing"
+   data-date="{{ w.date }}"
+   data-tags="{% for tag in w.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+   href="{{ w.url }}" target="_blank">
+
+  <span class="ext-arrow">↗</span>
+  <div class="writing-byline">{{ w.author }}</div>
+  <div class="writing-title">{{ w.title }}</div>
+  {% if w.desc %}<div class="writing-desc">{{ w.desc }}</div>{% endif %}
+
+</a>
+{% endfor %}

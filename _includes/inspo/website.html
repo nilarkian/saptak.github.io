@@ -1,0 +1,13 @@
+{% for s in include.items %}
+<a class="inspo-card website"
+   data-category="websites"
+   data-date="{{ s.date }}"
+   data-tags="{% for tag in s.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+   href="{{ s.url }}" target="_blank">
+
+  <span class="ext-arrow">↗</span>
+  <div class="web-name">{{ s.name }}</div>
+  {% if s.desc %}<div class="web-desc">{{ s.desc }}</div>{% endif %}
+
+</a>
+{% endfor %}

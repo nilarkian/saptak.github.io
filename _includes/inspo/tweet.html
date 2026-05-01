@@ -1,0 +1,21 @@
+{% for t in include.items %}
+<a class="inspo-card tweet"
+   data-category="tweets"
+   data-date="{{ t.date }}"
+   data-tags="{% for tag in t.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+   href="{{ t.url }}" target="_blank">
+
+  <div class="tweet-head">
+    <div class="tweet-avatar">{{ t.avatar | default:"🧑" }}</div>
+    <div class="tweet-meta">
+      <span class="tweet-name">{{ t.name }}</span>
+      {% assign handle = t.handle | default: t.url | split: "x.com/" | last | split: "/" | first %}
+      <span class="tweet-handle">@{{ handle }}</span>
+    </div>
+  </div>
+
+  <div class="tweet-body">{{ t.body }}</div>
+  <div class="tweet-foot">{{ t.date | date: "%b %Y" }}</div>
+
+</a>
+{% endfor %}

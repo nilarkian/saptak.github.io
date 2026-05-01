@@ -137,14 +137,8 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 
 .cat-tab:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
 
-/* category-specific tab tints (when not active) */
-.cat-tab[data-cat="all"]      { background: #f0f0f0; }
-.cat-tab[data-cat="youtube"]  { background: #fde8e8; }
-.cat-tab[data-cat="tweets"]   { background: #e8f4fd; }
-.cat-tab[data-cat="design"]   { background: #e8fde8; }
-.cat-tab[data-cat="writing"]  { background: #fdf3e8; }
-.cat-tab[data-cat="websites"] { background: #f5e8fd; }
-.cat-tab[data-cat="music"]   { background:  #fde8f5; }
+/* category tint — fed by style="--cat-tint: ..." from Liquid loop */
+.cat-tab { background: var(--cat-tint, var(--bg)); }
 
 /* active state — declared LAST so it wins without !important */
 .cat-tab.active,
@@ -288,17 +282,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 
 .col-bucket{ display:flex; flex-direction:column; gap:18px; flex:1; }
 
-/* @media (min-width:1000px){
-  .collected-grid{
-    columns:3;
-  }
-}
 
-@media (max-width:999px){
-  .collected-grid{
-    columns:2;
-  }
-} */
 
 @media (max-width:768px){
   .collected-grid{
@@ -479,12 +463,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 
 .footer { margin-top: 70px; font-size: 14px; opacity: .4; text-align: center; }
 
-/* @media (max-width: 768px) {
-  .inner { margin-right: 30px; }
-  .page-title { font-size: 36px; }
-  .collected-grid { columns: 1; }
-  .cat-tabs { grid-template-columns: repeat(2, 1fr); }
-} */
+
 
 
 
@@ -507,15 +486,12 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
   <h1 class="page-title">Inspo</h1>
   <p class="page-subtitle">A collection of things worth revisiting — videos, tweets, designs, writing, and sites I keep coming back to.</p>
 
-  {% comment %} ─── PRECOMPUTE ARRAYS ─── {% endcomment %}
-  {% assign yt_count    = site.data.inspo.youtube  | size %}
-  {% assign wr_count    = site.data.inspo.writing  | size %}
-  {% assign ws_count    = site.data.inspo.websites | size %}
-  {% assign tw_count    = site.data.inspo.tweets   | size %}
-  {% assign dz_count    = site.data.inspo.design   | size %}
-  {% assign mu_count    = site.data.inspo.music    | size %}
-  
-  {% assign all_count   = yt_count | plus: mu_count | plus: tw_count | plus: dz_count | plus: wr_count | plus: ws_count %}
+  {% comment %} ─── AUTO-COMPUTE COUNTS FROM REGISTRY ─── {% endcomment %}
+  {% assign all_count = 0 %}
+  {% for cat in site.data.inspo_categories %}
+    {% assign cat_count = site.data.inspo[cat.key] | size %}
+    {% assign all_count = all_count | plus: cat_count %}
+  {% endfor %}
 
   {% comment %} Deep dives — across all writing collection items {% endcomment %}
   {% assign deep_dives  = site.writing | sort: "date" | reverse %}
@@ -523,41 +499,20 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 
   <!-- ── CATEGORY TABS ── -->
   <div class="cat-tabs" id="cat-tabs">
-    <button class="cat-tab active" data-cat="all">
+    <button class="cat-tab active" data-cat="all" style="--cat-tint: #f0f0f0">
       <span class="cat-icon">☆</span>
       <div class="cat-name">All</div>
       <div class="cat-count">{{ all_count | plus: dd_count }} items</div>
     </button>
-    <button class="cat-tab" data-cat="youtube">
-      <span class="cat-icon">▶</span>
-      <div class="cat-name">YouTube</div>
-      <div class="cat-count">{{ yt_count }} videos</div>
-    </button>
-    <button class="cat-tab" data-cat="tweets">
-      <span class="cat-icon">🐦</span>
-      <div class="cat-name">Tweets</div>
-      <div class="cat-count">{{ tw_count }} tweets</div>
-    </button>
-    <button class="cat-tab" data-cat="design">
-      <span class="cat-icon">✦</span>
-      <div class="cat-name">Design</div>
-      <div class="cat-count">{{ dz_count }} screenshots</div>
-    </button>
-    <button class="cat-tab" data-cat="writing">
-      <span class="cat-icon">✍️</span>
-      <div class="cat-name">Writing</div>
-      <div class="cat-count">{{ wr_count }} essays</div>
-    </button>
-    <button class="cat-tab" data-cat="websites">
-      <span class="cat-icon">🌐</span>
-      <div class="cat-name">Websites</div>
-      <div class="cat-count">{{ ws_count }} sites</div>
-    </button>
-    <button class="cat-tab" data-cat="music">
-      <span class="cat-icon">🎵</span>
-      <div class="cat-name">Music</div>
-      <div class="cat-count">{{ mu_count }} tracks</div>
-    </button>
+
+    {% for cat in site.data.inspo_categories %}
+      {% assign cat_count = site.data.inspo[cat.key] | size %}
+      <button class="cat-tab" data-cat="{{ cat.key }}" style="--cat-tint: {{ cat.tint }}">
+        <span class="cat-icon">{{ cat.icon }}</span>
+        <div class="cat-name">{{ cat.label }}</div>
+        <div class="cat-count">{{ cat_count }} {{ cat.unit }}</div>
+      </button>
+    {% endfor %}
   </div>
 
   <!-- ── DEEP DIVES ── -->
@@ -608,133 +563,9 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 
     <div class="collected-grid" id="collected-grid">
 
-    {% for v in site.data.inspo.youtube %}
-    <a class="inspo-card yt"
-    data-category="youtube"
-    data-date="{{ v.date }}"
-    data-tags="{% for tag in v.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
-    href="{{ v.url }}" target="_blank">
-
-    {% if v.url contains "youtu.be/" %}
-    {% assign yt_id = v.url | split:"youtu.be/" | last | split:"?" | first %}
-    {% else %}
-    {% assign yt_id = v.url | split:"v=" | last | split:"&" | first %}
-    {% endif %}
-
-    <div class="yt-thumb">
-    <img src="https://i.ytimg.com/vi/{{ yt_id }}/hqdefault.jpg" loading="lazy" alt="">
-    </div>
-
-    <div class="yt-body">
-    <div class="yt-title">{{ v.title }}</div>
-    {% if v.desc %}<div class="yt-desc">{{ v.desc }}</div>{% endif %}
-    </div>
-
-    </a>
-    {% endfor %}
-
-    {% for m in site.data.inspo.music %}
-    <a class="inspo-card mu" data-category="music" data-date="{{ m.date }}"
-      data-tags="{% for tag in m.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
-      href="{{ m.url }}" target="_blank">
-    
-      {% if m.url contains "youtu.be/" %}
-      {% assign yt_id = m.url | split:"youtu.be/" | last | split:"?" | first %}
-      {% else %}
-      {% assign yt_id = m.url | split:"v=" | last | split:"&" | first %}
-      {% endif %}
-    
-      <div class="mu-thumb">
-        <img src="https://i.ytimg.com/vi/{{ yt_id }}/hqdefault.jpg" loading="lazy" alt="">
-        <div class="mu-play">♫</div>
-      </div>
-    
-      <div class="mu-body">
-        {% if m.artist %}<div class="mu-artist">{{ m.artist }}</div>{% endif %}
-        <div class="mu-title">{{ m.title }}</div>
-        {% if m.desc %}<div class="mu-desc">{{ m.desc }}</div>{% endif %}
-      </div>
-    
-    </a>
-    {% endfor %}
-
-
-    {% for t in site.data.inspo.tweets %}
-    <a class="inspo-card tweet"
-    data-category="tweets"
-    data-date="{{ t.date }}"
-    data-tags="{% for tag in t.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
-    href="{{ t.url }}" target="_blank">
-
-    <div class="tweet-head">
-    <div class="tweet-avatar">{{ t.avatar | default:"🧑" }}</div>
-    <div class="tweet-meta">
-    <span class="tweet-name">{{ t.name }}</span>
-    {% assign handle = t.handle | default: t.url | split: "x.com/" | last | split: "/" | first %}
-    <span class="tweet-handle">@{{ handle }}</span>
-    </div>
-    </div>
-
-    <div class="tweet-body">{{ t.body }}</div>
-    <div class="tweet-foot">{{ t.date | date: "%b %Y" }}</div>
-
-    </a>
-    {% endfor %}
-
-
-    {% for d in site.data.inspo.design %}
-    <a class="inspo-card design"
-    data-category="design"
-    data-date="{{ d.date }}"
-    data-tags="{% for tag in d.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
-    href="{{ d.url }}" target="_blank">
-
-    {% if d.img %}
-    <div class="design-img">
-    <img src="{{ d.img }}" loading="lazy" alt="">
-    </div>
-    {% else %}
-    <div class="design-img no-img">✦</div>
-    {% endif %}
-
-    <div class="design-body">
-    {% if d.source %}<div class="design-source">{{ d.source }}</div>{% endif %}
-    {% if d.caption %}<div class="design-caption">{{ d.caption }}</div>{% endif %}
-    {% if d.note %}<div class="design-note">{{ d.note }}</div>{% endif %}
-    </div>
-
-    </a>
-    {% endfor %}
-
-
-    {% for w in site.data.inspo.writing %}
-    <a class="inspo-card writing"
-    data-category="writing"
-    data-date="{{ w.date }}"
-    data-tags="{% for tag in w.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
-    href="{{ w.url }}" target="_blank">
-
-    <span class="ext-arrow">↗</span>
-    <div class="writing-byline">{{ w.author }}</div>
-    <div class="writing-title">{{ w.title }}</div>
-    {% if w.desc %}<div class="writing-desc">{{ w.desc }}</div>{% endif %}
-
-    </a>
-    {% endfor %}
-
-
-    {% for s in site.data.inspo.websites %}
-    <a class="inspo-card website"
-    data-category="websites"
-    data-date="{{ s.date }}"
-    data-tags="{% for tag in s.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
-    href="{{ s.url }}" target="_blank">
-
-    <span class="ext-arrow">↗</span>
-    <div class="web-name">{{ s.name }}</div>
-    {% if s.desc %}<div class="web-desc">{{ s.desc }}</div>{% endif %}
-
-    </a>
+    {% for cat in site.data.inspo_categories %}
+      {% assign items = site.data.inspo[cat.key] %}
+      {% include {{ cat.card_include }}.html items=items %}
     {% endfor %}
 
     </div>
@@ -784,16 +615,28 @@ const ddGrid         = document.getElementById('deepdive-grid');
 let activeCategory = 'all';
 
 function sortCollectedByDate(){
-  const grid    = document.getElementById('collected-grid');
-  const cards   = [...grid.querySelectorAll('.inspo-card')]
-                    .sort((a,b) => Date.parse(b.dataset.date) - Date.parse(a.dataset.date));
+  const grid  = document.getElementById('collected-grid');
+  const cards = [...grid.querySelectorAll('.inspo-card')]
+                  .sort((a,b) => Date.parse(b.dataset.date) - Date.parse(a.dataset.date));
+
   const numCols = window.innerWidth < 1000 ? 2 : 3;
   const buckets = Array.from({length: numCols}, () => {
     const col = document.createElement('div');
     col.className = 'col-bucket';
     return col;
   });
-  cards.forEach((card, i) => buckets[i % numCols].appendChild(card));
+
+  // only visible cards get bucketed
+  let visIdx = 0;
+  cards.forEach(card => {
+    if (!card.hidden) {
+      buckets[visIdx % numCols].appendChild(card);
+      visIdx++;
+    } else {
+      buckets[0].appendChild(card); // stash hidden cards anywhere
+    }
+  });
+
   grid.innerHTML = '';
   buckets.forEach(b => grid.appendChild(b));
 }
@@ -848,14 +691,22 @@ function applyInspoFilter() {
   empty.style.display = (deepVisible + colVisible) === 0 ? 'block' : 'none';
 }
 
+// tab click handler
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     activeCategory = tab.dataset.cat;
-    sortCollectedByDate();
-    applyInspoFilter();
+    applyInspoFilter();        // filter first
+    sortCollectedByDate();     // then bucket visible cards
   });
+});
+
+// initial load
+requestAnimationFrame(() => {
+  applyDeepState();
+  applyInspoFilter();          // filter first
+  sortCollectedByDate();       // then bucket
 });
 
 // expose for tags.html to call

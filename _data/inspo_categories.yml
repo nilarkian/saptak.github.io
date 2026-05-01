@@ -1,0 +1,41 @@
+- key: youtube
+  icon: "▶"
+  label: "YouTube"
+  unit: "videos"
+  tint: "#fde8e8"
+  card_include: "inspo/yt"
+
+- key: music
+  icon: "🎵"
+  label: "Music"
+  unit: "tracks"
+  tint: "#fde8f5"
+  card_include: "inspo/mu"
+
+- key: tweets
+  icon: "🐦"
+  label: "Tweets"
+  unit: "tweets"
+  tint: "#e8f4fd"
+  card_include: "inspo/tweet"
+
+- key: design
+  icon: "✦"
+  label: "Design"
+  unit: "screenshots"
+  tint: "#e8fde8"
+  card_include: "inspo/design"
+
+- key: writing
+  icon: "✍️"
+  label: "Writing"
+  unit: "essays"
+  tint: "#fdf3e8"
+  card_include: "inspo/writing"
+
+- key: websites
+  icon: "🌐"
+  label: "Websites"
+  unit: "sites"
+  tint: "#f5e8fd"
+  card_include: "inspo/website"

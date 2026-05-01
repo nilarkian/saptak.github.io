@@ -1,0 +1,26 @@
+{% for m in include.items %}
+<a class="inspo-card mu"
+   data-category="music"
+   data-date="{{ m.date }}"
+   data-tags="{% for tag in m.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+   href="{{ m.url }}" target="_blank">
+
+  {% if m.url contains "youtu.be/" %}
+    {% assign yt_id = m.url | split:"youtu.be/" | last | split:"?" | first %}
+  {% else %}
+    {% assign yt_id = m.url | split:"v=" | last | split:"&" | first %}
+  {% endif %}
+
+  <div class="mu-thumb">
+    <img src="https://i.ytimg.com/vi/{{ yt_id }}/hqdefault.jpg" loading="lazy" alt="">
+    <div class="mu-play">♫</div>
+  </div>
+
+  <div class="mu-body">
+    {% if m.artist %}<div class="mu-artist">{{ m.artist }}</div>{% endif %}
+    <div class="mu-title">{{ m.title }}</div>
+    {% if m.desc %}<div class="mu-desc">{{ m.desc }}</div>{% endif %}
+  </div>
+
+</a>
+{% endfor %}
