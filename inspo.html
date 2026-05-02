@@ -344,6 +344,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 }
 .inspo-card.yt:hover .yt-thumb::after { transform: translate(-50%, -50%) scale(1.1); }
 
+
 .yt-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; line-height: 1.4; margin-bottom: 5px; }
 .yt-desc  { font-size: 12px; opacity: .5; line-height: 1.5; }
 /* ── MUSIC CARD ── */
@@ -400,31 +401,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 .tweet-body { font-size: 14px; line-height: 1.65; margin-bottom: 12px; }
 .tweet-foot { font-family: var(--font-head); font-size: 10px; opacity: .35; letter-spacing: .06em; text-transform: uppercase; }
 
-/* ── DESIGN CARD ── */
-.design-img {
-  width: 100%;
-  display: block;
-  border-bottom: 2px solid var(--ink);
-  background: #e8e8e8;
-}
-.design-img img { width: 100%; height: auto; display: block; }
-.design-img.no-img {
-  aspect-ratio: 4 / 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  background: #e8fde8;
-}
-.design-body { padding: 14px 16px; }
-.design-source {
-  font-family: var(--font-head);
-  font-size: 9px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  opacity: .35; margin-bottom: 4px;
-}
-.design-caption { font-family: var(--font-head); font-size: 13px; font-weight: 700; line-height: 1.4; margin-bottom: 4px; }
-.design-note { font-size: 12px; opacity: .5; line-height: 1.5; }
+
 
 /* ── WRITING CARD ── */
 .inspo-card.writing { 
@@ -441,6 +418,51 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 }
 .writing-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; line-height: 1.35; margin-bottom: 6px; border-bottom: 2px solid black;}
 .writing-desc  { font-size: 12px; opacity: .55; line-height: 1.6; }
+
+
+
+/* ── TOOLS CARD ── */
+.inspo-card.tools {
+  border: 2px solid #58fb58 ;
+}
+.tools-body { 
+  padding: 14px 16px; 
+  background-color: rgba(232, 244, 232, 0.5);
+}
+
+.tools-source {
+  font-family: var(--font-head);
+  font-size: 15px; font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 1; margin-bottom: 4px;
+    background-color: #9EFF9E;
+}
+
+.tools-caption {
+  font-size: 12px; font-weight: 500;
+  opacity: .8; line-height: 1.5;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+.tools-note { font-size: 12px; opacity: .5; line-height: 1.5; }
+
+.tools-tag {
+  font-family: var(--font-head);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  padding: 3px 8px; border-radius: var(--pill);
+  opacity: .4; display: inline-block;
+  margin-right: 4px; margin-top: 10px;
+}
+
+
+
+
+
+
 
 /* ── WEBSITE CARD ── */
 .inspo-card.website { padding: 18px 20px; }
@@ -484,7 +506,7 @@ body.tag-collapsed .inner { margin-right: calc(44px + 30px); }
 
   <div class="page-tag">Things I find interesting</div>
   <h1 class="page-title">Inspo</h1>
-  <p class="page-subtitle">A collection of things worth revisiting — videos, tweets, designs, writing, and sites I keep coming back to.</p>
+  <p class="page-subtitle">A collection of things worth revisiting — videos, tweets, toolss, writing, and sites I keep coming back to.</p>
 
   {% comment %} ─── AUTO-COMPUTE COUNTS FROM REGISTRY ─── {% endcomment %}
   {% assign all_count = 0 %}

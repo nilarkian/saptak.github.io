@@ -1,0 +1,22 @@
+{% for d in include.items %}
+<a class="inspo-card tools"
+   data-category="tools"
+   data-date="{{ d.date }}"
+   data-tags="{% for tag in d.tags %}{{ tag | downcase }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+   href="{{ d.url }}" target="_blank">
+
+  {% if d.img %}
+    <div class="tools-img">
+      <img src="{{ d.img }}" loading="lazy" alt="">
+    </div>
+  {% endif %}
+
+  <div class="tools-body">
+    {% if d.source %}<div class="tools-source">{{ d.source }}</div>{% endif %}
+    {% if d.caption %}<div class="tools-caption">{{ d.caption }}</div>{% endif %}
+    {% if d.note %}<div class="tools-note">{{ d.note }}</div>{% endif %}
+  </div>
+  
+
+</a>
+{% endfor %}

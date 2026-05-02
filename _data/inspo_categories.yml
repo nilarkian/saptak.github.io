@@ -19,12 +19,12 @@
   tint: "#e8f4fd"
   card_include: "inspo/tweet"
 
-- key: design
-  icon: "✦"
-  label: "Design"
-  unit: "screenshots"
+- key: tools
+  icon: "🛠️"
+  label: "tools"
+  unit: "tools"
   tint: "#e8fde8"
-  card_include: "inspo/design"
+  card_include: "inspo/tools"
 
 - key: writing
   icon: "✍️"

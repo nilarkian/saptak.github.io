@@ -1,0 +1,291 @@
+{
+  "music": [
+    { "url": "https://youtu.be/QPjttyVd7xE", "date": "2026-04-12" },
+    { "url": "https://youtu.be/anZjI9DlsnA", "date": "2026-03-13" }
+  ],
+
+  "youtube": [
+    {
+      "url": "https://youtu.be/hpgK51w6uhk",
+      "title": "America's Iron Giants — The World's Most Powerful Metalworkers",
+      "date": "2025-08-12",
+      "tags": ["tech", "manufacturing"]
+    },
+    {
+      "url": "https://youtu.be/Q6m5-kYTcfM",
+      "title": "What Japan Understands About Branding No One Else Does",
+      "desc": "",
+      "date": "2026-04-04",
+      "tags": ["design", "branding"]
+    },
+    {
+      "url": "https://youtu.be/kfeytgohT6A",
+      "title": "Muji – The Brand That Designed Nothing",
+      "desc": "How Muji's no-brand philosophy redefined Japanese consumer design.",
+      "date": "2025-07-15",
+      "tags": ["design", "branding"]
+    },
+    {
+      "url": "https://youtu.be/uFbxUPbZovM",
+      "title": "The Deadliest Design Mistakes in History",
+      "desc": "Engineering blunders that caused massive disasters.",
+      "date": "2025-06-22",
+      "tags": ["design", "history"]
+    },
+    {
+      "url": "https://youtu.be/LfBfuxzX6Y0",
+      "title": "Lachung Beyond the Map — A Hidden Side of Sikkim",
+      "desc": "Stunning visuals of Sikkim's remote paradise.",
+      "date": "2025-05-10",
+      "tags": ["india", "travel"]
+    },
+    {
+      "url": "https://youtu.be/h6FS70B0blQ",
+      "title": "Indian Premier League Cricket",
+      "desc": "Audio highlights — IPL's high-stakes drama.",
+      "date": "2025-12-01",
+      "tags": ["india", "sports"]
+    },
+    {
+      "url": "https://youtu.be/lYXKjuIHQIU",
+      "title": "The NFL",
+      "desc": "Deep dive into NFL's business empire.",
+      "date": "2025-12-25",
+      "tags": ["sports", "business"]
+    },
+    {
+      "url": "https://youtu.be/tuB3_fJyC5Q",
+      "title": "TSMC (Remastered)",
+      "desc": "TSMC's semiconductor dominance — key to understanding AI supply chains.",
+      "date": "2025-02-14",
+      "tags": ["tech", "semiconductors"]
+    },
+    {
+      "url": "https://youtu.be/2KjW4BqNFy0",
+      "title": "Renaissance Technologies",
+      "desc": "Audio story of RenTech's quant trading revolution.",
+      "date": "2025-01-20",
+      "tags": ["markets", "fintech"]
+    }
+  ],
+
+  "tweets": [
+    {
+      "url": "https://x.com/NikoMcCarty/status/1820918122691305486",
+      "avatar": "🪖",
+      "body": "30 Essays to Make You Love Biology.",
+      "date": "2026-04-22",
+      "tags": ["read", "biology"]
+    },
+    {
+      "url": "https://x.com/mmjukic/status/1834275373322043709",
+      "avatar": "🪖",
+      "body": "This isn't just a light show. It's a demonstration of futuristic military power. You are looking at an unarmed drone swarm.",
+      "date": "2024-09-12",
+      "tags": ["tech", "defence"]
+    }
+  ],
+
+  "tools": [
+    {
+      "url": "https://www.tooooools.app/",
+      "source": "Tooooools",
+      "caption": "Hyper-dense directory of creative + dev tools",
+      "note": "Steal the density — zero fluff, just stacked utility",
+      "date": "2026-05-02",
+      "tags": ["design", "tools", "productivity"]
+    },
+    {
+      "url": "https://benditomockup.com/",
+      "source": "Bendito Mockup",
+      "caption": "Art-driven premium mockups that feel like photography, not templates",
+      "note": "Steal the positioning — mockups as art direction, not assets",
+      "date": "2026-05-02",
+      "tags": ["design", "mockups", "branding"]
+    },
+    {
+      "url": "https://www.cosmos.so/public-work",
+      "source": "Cosmos (Public Work)",
+      "caption": "Search engine for public-domain visuals from museums + libraries",
+      "note": "Steal the data layer — turn scattered archives into a clean discovery engine",
+      "date": "2026-05-02",
+      "tags": ["design", "inspiration", "database"]
+    }
+  ],
+
+  "writing": [
+    {
+      "url": "https://www.palladiummag.com/2024/08/09/the-past-and-future-of-military-drones/",
+      "author": "PALLADIUM",
+      "title": "The Past and Future of Military Drones",
+      "desc": "how drones quietly shifted war from 'protect pilots' to 'scale cheap, autonomous kill systems'—and why the next leap is less about hardware and more about coordination and mass.",
+      "date": "2026-04-02",
+      "tags": ["military", "drones"]
+    },
+    {
+      "url": "https://www.highagency.com/",
+      "author": "George Mack",
+      "title": "High Agency in 30 Minutes",
+      "desc": "The mindset that separates people who make things happen from people who wait for them to happen. Short, punchy, worth re-reading once a year.",
+      "date": "2025-11-04",
+      "tags": ["mindset"]
+    }
+  ],
+
+  "websites": [
+    {
+      "url": "https://thevalleyofcode.com/",
+      "name": "The Valley of Code",
+      "desc": "Structured web dev curriculum, free and no fluff.",
+      "date": "2025-03-10",
+      "tags": ["learning", "webdev"]
+    },
+    {
+      "url": "https://pz.harvard.edu/thinking-routines",
+      "name": "PZ Thinking Routines",
+      "desc": "Harvard's toolbox for structured thinking. Surprisingly practical.",
+      "date": "2025-03-12",
+      "tags": ["learning", "tools-for-thought"]
+    },
+    {
+      "url": "https://untools.co/",
+      "name": "Untools",
+      "desc": "Mental models and thinking frameworks, one clean page each.",
+      "date": "2025-03-15",
+      "tags": ["learning", "tools-for-thought"]
+    },
+    {
+      "url": "https://www.mindtools.com/",
+      "name": "MindTools",
+      "desc": "Dense but useful. Good reference when you need to get better at explaining things.",
+      "date": "2025-03-18",
+      "tags": ["learning", "tools-for-thought"]
+    },
+    {
+      "url": "https://alternativeto.net/",
+      "name": "AlternativeTo",
+      "desc": "Crowdsourced software alternatives. Beats Googling 'X but free.'",
+      "date": "2025-04-02",
+      "tags": ["tools"]
+    },
+    {
+      "url": "https://tinywow.com/",
+      "name": "TinyWow",
+      "desc": "Free AI + file tools. PDF, image, writing — no sign-up.",
+      "date": "2024-04-05",
+      "tags": ["tools", "ai"]
+    },
+    {
+      "url": "https://www.mymap.ai/map?mid=bartapHAaDbAk",
+      "name": "MyMap.ai",
+      "desc": "Ideas that changed the world, mapped visually.",
+      "date": "2024-04-08",
+      "tags": ["tools", "ai", "tools-for-thought"]
+    },
+    {
+      "url": "https://yourlogicalfallacyis.com/",
+      "name": "Your Logical Fallacy Is",
+      "desc": "Every fallacy, named and explained. Bookmark it for arguments.",
+      "date": "2025-04-12",
+      "tags": ["tools", "tools-for-thought"]
+    },
+    {
+      "url": "https://yourbias.is/",
+      "name": "Your Bias Is",
+      "desc": "24 cognitive biases with clean one-liners. Sister site to the above.",
+      "date": "2025-04-14",
+      "tags": ["tools", "tools-for-thought"]
+    },
+    {
+      "url": "https://datagovernance.com/quotes/information-quotes/",
+      "name": "Information Quotes — DGI",
+      "desc": "Data Governance Institute's quote bank. Good for framing ideas.",
+      "date": "2025-05-02",
+      "tags": ["quotes", "writing"]
+    },
+    {
+      "url": "https://www.bookey.app/quote-book/the-information",
+      "name": "The Information — Bookey",
+      "desc": "30 quotes from Gleick's The Information. Worth reading cold.",
+      "date": "2025-05-05",
+      "tags": ["quotes", "writing"]
+    },
+    {
+      "url": "https://careerfoundry.com/en/blog/data-analytics/inspirational-data-quotes/",
+      "name": "Data Quotes — CareerFoundry",
+      "desc": "23 quotes on data. Some are actually good.",
+      "date": "2025-05-08",
+      "tags": ["quotes", "writing"]
+    },
+    {
+      "url": "https://neilpatel.com/wp-content/uploads/2020/05/ultimate-headline-formula-list.pdf",
+      "name": "Headline Formula List — Neil Patel",
+      "desc": "PDF. Every headline pattern worth knowing, in one place.",
+      "date": "2025-05-12",
+      "tags": ["writing", "copywriting"]
+    },
+    {
+      "url": "https://marketingexamples.com/",
+      "name": "Marketing Examples",
+      "desc": "Harry Dry's breakdowns. Short, specific, actually useful.",
+      "date": "2025-06-04",
+      "tags": ["ads", "marketing"]
+    },
+    {
+      "url": "https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=IN&is_targeted_country=false&media_type=all&q=kolkata&search_type=keyword_unordered",
+      "name": "Meta Ad Library",
+      "desc": "What's running in Kolkata right now. Good reality check on local copy.",
+      "date": "2025-06-08",
+      "tags": ["ads", "marketing"]
+    },
+    {
+      "url": "https://www.adsoftheworld.com/campaigns?search=kolkata",
+      "name": "Ads of the World",
+      "desc": "Award-level campaigns, searchable. Kolkata filter bookmarked.",
+      "date": "2025-06-12",
+      "tags": ["ads", "marketing"]
+    },
+    {
+      "url": "https://adespresso.com/ads-examples/",
+      "name": "AdEspresso Examples",
+      "desc": "Facebook ad examples, curated and categorised.",
+      "date": "2025-06-16",
+      "tags": ["ads", "marketing"]
+    },
+    {
+      "url": "https://instapage.com/blog/landing-page-examples",
+      "name": "Instapage Examples",
+      "desc": "110 landing pages with annotations. Good for structure ideas.",
+      "date": "2025-07-02",
+      "tags": ["landing-pages", "design"]
+    },
+    {
+      "url": "https://www.growtharchive.xyz/",
+      "name": "Growth Archive",
+      "desc": "B2B growth marketing examples. What's working in the wild.",
+      "date": "2025-07-06",
+      "tags": ["landing-pages", "marketing"]
+    },
+    {
+      "url": "https://www.landingfolio.com/",
+      "name": "Landingfolio",
+      "desc": "Landing page design inspiration. Best visual reference in this list.",
+      "date": "2025-07-10",
+      "tags": ["landing-pages", "design"]
+    },
+    {
+      "url": "https://www.getresponse.com/blog/7-welcome-emails-that-set-the-standard",
+      "name": "Welcome Email Examples",
+      "desc": "15 welcome emails worth studying. GetResponse's breakdown is solid.",
+      "date": "2025-08-04",
+      "tags": ["email", "marketing"]
+    },
+    {
+      "url": "https://reallygoodemails.com/",
+      "name": "Really Good Emails",
+      "desc": "The email swipe file. Searchable by type, brand, and industry.",
+      "date": "2025-08-08",
+      "tags": ["email", "marketing"]
+    }
+  ]
+}
