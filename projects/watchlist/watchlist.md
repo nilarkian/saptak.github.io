@@ -8,8 +8,7 @@ permalink: /watchlist.html
 ## MAY 2026
 
 ## <span class="date">May 2</span> ⚡ EAST Tokamak Sustains DTP Regime >1 Minute, Resolving Divertor-ELM Tradeoff
-
-tags: [fusion, china]
+    tags: [fusion, china]
 
 Chinese Academy of Sciences team on EAST tokamak sustained Detached divertor and Turbulence-dominated Pedestal (DTP) regime for over 60s—first minute-scale integrated solution with ELM suppression and high confinement. Unlike prior detached regimes that cooled pedestals, real-time N2 seeding trapped neutrals, boosted Te gradient, and drove micro-turbulence for natural ELM-free pressure control.
 
