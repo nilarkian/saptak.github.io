@@ -7,44 +7,55 @@ permalink: /watchlist.html
 
 ## MAY 2026
 
-### <span class="date">May 2</span> ⚡ EAST Tokamak Sustains DTP Regime >1 Minute, Resolving Divertor-ELM Tradeoff
+### <span class="date">May 2</span> ⚡ China's EAST Tokamak fusion reactor breakthrough
 tags: [fusion, china]
 
-Chinese Academy of Sciences team on EAST tokamak sustained Detached divertor and Turbulence-dominated Pedestal (DTP) regime for over 60s—first minute-scale integrated solution with ELM suppression and high confinement. Unlike prior detached regimes that cooled pedestals, real-time N2 seeding trapped neutrals, boosted Te gradient, and drove micro-turbulence for natural ELM-free pressure control.
+China’s EAST reactor held a stable plasma mode for 60+ seconds with both heat control and stability—first time this combo worked this long.
 
-Breaks longstanding H-mode/divertor incompatibility, enabling steady-state operation critical for ITER-class reactors. Demonstrates closed divertor viability, accelerates path to DT burning plasmas with viable heat exhaust, potentially slashing wall erosion risks in DEMO designs.
+Usually, stability and heat handling conflict. They solved it using real-time nitrogen injection, which smoothed pressure and avoided damaging bursts.
 
-[source](https://www.eurekalert.org/news-releases/1126269)
+This makes steady, long-running fusion (needed for reactors like ITER) more realistic and reduces wall damage risk.
+
+[source]([🔗](https://www.eurekalert.org/news-releases/1126269)) 
 
 ---
+
 ### <span class="date">May 02</span> 🚀 China's Tiangong expansion to six modules positions it as sole crewed LEO outpost post-ISS deorbit
 tags: [space, china]
 
-China confirms six-module Tiangong upgrade via Long March 5B, shifting from T- to cross-configuration with 180t mass and six-person crew capacity. Key novelty: multifunctional forward module enables two additional labs, opening docking for international payloads amid Pakistan/HK/Macao astronaut integrations.
+China will expand Tiangong space station to 6 modules, increasing crew to 6 and adding more lab space.
 
-This locks China as LEO hegemon after NASA's 2031 ISS splashdown, breaking Western monopoly on sustained human spaceflight. Enables expanded microgravity research, foreign partnerships via UNOOSA, and reusable rocket synergies—but hinges on 2027 launch amid crowded manifest. 
-[SpaceNews](https://spacenews.com/china-to-launch-new-modules-to-tiangong-space-station/)
+New modules allow more experiments and international participation.
+
+With the ISS retiring around 2031, this could become the only crewed space station in low Earth orbit, giving China a major advantage.
+
+[SpaceNews]([🔗](https://spacenews.com/china-to-launch-new-modules-to-tiangong-space-station/)) 
 
 ---
+
 ### <span class="date">May 1</span> 🤑 Morgan Stanley hikes India capex forecast to $800B amid US-Iran war, prioritizing energy/defense/data centers
 tags: [india, capex, geopolitics]
 
-Morgan Stanley revised India's 5-year capex to $800B (37.5% GDP by FY30), up from 36.5%, with 60% into energy transition, defense (to 2.5% GDP by FY31), and data centers.
+Morgan Stanley now expects India to spend $800B over 5 years, mostly on energy, defense, and data centers.
 
-Shift: Structural reallocation from cyclical outlays, countering 88.6% oil import exposure and Hormuz risks.
+Reason: reduce oil risk and handle global tensions.
 
-Insight: Sustains 6.5-7% GDP amid 1pp FY27 drag; lifts corporate profits toward 8% GDP ceiling.
-
-Implications: Fast-tracks supply chain resilience but stagflation looms with rupee's 10% depreciation constraining fiscal bandwidth for scale-up.
+Impact: supports ~6.5–7% growth and higher corporate profits, but inflation and currency pressure could limit spending.
 
 ---
-## April 2026
 
 ### <span class="date">Apr 30</span> 🤖 OpenAI o1 outperforms ER physicians on messy real-world diagnostics, excels on NEJM cases
 tags: [AI, healthcare, diagnostics]
 
-Harvard/Beth Israel study shows o1 preview matching expert physicians across 76 ED cases and arcane NEJM reports, thriving on noisy EHR data where prior models faltered. Breakthrough: reasoning model handles vague triage without imaging/multimodal inputs, a first for production-grade clinical accuracy. Shifts ER workflows—enables AI triage/second opinions but demands prospective trials to validate beyond text. No physician replacement; exposes gaps in visual/nonverbal interpretation. 
-[Harvard Magazine](https://www.harvardmagazine.com/ai/ai-outperforms-doctors-diagnosis-harvard-study)
+A Harvard-linked study shows OpenAI o1 matched or beat doctors on difficult ER cases using messy patient data.
+
+Key point: it handles unclear cases well without needing images.
+
+Useful for triage and second opinions, but still can’t replace doctors due to limits in visual and human judgment.
+
+[Harvard Magazine]([🔗](https://www.harvardmagazine.com/ai/ai-outperforms-doctors-diagnosis-harvard-study)) 
+
+---
 
 ### <span class="date">Apr 30</span> ⚡CATL's Qilin Condensed Battery marks a major advancement in EV technology
 tags: [battery, china]
