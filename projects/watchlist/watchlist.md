@@ -16,7 +16,7 @@ Usually, stability and heat handling conflict. They solved it using real-time ni
 
 This makes steady, long-running fusion (needed for reactors like ITER) more realistic and reduces wall damage risk.
 
-[source]([🔗](https://www.eurekalert.org/news-releases/1126269)) 
+[source](https://www.eurekalert.org/news-releases/1126269) 
 
 ---
 
@@ -29,7 +29,7 @@ New modules allow more experiments and international participation.
 
 With the ISS retiring around 2031, this could become the only crewed space station in low Earth orbit, giving China a major advantage.
 
-[SpaceNews]([🔗](https://spacenews.com/china-to-launch-new-modules-to-tiangong-space-station/)) 
+[SpaceNews](https://spacenews.com/china-to-launch-new-modules-to-tiangong-space-station/) 
 
 ---
 
@@ -53,7 +53,7 @@ Key point: it handles unclear cases well without needing images.
 
 Useful for triage and second opinions, but still can’t replace doctors due to limits in visual and human judgment.
 
-[Harvard Magazine]([🔗](https://www.harvardmagazine.com/ai/ai-outperforms-doctors-diagnosis-harvard-study)) 
+[Harvard Magazine](https://www.harvardmagazine.com/ai/ai-outperforms-doctors-diagnosis-harvard-study) 
 
 ---
 
