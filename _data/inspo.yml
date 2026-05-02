@@ -1,6 +1,7 @@
 # ════════════════════════════════════════════
 # MUSIC
 # ════════════════════════════════════════════
+
 music:
 
   - url:   "https://youtu.be/QPjttyVd7xE"
@@ -91,14 +92,27 @@ tweets:
 # ════════════════════════════════════════════
 design:
 
-  # Template — copy and uncomment to add an entry
-  # - url:     "https://example.com"
-  #   source:  "Site Name"
-  #   caption: "What caught your eye"
-  #   note:    "One line on the specific thing worth stealing"
-  #   img:     "/assets/inspo/design/example.png"   # optional
-  #   date:    2025-01-01
-  #   tags:    [design]
+
+    - url:     "https://www.tooooools.app/"
+      source:  "Tooooools"
+      caption: "Hyper-dense directory of creative + dev tools (with built-in generators)"
+      note:    "Steal the density—zero fluff, just stacked utility; feels like a cheatcode hub curated tools + built-in image/video effects" 
+      date:    2026-05-02
+      tags:    [design, tools, productivity]
+    
+- url:     "https://benditomockup.com/"
+      source:  "Bendito Mockup"
+      caption: "Art-driven premium mockups that feel like photography, not templates"
+      note:    "Steal the positioning—mockups as ‘art direction’, not assets; elevates perceived brand value artistic, photographer-collab mockups" 
+      date:    2026-05-02
+      tags:    [design, mockups, branding]
+    
+- url:     "https://www.cosmos.so/public-work"
+      source:  "Cosmos (Public Work)"
+      caption: "Search engine for public-domain visuals from museums + libraries"
+      note:    "Steal the data layer—turn scattered archives into a clean discovery engine 100k+ public domain images aggregated" 
+      date:    2026-05-02
+      tags:    [design, inspiration, database]
 
 
 # ════════════════════════════════════════════
@@ -268,59 +282,4 @@ websites:
 
 
 # INSPO DATA SOURCE
-
-#
-
-# This file is the single source of truth for everything
-# in the Inspo section EXCEPT deep dives.
-#
-# Deep dives are .md files in _writing/ (collection).
-# Everything else lives here.
-#
-# ─────────────────────────────────────────────
-# RULES
-# ─────────────────────────────────────────────
-#
-# 1. Five categories: youtube, tweets, design, writing, websites
-#    Each is a top-level key. Each holds a list of entries.
-#
-# 2. Every entry needs:
-#    - url
-#    - date (YYYY-MM-DD)
-#    - tags (array, lowercase)
-#
-# 3. Category-specific fields below. Optional fields can be omitted.
-#
-# 4. Use child tags from _data/tags.yml when possible.
-#    Orphan tags appear under "Other" in the sidebar — fix by
-#    adding them to tags.yml.
-#
-# 5. Sort within each category is automatic — most recent date first.
-#    No need to manually order entries.
-#
-# ─────────────────────────────────────────────
-
-# @@ FIELDS PER CATEGORY
-
-# ─────────────────────────────────────────────
-#
-# youtube:
-#   url, title, desc, date, tags
-#   (thumbnail auto-fetched from YouTube)
-#
-# tweets:
-#   url, name, handle, body, date, tags
-#   (avatar emoji optional — defaults to 🧑)
-#
-# design:
-#   url, source, caption, note, img, date, tags
-#   img is path like /assets/inspo/design/foo.png — optional
-#
-# writing:
-#   url, author, title, desc, date, tags
-#
-# websites:
-#   url, name, desc, date, tags
-#
-# ─────────────────────────────────────────────
 
