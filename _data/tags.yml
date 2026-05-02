@@ -2,6 +2,7 @@
 - name: energy
   children:
     - nuclear
+    - fusion
     - battery
 
 - name: interests
