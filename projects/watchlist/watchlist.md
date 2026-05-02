@@ -7,8 +7,8 @@ permalink: /watchlist.html
 
 ## MAY 2026
 
-## <span class="date">May 2</span> ⚡ EAST Tokamak Sustains DTP Regime >1 Minute, Resolving Divertor-ELM Tradeoff
-    tags: [fusion, china]
+### <span class="date">May 2</span> ⚡ EAST Tokamak Sustains DTP Regime >1 Minute, Resolving Divertor-ELM Tradeoff
+tags: [fusion, china]
 
 Chinese Academy of Sciences team on EAST tokamak sustained Detached divertor and Turbulence-dominated Pedestal (DTP) regime for over 60s—first minute-scale integrated solution with ELM suppression and high confinement. Unlike prior detached regimes that cooled pedestals, real-time N2 seeding trapped neutrals, boosted Te gradient, and drove micro-turbulence for natural ELM-free pressure control.
 
@@ -17,7 +17,7 @@ Breaks longstanding H-mode/divertor incompatibility, enabling steady-state opera
 [source](https://www.eurekalert.org/news-releases/1126269)
 
 ---
-### <span class="date">May 02</span> ⚡China's Tiangong expansion to six modules positions it as sole crewed LEO outpost post-ISS deorbit
+### <span class="date">May 02</span> 🚀 China's Tiangong expansion to six modules positions it as sole crewed LEO outpost post-ISS deorbit
 tags: [space, china]
 
 China confirms six-module Tiangong upgrade via Long March 5B, shifting from T- to cross-configuration with 180t mass and six-person crew capacity. Key novelty: multifunctional forward module enables two additional labs, opening docking for international payloads amid Pakistan/HK/Macao astronaut integrations.
@@ -26,7 +26,7 @@ This locks China as LEO hegemon after NASA's 2031 ISS splashdown, breaking Weste
 [SpaceNews](https://spacenews.com/china-to-launch-new-modules-to-tiangong-space-station/)
 
 ---
-### <span class="date">May 1</span> ⚡Morgan Stanley hikes India capex forecast to $800B amid US-Iran war, prioritizing energy/defense/data centers
+### <span class="date">May 1</span> 🤑 Morgan Stanley hikes India capex forecast to $800B amid US-Iran war, prioritizing energy/defense/data centers
 tags: [india, capex, geopolitics]
 
 Morgan Stanley revised India's 5-year capex to $800B (37.5% GDP by FY30), up from 36.5%, with 60% into energy transition, defense (to 2.5% GDP by FY31), and data centers.
@@ -40,7 +40,7 @@ Implications: Fast-tracks supply chain resilience but stagflation looms with rup
 ---
 ## April 2026
 
-## <span class="date">Apr 30</span> ⚡OpenAI o1 outperforms ER physicians on messy real-world diagnostics, excels on NEJM cases
+### <span class="date">Apr 30</span> 🤖 OpenAI o1 outperforms ER physicians on messy real-world diagnostics, excels on NEJM cases
 tags: [AI, healthcare, diagnostics]
 
 Harvard/Beth Israel study shows o1 preview matching expert physicians across 76 ED cases and arcane NEJM reports, thriving on noisy EHR data where prior models faltered. Breakthrough: reasoning model handles vague triage without imaging/multimodal inputs, a first for production-grade clinical accuracy. Shifts ER workflows—enables AI triage/second opinions but demands prospective trials to validate beyond text. No physician replacement; exposes gaps in visual/nonverbal interpretation. 
